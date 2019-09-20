@@ -11,14 +11,13 @@
     "test:ted": "wdio wdio.conf.js --spec _temp/ted.js --inspect",
     "test:user:loginform:design": "wdio wdio.conf.js --spec ./test/specs/user/loginForm/design/user_loginForm_design.js --inspect",
     "test:user:loginform:func": "wdio wdio.conf.js --spec ./test/specs/user/loginForm/func/user_loginForm_func.js --inspect",
-
     "test:user:registerform:func": "wdio wdio.conf.js --spec ./test/specs/user/registerForm/func/user_reginsterForm_func.js --inspect",
-
+    "test:user:registerlogin:interg": "wdio wdio.conf.js --spec ./test/specs/user/integration/user_register-login_integr.js --inspect",
     "test:rx": "wdio wdio.conf.js --spec _temp/goodrx.js --inspect"
   },
   "author": "Viktor Bogutskii",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "@wdio/cli": "5.12.5",
     "@wdio/dot-reporter": "5.12.1",
     "@wdio/local-runner": "5.12.5",
@@ -26,6 +25,7 @@
     "@wdio/selenium-standalone-service": "5.12.1",
     "@wdio/spec-reporter": "5.12.1",
     "@wdio/sync": "5.12.3",
-    "chai": "4.2.0"
+    "chai": "4.2.0",
+    "axios": "0.19.0"
   }
 }

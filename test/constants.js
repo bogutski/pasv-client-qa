@@ -4,6 +4,7 @@ const url = {
   baseUrl,
   loginUrl: `${baseUrl}/user/login`,
   registerUrl: `${baseUrl}/user/register`,
+  serverUrl: 'https://server-stage.pasv.us'
 };
 
 const user = {
@@ -15,8 +16,13 @@ const user = {
     phone: '+12312312334'
   },
   student: {
-    login: '',
-    password: ''
+    email: 'student_viktor@test.com',
+    password: '11111',
+    // id: '5d687e4983d5d600380e6b51',
+    name: 'Test Student',
+    phone: '+12312312334',
+    about: 'About Test Student About Test Student About Test Student About Test Student',
+    goals: 'About Test Student About Test Student About Test Student About Test Student'
   }
 };
 

@@ -84,7 +84,7 @@ describe('User --- Register Form --- Func ––– Register new user', () => {
   it('should have `Email` field', () => {
     const element = $('//input[@name="email"]');
     element.setValue(user.admin.email);
-  browser.debug()
+    browser.debug()
   });
 
   // it('should have `Password` field', () => {
