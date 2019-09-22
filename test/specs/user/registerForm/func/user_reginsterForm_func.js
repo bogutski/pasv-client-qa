@@ -1,5 +1,6 @@
 const { expect } = require('chai');
 const { url, user } = require('./../../../../constants');
+const axios = require('axios');
 
 const elements = {
   registerButton: {
@@ -9,6 +10,8 @@ const elements = {
     title: 'User Register',
   }
 };
+
+let a;
 
 describe('User --- Register Form --- Func --- Form is displayed', () => {
   before(() => {
@@ -71,40 +74,77 @@ describe('User --- Register Form --- Func --- Form is displayed', () => {
 
 describe('User --- Register Form --- Func ––– Register new user', () => {
 
+  before(() => {
+    return axios.post(`${url.serverUrl}/user/login`, {
+      email: user.admin.email,
+      password: user.admin.password
+    }).then(response => {
+      console.log(response.data.token);
+
+      return axios.post({
+        method: 'post',
+        data: {
+
+        },
+        headers: {
+          'Auto..': response.data.token
+        }
+      }).then().catch()
+
+
+    }).catch(err => {
+      console.log(err);
+    });
+  });
+
+  it('should validate Submit button is disabled', () => {
+    const element = $('//button[@type="submit"]');
+    expect(element.isEnabled()).false;
+  });
+
   it('should type `Real name` field', () => {
     const element = $('//input[@name="name"]');
-    element.setValue(user.admin.name)
+    element.setValue(user.student.name);
   });
 
-  it('should have `Cell phone number` name field', () => {
+  it('should type `Cell phone number` name field', () => {
     const element = $('//input[@name="phone"]');
-    element.setValue(user.admin.phone)
+    element.setValue(user.student.phone);
   });
 
-  it('should have `Email` field', () => {
+  it('should type `Email` field', () => {
     const element = $('//input[@name="email"]');
-    element.setValue(user.admin.email);
-    browser.debug()
+    element.setValue(user.student.email);
   });
 
-  // it('should have `Password` field', () => {
-  //   const element = $('//input[@name="password"]');
-  //   expect(element.isDisplayed()).true;
-  // });
+  it('should type `Password` field', () => {
+    const element = $('//input[@name="password"]');
+    element.setValue(user.student.password);
+  });
 
-  // it('should have `About` field', () => {
-  //   const element = $('//textarea[@name="about"]');
-  //   expect(element.isDisplayed()).true;
-  // });
-  //
-  // it('should have `Goals` field', () => {
-  //   const element = $('//textarea[@name="goals"]');
-  //   expect(element.isDisplayed()).true;
-  // });
-  //
-  // it('should have `English level` field', () => {
-  //   const element = $('//label[@for="englishLevel"]/../../select');
-  //   expect(element.isDisplayed()).true;
-  // });
+  it('should type `About` field', () => {
+    const element = $('//textarea[@name="about"]');
+    element.setValue(user.student.about);
+  });
+
+  it('should type `Goals` field', () => {
+    const element = $('//textarea[@name="goals"]');
+    element.setValue(user.student.goals);
+  });
+
+  it('should select `English level` field', () => {
+    const element = $('//label[@for="englishLevel"]/../../select');
+    element.selectByVisibleText('Native');
+  });
+
+  it('should validate Submit button is disabled', () => {
+    const element = $('//button[@type="submit"]');
+    expect(element.isEnabled()).true;
+    // browser.debug()
+  });
+
+  it('should click submit button', () => {
+
+  });
 
 });
