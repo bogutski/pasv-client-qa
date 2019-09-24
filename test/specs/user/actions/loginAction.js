@@ -1,6 +1,7 @@
-const { url, user } = require('../constants');
+import { url } from '../../../constants';
+import { user } from '../constants';
 
-function loginAction(browser){
+export default function loginAction(browser) {
   browser.url(url.loginUrl);
 
   const emailField = $('//input[@name="email"]');
@@ -13,5 +14,3 @@ function loginAction(browser){
   button.click();
   browser.pause(1000);
 }
-
-module.exports = loginAction;

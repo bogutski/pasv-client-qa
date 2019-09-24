@@ -1,17 +1,16 @@
 const { expect } = require('chai');
-const { url, user } = require('./../../../../constants');
-const axios = require('axios');
+const { url } = require('../../../../constants');
+import { user } from './../../constants';
+import userDeleteByEmail from './../../actions/deleteByEmail';
 
 const elements = {
   registerButton: {
-    selector: '//div[@id="user-section"]/ul/li/a[text() = "Register"]'
+    selector: '//div[@id="user-section"]/ul/li/a[text() = "Register"]',
   },
   registerForm: {
     title: 'User Register',
-  }
+  },
 };
-
-let a;
 
 describe('User --- Register Form --- Func --- Form is displayed', () => {
   before(() => {
@@ -69,35 +68,14 @@ describe('User --- Register Form --- Func --- Form is displayed', () => {
     const element = $('//label[@for="englishLevel"]/../../select');
     expect(element.isDisplayed()).true;
   });
-
 });
 
 describe('User --- Register Form --- Func ––– Register new user', () => {
-
   before(() => {
-    return axios.post(`${url.serverUrl}/user/login`, {
-      email: user.admin.email,
-      password: user.admin.password
-    }).then(response => {
-      console.log(response.data.token);
-
-      return axios.post({
-        method: 'post',
-        data: {
-
-        },
-        headers: {
-          'Auto..': response.data.token
-        }
-      }).then().catch()
-
-
-    }).catch(err => {
-      console.log(err);
-    });
+    userDeleteByEmail(user.student.email);
   });
 
-  it('should validate Submit button is disabled', () => {
+  it('should validate Submit button initially is disabled', () => {
     const element = $('//button[@type="submit"]');
     expect(element.isEnabled()).false;
   });
@@ -137,14 +115,15 @@ describe('User --- Register Form --- Func ––– Register new user', () => {
     element.selectByVisibleText('Native');
   });
 
-  it('should validate Submit button is disabled', () => {
+  it('should validate Submit button is enabled', () => {
     const element = $('//button[@type="submit"]');
     expect(element.isEnabled()).true;
     // browser.debug()
   });
 
   it('should click submit button', () => {
-
+    const element = $('//button[@type="submit"]');
+    element.click();
+    browser.pause(5000);
   });
-
 });

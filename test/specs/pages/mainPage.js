@@ -1,4 +1,4 @@
-const expect = require('chai').expect;
+import { expect } from 'chai';
 
 describe('Main page', () => {
   before(() => {
@@ -7,7 +7,7 @@ describe('Main page', () => {
 
   it('should have correct site name', () => {
     const selector = '//span[@id="site-name"]';
-    var actual = $(selector).getCSSProperty('color').parsed.hex;
+    const actual = $(selector).getCSSProperty('color').parsed.hex;
 
     const expected = '#000000';
 

@@ -1,11 +1,12 @@
-const { expect } = require('chai');
-const loginAction = require('../../../../actions/loginAction');
-const { url, user } = require('./../../../../constants');
+import { expect } from 'chai';
+const loginAction = require('../../../actions/loginAction');
+import { user } from '../../../constants';
+import { url } from '../../../../../constants';
 
 const elements = {
   h1: {
     selector: '//h1',
-    text: 'User Login'
+    text: 'User Login',
   },
 };
 
@@ -34,5 +35,4 @@ describe('User --- Login Form --- Func', () => {
     const h1 = $('//h1').getText();
     expect(h1).to.eq(userName);
   });
-
 });

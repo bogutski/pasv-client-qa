@@ -1,6 +1,7 @@
-const { url, user } = require('../constants');
+import { url } from '../../../constants';
+import { user } from './../constants';
 
-function registerAction(browser){
+export default function registerAction(browser) {
   browser.url(url.registerUrl);
 
   const name = $('//input[@name="name"]');
@@ -24,5 +25,3 @@ function registerAction(browser){
   button.click();
   browser.pause(1000);
 }
-
-module.exports = registerAction;

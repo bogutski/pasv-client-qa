@@ -1,10 +1,9 @@
 const { expect } = require('chai');
-const loginAction = require('../../actions/loginAction');
+const loginAction = require('../user/actions/loginAction');
 
 const menuItemSelector = '//div[@id="site-menu"]//a[text() = "Diary"]';
 
 describe('Diary List', () => {
-
   it('should have main menu item Diary', () => {
     loginAction(browser);
     const isDisplayed = $(menuItemSelector).isDisplayed();
@@ -27,10 +26,8 @@ describe('Diary List', () => {
 
     // browser.debug();
 
-    console.log(element)
-
+    console.log(element);
   });
-
 
   // it('should have correct h1', () => {
   //   const selector = '';
@@ -40,6 +37,4 @@ describe('Diary List', () => {
   //
   //   expect(actual).to.eq(expected);
   // });
-
 });
-

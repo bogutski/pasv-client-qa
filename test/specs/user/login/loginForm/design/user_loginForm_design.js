@@ -1,15 +1,15 @@
 const { expect } = require('chai');
-const { url } = require('./../../../../constants');
+const { url } = require('../../../../../constants');
 
 const elements = {
   h1: {
     selector: '//h1',
-    color: '#333333'
+    color: '#333333',
   },
 };
 
 describe('User --- Login Form --- Design', () => {
-  before(()=> {
+  before(() => {
     browser.url(url.loginUrl);
   });
 
@@ -60,5 +60,4 @@ describe('User --- Login Form --- Design', () => {
     expect(actualBorderColor).to.eq(expectedBorderColor);
     browser.pause(5000);
   });
-
 });
