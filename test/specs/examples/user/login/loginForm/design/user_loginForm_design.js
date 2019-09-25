@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const { url } = require('../../../../../constants');
+const { url } = require('../../../../constants');
 
 const elements = {
   h1: {

@@ -1,7 +1,7 @@
 const { expect } = require('chai');
-const { url } = require('../../../../constants');
-import { user } from './../../constants';
-import userDeleteByEmail from './../../actions/deleteByEmail';
+const { url } = require('../../../constants');
+import { user } from '../../constants';
+import userDeleteByEmail from '../../actions/deleteByEmail';
 
 const elements = {
   registerButton: {
