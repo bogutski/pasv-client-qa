@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 const loginAction = require('../../../actions/loginAction');
 import { user } from '../../../constants';
-import { url } from '../../../../../constants';
+import { url } from '../../../../constants';
 
 const elements = {
   h1: {

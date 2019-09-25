@@ -1,4 +1,4 @@
-import { url } from '../../../constants';
+import { url } from '../../constants';
 import { user } from '../constants';
 
 export default function loginAction(browser) {

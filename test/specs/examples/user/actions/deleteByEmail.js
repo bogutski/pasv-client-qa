@@ -1,6 +1,6 @@
-import { url } from './../../../constants';
+import { url } from '../../constants';
 import { user } from '../constants';
-import axios from 'axios';
+import axios from 'axios/index';
 
 export default function userDeleteByEmail(email) {
   return axios
