@@ -1,0 +1,7 @@
+.idea/
+.git
+.DS_Store
+/allure-results/
+/node_modules/
+allure-report
+.xml
