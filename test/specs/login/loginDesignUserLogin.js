@@ -13,7 +13,7 @@ describe('User ----Login-----Design', () => {
     expect(actual).to.be.true;
   });
 
-  it('should validate that h1 has correct color ', () => {
+  it('should validate that h1 has correct color', () => {
     const element = $('//h1');
     const actualColor = element.getCSSProperty('color').parsed.hex;
     const expectedColor = '#333333';
@@ -21,8 +21,8 @@ describe('User ----Login-----Design', () => {
   });
 
   it('should validate that font size is correct ', () => {
-    const element = $('//h1');
-    const actual = element.getCSSProperty('font-weight');
+    const element = $('//h1'),
+      actual = element.getCSSProperty('font-weight');
     const expected = '500';
     expect(actual).to.be.eq(expected);
   });
