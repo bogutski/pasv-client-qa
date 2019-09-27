@@ -1,63 +1,52 @@
-//const expect = require('chai').expect;
-//const assert = require('chai').assert;
 import { expect } from 'chai';
+import { url } from '../examples/constants';
 
 describe('Home page - functionality', () => {
   before(() => {
-    browser.url('https://stage.pasv.us/');
+    browser.url(url.baseUrl);
   });
 
-  it('should have correct title', () => {
-    const title = browser.getTitle();
-    browser.pause(4000);
-    const expected = 'Progress Monitor';
-    expect(title).to.equal(expected);
-  });
-
-  it('should verify that clicking on `Progress Monitor` from Home Page gets redirected back to Home Page ', function() {
+  it('should verify that clicking to site name from Home Page gets redirected back to Home Page ', () => {
     const selector = '//span[@id="site-name"]';
     $(selector).click();
     const redirectUrl = browser.getUrl();
-    const expected = 'https://stage.pasv.us/';
+    const expected = url.baseUrl + '/';
+
     expect(redirectUrl).to.equal(expected);
   });
 
-  it('should verify that clicking on Login button from Home Page gets redirected to Login Page ', function() {
-    const selector = '//a[@class="nav-link"]';
+  it('should verify that clicking on Login button from Home Page gets redirected to Login Page ', () => {
+    const selector = '//div[@id="user-section"]//a[text()="Login"]';
     $(selector).click();
-    browser.pause(1000);
     const redirectUrl = browser.getUrl();
-    const expected = 'https://stage.pasv.us/user/login';
+    const expected = url.loginUrl;
 
     expect(redirectUrl).to.equal(expected);
   });
 
-  it('should verify that clicking on `Progress Monitor` from Login Page gets redirected back to Home Page ', function() {
+  it('should verify that clicking to site name from Login Page gets redirected back to Home Page ', () => {
     const selector = '//span[@id="site-name"]';
     $(selector).click();
-    browser.pause(1000);
     const redirectUrl = browser.getUrl();
-    const expected = 'https://stage.pasv.us/';
+    const expected = url.baseUrl + '/';
 
     expect(redirectUrl).to.equal(expected);
   });
 
-  it('should verify that clicking on Register button from Home Page gets redirected to Register Page ', function() {
-    const selector = '//a[@class="btn btn-outline-primary"]';
+  it('should verify that clicking on Register button from Home Page gets redirected to Register Page ', () => {
+    const selector = '//div[@id="user-section"]//a[text()="Register"]';
     $(selector).click();
-    browser.pause(1000);
     const redirectUrl = browser.getUrl();
-    const expected = 'https://stage.pasv.us/user/register';
+    const expected = url.registerUrl;
 
     expect(redirectUrl).to.equal(expected);
   });
 
-  it('should verify that clicking on `Progress Monitor` from Register Page gets redirected back to Home Page ', function() {
+  it('should verify that clicking to site name from Register Page gets redirected back to Home Page ', () => {
     const selector = '//span[@id="site-name"]';
     $(selector).click();
-    browser.pause(1000);
     const redirectUrl = browser.getUrl();
-    const expected = 'https://stage.pasv.us/';
+    const expected = url.baseUrl + '/';
 
     expect(redirectUrl).to.equal(expected);
   });

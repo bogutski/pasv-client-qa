@@ -12,8 +12,8 @@
     "test:user:loginform:design": "wdio wdio.conf.js --spec test/specs/examples/user/login/loginForm/design/user_loginForm_design.js --inspect",
     "test:user:loginform:func": "wdio wdio.conf.js --spec test/specs/examples/user/login/loginForm/func/user_loginForm_func.js --inspect",
     "test:user:registerform:func": "wdio wdio.conf.js --spec test/specs/examples/user/register/registerForm/user_reginsterForm_func.js --inspect",
-    "test:homePageFunc": "wdio wdio.conf.js --spec test/specs/homePage/homePageFunc.js --inspect"
-
+    "test:homePageFunc": "wdio wdio.conf.js --spec test/specs/homePage/homePageFunc.js --inspect",
+    "test:homePageHeaderDesign": "wdio wdio.conf.js --spec test/specs/homePage/homePageHeaderDesign.js --inspect"
   },
   "author": "Viktor Bogutskii",
   "license": "MIT",
