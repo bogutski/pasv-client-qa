@@ -9,8 +9,6 @@ export function userLoginAdmin() {
       password: user.admin.password,
     })
     .then(response => {
-      console.log(response.data.token);
-
       const adminToken = response.data.token;
       console.log(adminToken);
     });
