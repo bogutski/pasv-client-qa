@@ -1,5 +1,6 @@
 import { expect } from 'chai';
-const { url } = require('../examples/constants');
+import { url } from '../examples/constants';
+
 const siteName = '//span[@id="site-name"]';
 const navBar = '//div[@id="user-section"]';
 const loginButton = '//a[contains(text(),"Login")]';
