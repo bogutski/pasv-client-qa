@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "wdio wdio.conf.js --inspect",
+    "test:loginDesign": "wdio wdio.conf.js --spec test/specs/login/loginDesignUserLogin.js --inspect",
     "test:login": "wdio wdio.conf.js --spec test/specs/examples/pages/mainPage.js --inspect",
     "test:register": "wdio wdio.conf.js --spec test/specs/examples/pages/mainPage.js --inspect",
     "test:dairy:list": "wdio wdio.conf.js --spec test/specs/examples/diary/diaryList.js --inspect",
