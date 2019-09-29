@@ -10,8 +10,9 @@ export function userLoginAdmin() {
     })
     .then(response => {
       const adminToken = response.data.token;
-      console.log(adminToken).catch(error => {
-        console.log('------------' + error + '------------');
-      });
+      console.log(adminToken);
+    })
+    .catch(error => {
+      console.log('------------' + error + '------------');
     });
 }
