@@ -5,7 +5,7 @@ import { user } from '../../../examples/user/constants';
 // eslint-disable-next-line no-unused-vars
 const { expect } = require('chai');
 
-describe('SUBMIT --- BUTTON --- ENABLED', () => {
+describe('SUBMIT BUTTON IS ENABLED WHEN ALL FIELDS FILLED CORRECTLY', () => {
   // eslint-disable-next-line mocha/no-hooks-for-single-case
   before(() => {
     browser.url(url.registerUrl);
@@ -27,7 +27,7 @@ describe('SUBMIT --- BUTTON --- ENABLED', () => {
     englishLevelField.selectByVisibleText('Elementary');
   });
 
-  it('Should check that submit button is enabled when all fields filled correct', function() {
+  it('Should check that submit button is enabled when all fields filled correct', () => {
     const submitButton = $('//button[@type="submit"]');
     const isEnabled = submitButton.isEnabled();
 
