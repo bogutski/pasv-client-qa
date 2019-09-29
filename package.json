@@ -14,7 +14,7 @@
     "test:user:loginform:func": "wdio wdio.conf.js --spec test/specs/examples/user/login/loginForm/func/user_loginForm_func.js --inspect",
     "test:user:registerform:func": "wdio wdio.conf.js --spec test/specs/examples/user/register/registerForm/user_reginsterForm_func.js --inspect",
     "test:homePageFunc": "wdio wdio.conf.js --spec test/specs/homePage/homePageFunc.js --inspect",
-    "test:homePageHeaderDesign": "wdio wdio.conf.js --spec test/specs/homePage/homePageHeaderDesign.js --inspect"
+    "test:homePageHeaderDesign": "wdio wdio.conf.js --spec test/specs/homePage/homePageHeaderDesign.js --inspect",
     "test:user:registerlogin:interg": "wdio wdio.conf.js --spec test/specs/examples/user/_integration/user_register-login_integr.js --inspect",
     "test:rx": "wdio wdio.conf.js --spec _temp/goodrx.js --inspect",
     "test:user:loginAdminToken": "wdio wdio.conf.js --spec test/specs/examples/user/actions/loginAdminToken.js --inspect",
@@ -57,8 +57,5 @@
       "prettier --write",
       "git add"
     ]
-  },
-  "dependencies": {
-    "webdriverio": "latest"
   }
 }
