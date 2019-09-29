@@ -74,10 +74,10 @@ describe('SUBMIT BUTTON SHOULD DISABLED WHEN REAL NAME FILLED INCORRECT', () => 
       realNameField.setValue(arrNames[i]);
       browser.keys('Tab');
       browser.pause(1000);
+      const actualBorderColor = realNameField.getCSSProperty('border-color').parsed.hex;
+      const expectedBorderColor = '#ff4465';
+      expect(actualBorderColor).equal(expectedBorderColor);
     }
-    const actualBorderColor = realNameField.getCSSProperty('border-color').parsed.hex;
-    const expectedBorderColor = '#ff4465';
-    expect(actualBorderColor).equal(expectedBorderColor);
   });
 
   it('should check that submit button disabled when Real Name filled incorrect', () => {
