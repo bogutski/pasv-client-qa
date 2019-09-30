@@ -2,7 +2,7 @@ const { expect } = require('chai');
 import { url } from '../../../examples/constants';
 import { user } from '../../../examples/user/constants';
 
-describe('SUBMIT BUTTON SHOULD DISABLED WHEN REAL NAME IS EMPTY', () => {
+describe('REGISTRATION FORM SUBMIT BUTTON SHOULD DISABLED WHEN REAL NAME IS EMPTY', () => {
   before(() => {
     browser.url(url.registerUrl);
     const cellPhoneNumberField = $('//input[@name="phone"]');
@@ -38,7 +38,7 @@ describe('SUBMIT BUTTON SHOULD DISABLED WHEN REAL NAME IS EMPTY', () => {
   });
 });
 
-describe('SUBMIT BUTTON SHOULD DISABLED WHEN REAL NAME FILLED INCORRECT', () => {
+describe('REGISTRATION FORM SUBMIT BUTTON SHOULD DISABLED WHEN REAL NAME FILLED INCORRECT', () => {
   before(() => {
     browser.url(url.registerUrl);
 
