@@ -38,13 +38,13 @@ describe('Redirect from Main page to Register page', () => {
     expect(urlAfterClick).eq(expectedUrl);
   });
 
-  it('shoulf verify that after redirect to Register page Global Header is displayed', () => {
+  it('should verify that after redirect to Register page Global Header is displayed', () => {
     clickRegisterButton();
     const globalHeaderIsDisplayed = $(elements.globalHeader.selector).isDisplayed();
     expect(globalHeaderIsDisplayed).to.be.true;
   });
 
-  it('shoulf verify that after redirect to Register page Global Footer is displayed', () => {
+  it('should verify that after redirect to Register page Global Footer is displayed', () => {
     clickRegisterButton();
     const globalFooterIsDisplayed = $(elements.globalFooter.selector).isDisplayed();
     expect(globalFooterIsDisplayed).to.be.true;
