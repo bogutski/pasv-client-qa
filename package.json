@@ -19,6 +19,7 @@
     "test:rx": "wdio wdio.conf.js --spec _temp/goodrx.js --inspect",
     "test:user:loginAdminToken": "wdio wdio.conf.js --spec test/specs/examples/user/actions/loginAdminToken.js --inspect",
     "test:user:submitButton:enabled": "wdio wdio.conf.js --spec test/specs/registration/submit_button_func/positive/submitButtonEnabled.js --inspect",
+    "test:registrationRedirect": "wdio wdio.conf.js --spec ./test/specs/registration/redirect.js --inspect"
     "test:user:submitButton:disabled:realName": "wdio wdio.conf.js --spec test/specs/registration/submit_button_func/negative/realNameEmptyAndIncorreect.js --inspect"
   },
   "author": "Viktor Bogutskii",
