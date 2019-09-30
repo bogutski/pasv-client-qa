@@ -21,8 +21,8 @@ describe('User ----Login-----Design', () => {
   });
 
   it('should validate that font size is correct ', () => {
-    const element = $('//h1'),
-      actual = element.getCSSProperty('font-weight');
+    const element = $('//h1');
+    const  actual = element.getCSSProperty('font-weight');
     const expected = '500';
     expect(actual).to.be.eq(expected);
   });
