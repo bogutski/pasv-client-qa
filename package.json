@@ -15,13 +15,15 @@
     "test:user:registerform:func": "wdio wdio.conf.js --spec test/specs/examples/user/register/registerForm/user_reginsterForm_func.js --inspect",
     "test:homePageFunc": "wdio wdio.conf.js --spec test/specs/homePage/homePageFunc.js --inspect",
     "test:homePageHeaderDesign": "wdio wdio.conf.js --spec test/specs/homePage/homePageHeaderDesign.js --inspect",
+    "test:homePageFooterDesign": "wdio wdio.conf.js --spec test/specs/homePage/homePageFooterDesign.js --inspect",
     "test:user:registerlogin:interg": "wdio wdio.conf.js --spec test/specs/examples/user/_integration/user_register-login_integr.js --inspect",
     "test:rx": "wdio wdio.conf.js --spec _temp/goodrx.js --inspect",
     "test:user:loginAdminToken": "wdio wdio.conf.js --spec test/specs/examples/user/actions/loginAdminToken.js --inspect",
     "test:user:submitButton:enabled": "wdio wdio.conf.js --spec test/specs/registration/submit_button_func/positive/submitButtonEnabled.js --inspect",
     "test:registrationRedirect": "wdio wdio.conf.js --spec ./test/specs/registration/redirect.js --inspect",
     "test:user:submitButton:disabled:realName": "wdio wdio.conf.js --spec test/specs/registration/submit_button_func/negative/realNameEmptyAndIncorreect.js --inspect",
-    "test:registrationRealNameFunc": "wdio wdio.conf.js --spec ./test/specs/registration/realNameFunc.js --inspect"
+    "test:user:loginAdminToken": "wdio wdio.conf.js --spec test/specs/examples/user/actions/userGetAdminToken.js --inspect",
+    "test:user:submitButton:enabled": "wdio wdio.conf.js --spec test/specs/registration/submit_button_func/positive/submitButtonEnabled.js --inspect"
   },
   "author": "Viktor Bogutskii",
   "license": "MIT",
