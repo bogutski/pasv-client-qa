@@ -21,8 +21,11 @@ describe('Home page - Footer - design', () => {
 
   it('should verify that `Version` is displayed', () => {
     const textOfFooter = $(footer).getText();
-    const version = textOfFooter.includes('Version');
-    expect(version).to.be.true;
+    console.log('____________________________________________________________________');
+    console.log(textOfFooter);
+    console.log('____________________________________________________________________');
+    const hasVersion = textOfFooter.includes('Version');
+    expect(hasVersion).to.be.true;
   });
 
   it('should  verify that current version is displayed', () => {
@@ -31,19 +34,19 @@ describe('Home page - Footer - design', () => {
   });
 
   it('should verify that `copyright sign ©` is in the text', () => {
-    const actualText = $(footer).getText();
-    expect(actualText).to.include('©');
+    const textOfFooter = $(footer).getText();
+    expect(textOfFooter).to.include('©');
   });
 
   it('should verify that current year is in the footer text', () => {
-    const text = $(footer).getText();
-    const isIncludes = text.includes(currentYear);
-    expect(isIncludes).to.be.true;
+    const textOfFooter = $(footer).getText();
+    const currentYearIsIncluded = textOfFooter.includes(currentYear);
+    expect(currentYearIsIncluded).to.be.true;
   });
 
   it('should verify that text in the second line of footer is correct', () => {
-    const actualText = $(footer).getText();
-    expect(actualText).to.include(secondLineText);
+    const textOfFooter = $(footer).getText();
+    expect(textOfFooter).to.include(secondLineText);
   });
 
   it('should verify that text in footer is left-aligned', () => {
@@ -59,32 +62,32 @@ describe('Home page - Footer - design', () => {
   });
 
   it('should verify that word `Version` has correct font-size', () => {
-    const actualSize = $(footer).getCSSProperty('font-size').parsed.string;
+    const actualFontSize = $(footer).getCSSProperty('font-size').parsed.string;
     const expectFontSize = '17px';
-    expect(actualSize).to.equal(expectFontSize);
+    expect(actualFontSize).to.equal(expectFontSize);
   });
 
   it('should verify that number of version in fist line of footer has correct font-size', () => {
-    const actualSize = $(version).getCSSProperty('font-size').parsed.string;
+    const actualFontSize = $(version).getCSSProperty('font-size').parsed.string;
     const expectFontSize = '12.75px';
-    expect(actualSize).to.equal(expectFontSize);
+    expect(actualFontSize).to.equal(expectFontSize);
   });
 
   it('should verify that second line of footer has correct font-size', () => {
-    const actualSize = $(secondLine).getCSSProperty('font-size').parsed.string;
+    const actualFontSize = $(secondLine).getCSSProperty('font-size').parsed.string;
     const expectFontSize = '13.6px';
-    expect(actualSize).to.equal(expectFontSize);
+    expect(actualFontSize).to.equal(expectFontSize);
   });
 
   it('should verify that text in footer has correct font-weight', () => {
-    const actualWeight = $(footer).getCSSProperty('font-weight').parsed.string;
+    const actualFontWeight = $(footer).getCSSProperty('font-weight').parsed.string;
     const expectFontWeight = '400';
-    expect(actualWeight).to.equal(expectFontWeight);
+    expect(actualFontWeight).to.equal(expectFontWeight);
   });
 
   it('should verify that text in footer has correct font-family ', () => {
-    const font = $(footer).getCSSProperty('font-family').parsed.string;
-    expect(font).to.equal(
+    const actualFontFamily = $(footer).getCSSProperty('font-family').parsed.string;
+    expect(actualFontFamily).to.equal(
       '"sf pro display", "sf pro icons", "helvetica neue", helvetica, arial, sans-serif',
     );
   });
