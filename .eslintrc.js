@@ -23,7 +23,7 @@ module.exports = {
     'mocha/max-top-level-suites': 0,
 
     indent: ['error', 2],
-    'linebreak-style': ['error', 'unix'],
+    'linebreak-style': 0,
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
   },
