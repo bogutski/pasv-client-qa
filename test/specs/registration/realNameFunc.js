@@ -54,7 +54,6 @@ describe('Verify the functionality of Real Name field on Registration page', () 
     realNameField.click();
     const messageSel = $('.text-muted');
     const expectedMessageText = messageSel.getText();
-    console.log(expectedMessageText);
     expect(expectedMessageText).to.be.eq(defaultMessage);
   });
 
