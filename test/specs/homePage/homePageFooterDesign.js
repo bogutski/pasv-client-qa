@@ -6,7 +6,6 @@ const version = '//span[@class="badge badge-light"]';
 const secondLine = '//small[@class="d-block mb-3 text-muted"]';
 
 const currentYear = new Date().getFullYear();
-const currentVersion = '0.1.74';
 const secondLineText = 'eat(); sleep(); code(); repeat();';
 
 describe('Home page - Footer - design', () => {
@@ -26,8 +25,8 @@ describe('Home page - Footer - design', () => {
   });
 
   it('should  verify that current version is displayed', () => {
-    const actualVersion = $(version).getText();
-    expect(actualVersion).equal(currentVersion);
+    const actualVersionLength = $(version).getText().length;
+    expect(actualVersionLength > 4 && actualVersionLength < 10).to.be.true;
   });
 
   it('should verify that `copyright sign ©` is in the text', () => {
