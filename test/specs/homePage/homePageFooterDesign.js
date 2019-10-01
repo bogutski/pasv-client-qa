@@ -21,9 +21,6 @@ describe('Home page - Footer - design', () => {
 
   it('should verify that `Version` is displayed', () => {
     const textOfFooter = $(footer).getText();
-    console.log('____________________________________________________________________');
-    console.log(textOfFooter);
-    console.log('____________________________________________________________________');
     const hasVersion = textOfFooter.includes('Version');
     expect(hasVersion).to.be.true;
   });
