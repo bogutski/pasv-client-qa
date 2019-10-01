@@ -24,20 +24,7 @@ const el = {
     expectFontWeight: '400',
   },
 };
-/*
-const expectBorderColor = '#ced4da';
-const expectFocusHighlight = 'rgba(0,82,204,0.25)0px0px0px3.2px';
-const expectFontColor = '#495057';
-const expectTextAlign = 'start';
-const tempFontFamily = ('SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif').toLowerCase();
-const validLoginEmail = 'irina1568722016585@gmail.com';
-const validLoginPass = 'IrinaWW0919';
-const expectBorderValid = '#24c88b';
-const expectHighlightValid = 'rgba(36,200,139,0.25)0px0px0px3.2px';
-const expectFocusBorderColor = '#4d94ff';
-const expectBackgroundColor = '#ffffff';
-const expectFontWeight = '400';
-*/
+
 describe('Login Page - Password input field when empty - Design ', () => {
   before(() => {
     browser.url(url.loginUrl);
