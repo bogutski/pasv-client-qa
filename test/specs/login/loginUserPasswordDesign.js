@@ -25,7 +25,7 @@ const el = {
   },
 };
 
-describe('Login Page - Password input field when empty - Design ', () => {
+describe('Login Page - Password - empty field - Design ', () => {
   before(() => {
     browser.url(url.loginUrl);
   });
@@ -40,24 +40,26 @@ describe('Login Page - Password input field when empty - Design ', () => {
       .hex;
     expect(actualBorderColor).to.eq(el.exp.expectBorderColor);
   });
+});
 
-  it('should check Focus highlight when user puts a cursor', () => {
+describe('Login Page - Password - put cursor - Design ', () => {
+  it('should check Focus highlight', () => {
     $(el.sel.inputFieldPassword).click(); //can't cath highlight without click and pause
-    browser.pause(300);
+    browser.pause(500);
     const actualFocusHighlight = $(el.sel.inputFieldPassword).getCSSProperty('box-shadow').value;
     expect(actualFocusHighlight).to.eq(el.exp.expectFocusHighlight);
   });
 
-  it('should check Focus border-color when user puts a cursor', () => {
+  it('should check Focus border-color', () => {
     $(el.sel.inputEmailField).click();
-    browser.pause(300);
+    browser.pause(500);
     const actualFocusBorderColor = $(el.sel.inputEmailField).getCSSProperty('border-color').parsed
       .hex;
     expect(actualFocusBorderColor).to.eq(el.exp.expectFocusBorderColor);
   });
 });
 
-describe('Login Page - Password input field when user enters first symbol - Design', () => {
+describe('Login Page - Password field - first symbol - Design', () => {
   it('should check Font-color', () => {
     $(el.sel.inputFieldPassword).setValue(el.data.firstSymbol);
     const actualFontColor = $(el.sel.inputFieldPassword).getCSSProperty('color').parsed.hex;
@@ -91,7 +93,7 @@ describe('Login Page - Password input field when user enters first symbol - Desi
   });
 });
 
-describe('Login Page -Password imput field when the passoword is validated - Design', () => {
+describe('Login Page -Password - passoword is validated - Design', () => {
   it('should check Border-color', () => {
     $(el.sel.inputFieldPassword).setValue(el.data.validLoginPass);
     $(el.sel.inputEmailField).setValue(el.data.validLoginEmail);
@@ -104,7 +106,7 @@ describe('Login Page -Password imput field when the passoword is validated - Des
     $(el.sel.inputFieldPassword).setValue(el.data.validLoginPass);
     $(el.sel.inputEmailField).setValue(el.data.validLoginEmail);
     $(el.sel.inputFieldPassword).click();
-    browser.pause(300);
+    browser.pause(500);
     const actualHighlightValid = $(el.sel.inputFieldPassword).getCSSProperty('box-shadow').parsed
       .rgba;
     expect(actualHighlightValid).to.eq(el.exp.expectHighlightValid);
