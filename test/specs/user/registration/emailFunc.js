@@ -112,5 +112,4 @@ describe('User registration form email functionality', () => {
     passwordFieldElement.click();
     expect(emailFieldElement.getAttribute('class')).includes('is-valid');
   });
-
 });
