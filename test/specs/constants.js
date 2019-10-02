@@ -4,6 +4,8 @@ export const url = {
   baseUrl,
   login: `${baseUrl}/user/login`,
   register: `${baseUrl}/user/register`,
+  forgotPassword: `${baseUrl}/user/password/reset/request`,
+
   server: 'https://server-stage.pasv.us',
 };
 
