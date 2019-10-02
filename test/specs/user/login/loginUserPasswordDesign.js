@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { url } from '../../examples/constants';
+import { url } from '../../../examples/constants';
 
 const inputFieldPassword = '//input[@name="password"]';
 const expectBorderColor = '#ced4da';
