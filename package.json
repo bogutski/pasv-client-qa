@@ -23,7 +23,9 @@
     "test:user:login:password:design": "wdio wdio.conf.js --spec test/specs/user/login/loginUserPasswordDesign.js --inspect",
     "test:pages:home:general": "wdio wdio.conf.js --spec test/specs/pages/homePage/general.js --inspect",
     "test:user:forgotPassword:email:func": "wdio wdio.conf.js --spec ./test/specs/user/forgotPassword/user_forgotPas_emailFunc.js  --inspect",
-    "test:user:registration:aboutField:func": "wdio wdio.conf.js --spec test/specs/user/registration/aboutFieldFunc.js --inspect"
+    "test:user:registration:aboutField:func": "wdio wdio.conf.js --spec test/specs/user/registration/aboutFieldFunc.js --inspect",
+    "test:user:login:password:func": "wdio wdio.conf.js --spec test/specs/user/login/loginPasswordFunc.js --inspect",
+    "test:user:registration:cellPhoneNumber:design": "wdio wdio.conf.js --spec test/specs/user/registration/cellPhoneNumberDesign.js --inspect"
   },
   "author": "Viktor Bogutskii",
   "license": "MIT",
