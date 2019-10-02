@@ -43,19 +43,19 @@ describe('User - LoginForm - Password - Func', () => {
     expect($(loginButton).isEnabled()).to.be.true;
   });
 
-  it('should check that validation success if user enters correct password', () => {
+  it('should check that validation success with correct password', () => {
     const validation = $(passwordField)
       .getAttribute('class')
       .includes('is-valid');
     expect(validation).to.be.true;
   });
 
-  it('should validate that symbols in password field replaced by bullets', () => {
+  it('should validate that symbols replaced by bullets', () => {
     const bullets = $(passwordField).getCSSProperty('-webkit-text-security').value;
     expect(bullets).to.be.equal('disc');
   });
 
-  it('should check success message appears if user logged in with correct password', () => {
+  it('should check success message appears with correct password', () => {
     $(passwordField).setValue(user.admin.password);
     $(loginButton).click();
     $(successMsg).waitForDisplayed(2000);
