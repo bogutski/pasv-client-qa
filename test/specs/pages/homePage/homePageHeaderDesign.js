@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { url } from '../examples/constants';
+import { url } from '../../../examples/constants';
 
 const siteName = '//span[@id="site-name"]';
 const navBar = '//div[@id="user-section"]';
