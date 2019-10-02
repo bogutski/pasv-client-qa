@@ -18,12 +18,11 @@
     "test:homePageFooterDesign": "wdio wdio.conf.js --spec test/specs/homePage/homePageFooterDesign.js --inspect",
     "test:user:registerlogin:interg": "wdio wdio.conf.js --spec test/specs/examples/user/_integration/user_register-login_integr.js --inspect",
     "test:rx": "wdio wdio.conf.js --spec _temp/goodrx.js --inspect",
-    "test:user:loginAdminToken": "wdio wdio.conf.js --spec test/specs/examples/user/actions/loginAdminToken.js --inspect",
+    "test:user:loginAdminToken": "wdio wdio.conf.js --spec test/specs/examples/user/actions/userGetAdminToken.js --inspect",
     "test:user:submitButton:enabled": "wdio wdio.conf.js --spec test/specs/registration/submit_button_func/positive/submitButtonEnabled.js --inspect",
     "test:registrationRedirect": "wdio wdio.conf.js --spec ./test/specs/registration/redirect.js --inspect",
     "test:user:submitButton:disabled:realName": "wdio wdio.conf.js --spec test/specs/registration/submit_button_func/negative/realNameEmptyAndIncorreect.js --inspect",
-    "test:user:loginAdminToken": "wdio wdio.conf.js --spec test/specs/examples/user/actions/userGetAdminToken.js --inspect",
-    "test:user:submitButton:enabled": "wdio wdio.conf.js --spec test/specs/registration/submit_button_func/positive/submitButtonEnabled.js --inspect"
+    "test:forgotPassword:email:func": "wdio wdio.conf.js --spec ./test/specs/forgotPassword/user_forgotPas_emailFunc.js  --inspect"
   },
   "author": "Viktor Bogutskii",
   "license": "MIT",
@@ -42,7 +41,7 @@
     "axios": "0.19.0",
     "babel-eslint": "^10.0.3",
     "chai": "4.2.0",
-    "eslint": "^6.4.0",
+    "eslint": "^6.5.1",
     "eslint-config-prettier": "^6.3.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-mocha": "^6.1.1",
