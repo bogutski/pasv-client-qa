@@ -21,7 +21,8 @@
     "test:user:loginAdminToken": "wdio wdio.conf.js --spec test/examples/user/actions/userGetAdminToken.js --inspect",
     "test:user:registration:submitButton:enabled": "wdio wdio.conf.js --spec test/specs/user/registration/submit_button_func/positive/submitButtonEnabled.js --inspect",
     "test:user:login:password:design": "wdio wdio.conf.js --spec test/specs/user/login/loginUserPasswordDesign.js --inspect",
-    "test:pages:home:general": "wdio wdio.conf.js --spec test/specs/homePage/general.js --inspect"
+    "test:pages:home:general": "wdio wdio.conf.js --spec test/specs/homePage/general.js --inspect",
+    "test:user:registration:aboutField:func": "wdio wdio.conf.js --spec test/specs/user/registration/aboutFieldFunc.js --inspect"
   },
   "author": "Viktor Bogutskii",
   "license": "MIT",
