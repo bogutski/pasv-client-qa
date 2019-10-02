@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { url } from './../examples/constants';
+import { url } from '../../examples/constants';
 
 const footer = '//footer[@class="pt-5 pb-5"]';
 const version = '//span[@class="badge badge-light"]';

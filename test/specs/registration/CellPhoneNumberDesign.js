@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { url } from '../examples/constants';
-import { user } from '../examples/user/constants';
+import { url } from '../../examples/constants';
+import { user } from '../../examples/user/constants';
 
 const inputFieldPhone = '//input[@name="phone"]';
 const label = '//label[@for="phone"]';
@@ -41,10 +41,11 @@ describe('Register Page - Cell Phone Number input field - Design', () => {
 describe('Register Page - Cell Phone Number input field when user enters first symbol - Design', () => {
   before(() => {
     browser.url(url.registerUrl);
+    $(inputFieldPhone).setValue(firstSymbol);
+    browser.pause(400);
   });
 
   it('should check font-color', () => {
-    $(inputFieldPhone).setValue(firstSymbol);
     const actualFontColor = $(inputFieldPhone).getCSSProperty('color').parsed.hex;
     expect(actualFontColor).to.be.equal(expectedFontColor);
   });

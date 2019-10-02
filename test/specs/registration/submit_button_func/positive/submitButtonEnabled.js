@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
-import registerAction from '../../../examples/user/actions/registerAction';
-import { url } from '../../../examples/constants';
-import { user } from '../../../examples/user/constants';
+import registerAction from '../../../../examples/user/actions/registerAction';
+import { url } from '../../../../examples/constants';
+import { user } from '../../../../examples/user/constants';
 // eslint-disable-next-line no-unused-vars
 const { expect } = require('chai');
 
