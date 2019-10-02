@@ -107,11 +107,4 @@ describe('User registration form email functionality', () => {
     expect(emailFieldElement.getAttribute('class')).includes('is-valid');
   });
 
-  /*it('Verify the Submit button is deactivated if email field is empty.', () => {
-    const emailFieldElement = $(elements.emailField.selector);
-    const passwordFieldElement = $(elements.passwordField.selector);
-    emailFieldElement.setValue(elements.inputValue.validEmailSpecialCharactersEnd);
-    passwordFieldElement.click();
-    expect(emailFieldElement.getAttribute('class')).includes('is-valid');
-  });*/
 });
