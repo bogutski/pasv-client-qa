@@ -3,6 +3,8 @@ import sel from './selectors/registration';
 import exp from './expected/registration';
 import data from './data/registration';
 
+const pause = 500;
+
 describe('User - Register Page - Email Input Field - Design', () => {
   before(() => {
     browser.url(data.registerUrl);
@@ -19,14 +21,14 @@ describe('User - Register Page - Email Input Field - Design', () => {
 
   it('should check focus border color', () => {
     $(sel.emailInputField).setValue(data.firstSymbol);
-    browser.pause(300);
+    browser.pause(pause);
     const actualBorderColor = $(sel.emailInputField).getCSSProperty('border-top-color').parsed.hex;
     expect(actualBorderColor).to.be.equal(exp.emailInputFocusBorderColor);
   });
 
   it('should check focus highlight color', () => {
     $(sel.emailInputField).click();
-    browser.pause(300);
+    browser.pause(pause);
     const actualHighlightColor = $(sel.emailInputField).getCSSProperty('box-shadow').parsed.hex;
     expect(actualHighlightColor).to.be.equal(exp.emailInputFocusHighlightColor);
   });
@@ -60,14 +62,14 @@ describe('User - Register Page - Email Input Field - Design', () => {
 
   it('should check validated border color', () => {
     $(sel.emailInputField).setValue(data.correctEmail);
-    browser.pause(300);
+    browser.pause(pause);
     const actualBorderColor = $(sel.emailInputField).getCSSProperty('border-top-color').parsed.hex;
     expect(actualBorderColor).to.be.equal(exp.validatedEmailInputBorderColor);
   });
 
   it('should check validated focus highlight color', () => {
     $(sel.emailInputField).setValue(data.correctEmail);
-    browser.pause(300);
+    browser.pause(pause);
     const actualHighlightColor = $(sel.emailInputField).getCSSProperty('box-shadow').parsed.hex;
     expect(actualHighlightColor).to.be.equal(exp.validatedEmailInputFocusHighlightColor);
   });
