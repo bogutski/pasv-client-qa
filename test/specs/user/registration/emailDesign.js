@@ -3,7 +3,7 @@ import sel from './selectors/registration';
 import exp from './expected/registration';
 import data from './data/registration';
 
-describe('Register Page--Email Input Field-Design', () => {
+describe('User - Register Page - Email Input Field - Design', () => {
   before(() => {
     browser.url(data.registerUrl);
   });
