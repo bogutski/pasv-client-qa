@@ -18,7 +18,7 @@ describe('Register Page - About field - Functionality', () => {
     expect(buttonSubmit.isEnabled()).to.be.false;
   });
 
-  it('should have the About text area is a required field', () => {
+  it('should verify the About text area is displayed', () => {
     const aboutField = $(el.sel.aboutField);
     expect(aboutField.isDisplayed()).to.be.true;
   });
