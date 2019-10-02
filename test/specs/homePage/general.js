@@ -57,7 +57,7 @@ describe('Home page - General - Design', () => {
     expect(actualBlockCount).to.equal(expectedBlockCount);
   });
 
-  it('should verify that home page has global footer', function() {
+  it('should verify that home page has global footer', () => {
     const footerIsDisplayed = $(footer).isDisplayed();
     expect(footerIsDisplayed).to.be.true;
   });
