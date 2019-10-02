@@ -93,7 +93,7 @@ describe('Login Page - Password field - first symbol - Design', () => {
   });
 });
 
-describe('Login Page -Password - passoword is validated - Design', () => {
+describe('Login Page - Password - password is validated - Design', () => {
   it('should check Border-color', () => {
     $(el.sel.inputFieldPassword).setValue(el.data.validLoginPass);
     $(el.sel.inputEmailField).setValue(el.data.validLoginEmail);
