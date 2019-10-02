@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { url } from '../../examples/constants';
-import { user } from '../../examples/user/constants';
+import { url } from '../../../examples/constants';
+import { user } from '../../../examples/user/constants';
 
 const inputFieldPhone = '//input[@name="phone"]';
 const label = '//label[@for="phone"]';

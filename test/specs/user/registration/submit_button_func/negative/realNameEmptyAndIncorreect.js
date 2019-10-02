@@ -1,6 +1,6 @@
 const { expect } = require('chai');
-import { url } from '../../../../examples/constants';
-import { user } from '../../../../examples/user/constants';
+import { url } from '../../../../../examples/constants';
+import { user } from '../../../../../examples/user/constants';
 
 describe('REGISTRATION FORM SUBMIT BUTTON SHOULD DISABLED WHEN REAL NAME IS EMPTY', () => {
   before(() => {
