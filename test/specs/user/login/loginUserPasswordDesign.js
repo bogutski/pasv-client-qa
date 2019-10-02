@@ -1,13 +1,13 @@
 import { expect } from 'chai';
-import { url } from '../../../examples/constants';
+import { url } from '../../constants';
 
 const inputFieldPassword = '//input[@name="password"]';
 const expectBorderColor = '#ced4da';
 const expectFocusHighlight = 'rgba(0,82,204,0.25)0px0px0px3.2px';
 
-describe('Login Page - Password input field - Design', () => {
+describe('User - Login Page - Password input field - Design', () => {
   before(() => {
-    browser.url(url.loginUrl);
+    browser.url(url.login);
   });
 
   it('should check that the input field is displayed', () => {

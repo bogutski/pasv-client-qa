@@ -1,8 +1,9 @@
 const expect = require('chai').expect;
+import { url } from '../../constants';
 
 describe('User - Login - Design', () => {
   before(() => {
-    browser.url('https://stage.pasv.us/user/login');
+    browser.url(url.login);
   });
 
   it('Should validate h1 is displayed', () => {

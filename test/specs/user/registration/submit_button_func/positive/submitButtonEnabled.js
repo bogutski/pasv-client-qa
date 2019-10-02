@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import registerAction from '../../../../../examples/user/actions/registerAction';
-import { url } from '../../../../../examples/constants';
+import { url } from '../../../../constants';
 import { user } from '../../../../../examples/user/constants';
 // eslint-disable-next-line no-unused-vars
 const { expect } = require('chai');
@@ -8,7 +8,7 @@ const { expect } = require('chai');
 describe('SUBMIT BUTTON IS ENABLED WHEN ALL FIELDS FILLED CORRECTLY', () => {
   // eslint-disable-next-line mocha/no-hooks-for-single-case
   before(() => {
-    browser.url(url.registerUrl);
+    browser.url(url.register);
 
     const nameField = $('//input[@name="name"]');
     const phoneField = $('//input[@name="phone"]');
