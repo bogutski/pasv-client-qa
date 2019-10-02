@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { url } from '../examples/constants';
+import { url } from './../constants';
 
 const favicon = '//link[@href="/favicon.ico"]';
 const globalHeader = '//div[@id="main-bar"]';
