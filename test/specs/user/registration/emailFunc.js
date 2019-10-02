@@ -1,6 +1,12 @@
 import { expect } from 'chai';
-import { url } from '../examples/constants';
 
+const baseUrl = 'https://stage.pasv.us';
+const url = {
+  baseUrl,
+  loginUrl: `${baseUrl}/user/login`,
+  registerUrl: `${baseUrl}/user/register`,
+  serverUrl: 'https://server-stage.pasv.us',
+};
 const elements = {
   emailField: {
     selector: '//input[@name="email"]',
@@ -106,4 +112,5 @@ describe('User registration form email functionality', () => {
     passwordFieldElement.click();
     expect(emailFieldElement.getAttribute('class')).includes('is-valid');
   });
+
 });
