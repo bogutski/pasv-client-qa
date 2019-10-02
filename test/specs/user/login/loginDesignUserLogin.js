@@ -1,15 +1,13 @@
 const expect = require('chai').expect;
 
-describe('User ----Login-----Design', () => {
+describe('User - Login - Design', () => {
   before(() => {
     browser.url('https://stage.pasv.us/user/login');
   });
 
   it('Should validate h1 is displayed', () => {
     const element = $('//h1');
-
     const actual = element.isDisplayed();
-
     expect(actual).to.be.true;
   });
 
@@ -22,7 +20,7 @@ describe('User ----Login-----Design', () => {
 
   it('should validate that font size is correct ', () => {
     const element = $('//h1');
-    const actual = element.getCSSProperty('font-weight');
+    const actual = element.getCSSProperty('font-weight').parsed.string;
     const expected = '500';
     expect(actual).to.be.eq(expected);
   });
