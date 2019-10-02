@@ -1,27 +1,33 @@
 import { expect } from 'chai';
-import { url } from '../examples/constants';
 
+const baseUrl = 'https://stage.pasv.us';
+const url = {
+  baseUrl,
+  loginUrl: `${baseUrl}/user/login`,
+  registerUrl: `${baseUrl}/user/register`,
+  serverUrl: 'https://server-stage.pasv.us',
+};
 const elements = {
   emailField: {
-    selector:'//input[@name="email"]'
+    selector: '//input[@name="email"]',
   },
   errorMessage: {
-    selector:'//div[@class="invalid-feedback"]'
+    selector: '//div[@class="invalid-feedback"]',
   },
   nameField: {
-    selector:'//input[@name="name"]'
+    selector: '//input[@name="name"]',
   },
   phoneField: {
-    selector:'//input[@name="phone"]'
+    selector: '//input[@name="phone"]',
   },
   passwordField: {
-    selector: '//input[@name="password"]'
+    selector: '//input[@name="password"]',
   },
   aboutField: {
-    selector: '//textarea[@name="about"]'
+    selector: '//textarea[@name="about"]',
   },
   myGoalsField: {
-    selector: '//textarea[@name="goals"]'
+    selector: '//textarea[@name="goals"]',
   },
   inputValue: {
     validEmail: '123@test.test',
@@ -34,8 +40,8 @@ const elements = {
     validEmailSpecialCharactersEnd: '123@t.e-st.test',
     validName: 'Test Test',
     validPhone: '+12345678900',
-    validPassword: '1234567'
-  }
+    validPassword: '1234567',
+  },
 };
 
 describe('User registration form email functionality', () => {
@@ -50,7 +56,7 @@ describe('User registration form email functionality', () => {
     passwordFieldElement.click();
     expect(emailFieldElement.getAttribute('class')).includes('is-valid');
   });
-  
+
   it('Verify that email field doesnt accept email without @ symbol', () => {
     const emailFieldElement = $(elements.emailField.selector);
     const passwordFieldElement = $(elements.passwordField.selector);
@@ -98,7 +104,7 @@ describe('User registration form email functionality', () => {
     passwordFieldElement.click();
     expect(emailFieldElement.getAttribute('class')).includes('is-valid');
   });
-  
+
   it('Verify that email field accepts . and - special characters in the part AFTER @', () => {
     const emailFieldElement = $(elements.emailField.selector);
     const passwordFieldElement = $(elements.passwordField.selector);
@@ -107,11 +113,4 @@ describe('User registration form email functionality', () => {
     expect(emailFieldElement.getAttribute('class')).includes('is-valid');
   });
 
-  /*it('Verify the Submit button is deactivated if email field is empty.', () => {
-    const emailFieldElement = $(elements.emailField.selector);
-    const passwordFieldElement = $(elements.passwordField.selector);
-    emailFieldElement.setValue(elements.inputValue.validEmailSpecialCharactersEnd);
-    passwordFieldElement.click();
-    expect(emailFieldElement.getAttribute('class')).includes('is-valid');
-  });*/
 });
