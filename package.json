@@ -22,7 +22,8 @@
     "test:user:submitButton:disabled:realName": "wdio wdio.conf.js --spec test/specs/registration/submit_button_func/negative/realNameEmptyAndIncorreect.js --inspect",
     "test:user:loginAdminToken": "wdio wdio.conf.js --spec test/specs/examples/user/actions/userGetAdminToken.js --inspect",
     "test:user:submitButton:enabled": "wdio wdio.conf.js --spec test/specs/registration/submit_button_func/positive/submitButtonEnabled.js --inspect",
-    "test:user:loginUserPasswordDesign": "wdio wdio.conf.js --spec test/specs/login/loginUserPasswordDesign.js --inspect"
+    "test:user:loginUserPasswordDesign": "wdio wdio.conf.js --spec test/specs/login/loginUserPasswordDesign.js --inspect",
+    "test:user:registration:AboutField:func": "wdio wdio.conf.js --spec test/specs/registration/aboutFieldFunc.js --inspect"
   },
   "author": "Viktor Bogutskii",
   "license": "MIT",
