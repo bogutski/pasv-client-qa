@@ -1,11 +1,11 @@
-const { expect } = require('chai');
-const { url } = require('./../examples/constants');
+import { expect } from 'chai';
+import { url } from './../examples/constants';
 
 const email = {
-  selector: '//input[@placeholder="Enter your email address"]',
-  textErr: 'User not found',
+  inputField: '//input[@placeholder="Enter your email address"]',
+  notFoundMessage: 'User not found',
 };
-const submitButton = '//button[@class="btn btn-primary disabled"]';
+const submitButtonDisabled = '//button[@class="btn btn-primary disabled"]';
 
 const validEmailData = {
   email: 'testtest@gmail.com',
@@ -23,25 +23,25 @@ describe('User - ForgotPassword - Email - Func', () => {
   });
 
   it('should verify receiving error text if email is not registered', () => {
-    const input = $(email.selector);
+    const input = $(email.inputField);
     input.setValue('qwqwqwqw@gde.com');
     browser.keys('Enter');
     browser.pause(1000);
 
     const actualErrText = $('//h4[@class="notification-title"]').getText();
-    const expected = email.textErr;
+    const expected = email.notFoundMessage;
     expect(actualErrText).to.eq(expected);
   });
 
   it('should verify that Send password reset email button is deactivated', () => {
-    const input = $(email.selector);
+    const input = $(email.inputField);
     input.setValue('');
-    const submitButtonIsEnabled = $(submitButton).isEnabled();
+    const submitButtonIsEnabled = $(submitButtonDisabled).isEnabled();
     expect(submitButtonIsEnabled).to.eq(false);
   });
 
   it('should verify entering valid credentials and clicking Send password reset email is successful', () => {
-    const input = $(email.selector);
+    const input = $(email.inputField);
     input.setValue(validEmailData.email);
     browser.keys('Enter');
     browser.pause(3000);
@@ -49,12 +49,12 @@ describe('User - ForgotPassword - Email - Func', () => {
     expect(actualSucText).to.eq(validEmailData.message);
   });
 
-  it('Verify invalid emails', () => {
+  it('should verify invalid emails', () => {
     invalidEmailData.emails.forEach(invalidEmail => {
       browser.url(url.forgotPassUrl);
-      const input = $(email.selector);
+      const input = $(email.inputField);
       input.setValue(invalidEmail);
-      const submitButtonIsEnabled = $(submitButton).isEnabled();
+      const submitButtonIsEnabled = $(submitButtonDisabled).isEnabled();
       expect(submitButtonIsEnabled).to.eq(false);
       const actualInvalidMessage = $('//div[@class="invalid-feedback"]').getText();
       expect(actualInvalidMessage, '${invalidEmail} should be invalid').to.eq(
