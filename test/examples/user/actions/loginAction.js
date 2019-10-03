@@ -1,8 +1,8 @@
-import { url } from '../../constants';
+import { url } from '../../../specs/constants';
 import { user } from '../constants';
 
 export default function loginAction(browser) {
-  browser.url(url.loginUrl);
+  browser.url(url.login);
 
   const emailField = $('//input[@name="email"]');
   const passwordField = $('//input[@name="password"]');
@@ -12,5 +12,5 @@ export default function loginAction(browser) {
   passwordField.setValue(user.admin.password);
 
   button.click();
-  browser.pause(1000);
+  // browser.pause(1000)
 }

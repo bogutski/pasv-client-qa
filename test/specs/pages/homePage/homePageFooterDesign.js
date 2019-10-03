@@ -1,12 +1,9 @@
 import { expect } from 'chai';
-import { url } from '../../../examples/constants';
+import { url, app } from '../../constants';
 
 const footer = '//footer[@class="pt-5 pb-5"]';
 const version = '//span[@class="badge badge-light"]';
 const secondLine = '//small[@class="d-block mb-3 text-muted"]';
-
-const currentYear = new Date().getFullYear();
-const secondLineText = 'eat(); sleep(); code(); repeat();';
 
 describe('Home page - Footer - design', () => {
   before(() => {
@@ -35,6 +32,7 @@ describe('Home page - Footer - design', () => {
   });
 
   it('should verify that current year is in the footer text', () => {
+    const currentYear = new Date().getFullYear().toString();
     const textOfFooter = $(footer).getText();
     const currentYearIsIncluded = textOfFooter.includes(currentYear);
     expect(currentYearIsIncluded).to.be.true;
@@ -42,7 +40,7 @@ describe('Home page - Footer - design', () => {
 
   it('should verify that text in the second line of footer is correct', () => {
     const textOfFooter = $(footer).getText();
-    expect(textOfFooter).to.include(secondLineText);
+    expect(textOfFooter).to.include(app.slogan);
   });
 
   it('should verify that text in footer is left-aligned', () => {
