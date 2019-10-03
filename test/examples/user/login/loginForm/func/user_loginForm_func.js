@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-const loginAction = require('../../../actions/loginAction');
+import loginAction from '../../../actions/loginAction';
 import { user } from '../../../constants';
-import { url } from '../../../../constants';
+import { url } from '../../../../../specs/constants';
 
 const elements = {
   h1: {
@@ -12,7 +12,7 @@ const elements = {
 
 describe('User --- Login Form --- Func', () => {
   before(() => {
-    browser.url(url.loginUrl);
+    browser.url(url.login);
   });
 
   it('should have correct h1', () => {
@@ -22,6 +22,16 @@ describe('User --- Login Form --- Func', () => {
 
   it('should email', () => {
     loginAction(browser);
+  });
+
+  it('should wait server response', () => {
+    browser.waitUntil(
+      () => {
+        return $('//h1').getText() === 'Viktor Bogutskiii';
+      },
+      20000,
+      'expected text to be different after 5s',
+    );
   });
 
   it('should redirected to user profile page', () => {
