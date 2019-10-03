@@ -1,6 +1,8 @@
 import { expect } from 'chai';
 import { url } from './../constants';
 import loginAction from './../user/_actions/loginAction';
+import userGetAdminToken from './../user/_actions/userGetAdminToken';
+import diaryGetAll from './_actions/diaryGetAll';
 
 const menuDiarySelector = '//div[@id="site-menu"]//a[text() = "Diary"]';
 const headerSelector = '//h1';
@@ -13,12 +15,15 @@ const descriptionFieldSelector = '//textarea[@name="description"]';
 const diaryH1 = 'Day reports';
 const createDiaryH1 = 'Create day report';
 const dayReportShortText = 'Today I wrote tests.';
-const dayReportText =
-  'Today I watched 2 lectures and solved 3 tasks on codewars. Also I wrote tests.';
+const dayReportText = `Today I watched ${Math.random()} lectures and solved 3 tasks on codewars. Also I wrote tests.`;
 
 describe('Diary - Func', () => {
   before(() => {
     loginAction(browser);
+  });
+
+  it('should get admin token', async () => {
+    await userGetAdminToken();
   });
 
   it('should verify that `Diary`item is displayed in main menu', () => {
@@ -27,6 +32,8 @@ describe('Diary - Func', () => {
   });
 
   it('should verify that click to `Diary` in main menu should redirect to Diary page', () => {
+    console.log(')))))))))', process.env.TOKEN);
+
     $(menuDiarySelector).click();
     const actualUrl = browser.getUrl();
     expect(actualUrl).to.equal(url.diaryList);
@@ -50,8 +57,8 @@ describe('Diary - Func', () => {
   });
 
   it('should verify that `Create day report` page has correct h1', () => {
-    const actualh1Text = $(headerSelector).getText();
-    expect(actualh1Text).to.equal(createDiaryH1);
+    const actualH1Text = $(headerSelector).getText();
+    expect(actualH1Text).to.equal(createDiaryH1);
   });
 
   it('should verify that there are checkboxes on `Create day report` page', () => {
@@ -115,9 +122,17 @@ describe('Diary - Func', () => {
     expect(actualUrl).to.equal(url.diaryList);
   });
 
-  it('should verify that day report appeared on `Day reports` page', function() {
+  it('should verify that day report appeared on `Day reports` page', () => {
     // const dataMinutesNew = new Date().getMinutes();
     const lastDiaryRecord = $$(diaryRecordSelector)[0].getText();
     expect(lastDiaryRecord).to.equal(dayReportText);
+  });
+
+  it('should check in API', async () => {
+    const allDiaries = await diaryGetAll();
+    const firsrDiary = allDiaries[0];
+    console.log(firsrDiary);
+
+    expect(firsrDiary.description).eq(dayReportText);
   });
 });
