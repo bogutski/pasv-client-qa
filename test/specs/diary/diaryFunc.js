@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { url } from './../../actions/constants';
-import loginAction from '../../actions/loginActions';
+import { url } from './../constants';
+import loginAction from './../user/_actions/loginAction';
 
 const menuDiarySelector = '//div[@id="site-menu"]//a[text() = "Diary"]';
 const headerSelector = '//h1';
@@ -18,7 +18,6 @@ const dayReportText =
 
 describe('Diary - Func', () => {
   before(() => {
-    browser.maximizeWindow();
     loginAction(browser);
   });
 
@@ -30,7 +29,7 @@ describe('Diary - Func', () => {
   it('should verify that click to `Diary` in main menu should redirect to Diary page', () => {
     $(menuDiarySelector).click();
     const actualUrl = browser.getUrl();
-    expect(actualUrl).to.equal(url.diaryUrl);
+    expect(actualUrl).to.equal(url.diaryList);
   });
 
   it('should verify that `Day reports` page has correct h1', () => {
@@ -47,7 +46,7 @@ describe('Diary - Func', () => {
   it('should verify that click to `Create day report` button redirect to `Create day report` page', () => {
     $(createDayReportButtonSelector).click();
     const actualUrl = browser.getUrl();
-    expect(actualUrl).to.equal(url.createDayReportUrl);
+    expect(actualUrl).to.equal(url.diaryCreateForm);
   });
 
   it('should verify that `Create day report` page has correct h1', () => {
@@ -113,7 +112,7 @@ describe('Diary - Func', () => {
     saveButton.click();
     browser.pause(1000);
     const actualUrl = browser.getUrl();
-    expect(actualUrl).to.equal(url.diaryUrl);
+    expect(actualUrl).to.equal(url.diaryList);
   });
 
   it('should verify that day report appeared on `Day reports` page', function() {
