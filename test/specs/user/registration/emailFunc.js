@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import { randomBytes } from 'crypto';
 
 const baseUrl = 'https://stage.pasv.us';
 const url = {
@@ -8,6 +7,7 @@ const url = {
   registerUrl: `${baseUrl}/user/register`,
   serverUrl: 'https://server-stage.pasv.us',
 };
+
 const elements = {
   emailField: {
     selector: '//input[@name="email"]',
