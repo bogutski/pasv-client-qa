@@ -4,13 +4,15 @@ import loginAction from './../user/_actions/loginAction';
 import userGetAdminToken from './../user/_actions/userGetAdminToken';
 import diaryGetAll from './_actions/diaryGetAll';
 
-const menuDiarySelector = '//div[@id="site-menu"]//a[text() = "Diary"]';
-const headerSelector = '//h1';
-const diaryRecordSelector = '//div[@class="mt-2"]';
-const createDayReportButtonSelector = '//a[text()="Create day report"]';
-const saveButtonSelector = '//button[@type="submit"]';
-const checkBoxSelector = '//input[@type="checkbox"]';
-const descriptionFieldSelector = '//textarea[@name="description"]';
+const selector = {
+  menuDiary: '//div[@id="site-menu"]//a[text() = "Diary"]',
+  header: '//h1',
+  diaryRecord: '//div[@class="mt-2"]',
+  createDayReportButton: '//a[text()="Create day report"]',
+  saveButton: '//button[@type="submit"]',
+  checkBox: '//input[@type="checkbox"]',
+  descriptionField: '//textarea[@name="description"]',
+};
 
 const diaryH1 = 'Day reports';
 const createDiaryH1 = 'Create day report';
@@ -27,95 +29,93 @@ describe('Diary - Func', () => {
   });
 
   it('should verify that `Diary`item is displayed in main menu', () => {
-    const diaryIsDisplayed = $(menuDiarySelector).isDisplayed();
+    const diaryIsDisplayed = $(selector.menuDiary).isDisplayed();
     expect(diaryIsDisplayed).to.be.true;
   });
 
   it('should verify that click to `Diary` in main menu should redirect to Diary page', () => {
-    console.log(')))))))))', process.env.TOKEN);
-
-    $(menuDiarySelector).click();
+    $(selector.menuDiary).click();
     const actualUrl = browser.getUrl();
     expect(actualUrl).to.equal(url.diaryList);
   });
 
   it('should verify that `Day reports` page has correct h1', () => {
-    const actualH1Text = $(headerSelector).getText();
+    const actualH1Text = $(selector.header).getText();
     expect(actualH1Text).to.equal(diaryH1);
   });
 
   it('should verify that `Day reports` page has at least one record', () => {
     browser.pause(1000);
-    const countOfRecords = $$(diaryRecordSelector).length;
+    const countOfRecords = $$(selector.diaryRecord).length;
     expect(countOfRecords > 0).to.be.true;
   });
 
   it('should verify that click to `Create day report` button redirect to `Create day report` page', () => {
-    $(createDayReportButtonSelector).click();
+    $(selector.createDayReportButton).click();
     const actualUrl = browser.getUrl();
     expect(actualUrl).to.equal(url.diaryCreateForm);
   });
 
   it('should verify that `Create day report` page has correct h1', () => {
-    const actualH1Text = $(headerSelector).getText();
+    const actualH1Text = $(selector.header).getText();
     expect(actualH1Text).to.equal(createDiaryH1);
   });
 
   it('should verify that there are checkboxes on `Create day report` page', () => {
-    const countOfCheckBoxes = $$(checkBoxSelector).length;
+    const countOfCheckBoxes = $$(selector.checkBox).length;
     expect(countOfCheckBoxes).equal(12);
   });
 
   it('should verify that `Save` button is disabled', () => {
-    const isEnabled = $(saveButtonSelector).isEnabled();
+    const isEnabled = $(selector.saveButton).isEnabled();
     expect(isEnabled).to.be.false;
   });
 
-  it('should verify that `Save` button is disabled when there is the day report, but there are no checkmarks', () => {
-    const descriptionArea = $(descriptionFieldSelector);
+  it('should verify that `Save` button is disabled when there is the day report, but there are no checkboxes', () => {
+    const descriptionArea = $(selector.descriptionField);
     descriptionArea.setValue(dayReportText);
-    const isEnabled = $(saveButtonSelector).isEnabled();
+    const isEnabled = $(selector.saveButton).isEnabled();
     expect(isEnabled).to.be.false;
   });
 
-  it('should verify that `Save` button is disabled when there are checkmarks, but there is no day report', () => {
-    //check marks
+  it('should verify that `Save` button is disabled when there are checkboxes, but there is no day report', () => {
+    //checkboxes
     for (let i = 0; i <= 6; i++) {
       const selector = $('//input[@id="input-[' + i + ']"]');
       selector.click();
     }
-    const descriptionArea = $(descriptionFieldSelector);
+    const descriptionArea = $(selector.descriptionField);
     descriptionArea.setValue('');
-    const isEnabled = $(saveButtonSelector).isEnabled();
+    const isEnabled = $(selector.saveButton).isEnabled();
     expect(isEnabled).to.be.false;
   });
 
-  it('should verify that `Save` button is disabled when there are checkmarks, but day report is < 30 characters', () => {
-    const descriptionArea = $(descriptionFieldSelector);
+  it('should verify that `Save` button is disabled when there are checkboxes, but day report is < 30 characters', () => {
+    const descriptionArea = $(selector.descriptionField);
     descriptionArea.setValue(dayReportShortText);
-    const isEnabled = $(saveButtonSelector).isEnabled();
+    const isEnabled = $(selector.saveButton).isEnabled();
     expect(isEnabled).to.be.false;
   });
 
   it('should verify that description area is-invalid when day report length < 30', () => {
-    const descriptionArea = $(descriptionFieldSelector);
+    const descriptionArea = $(selector.descriptionField);
     expect(descriptionArea.getAttribute('class')).includes('is-invalid');
   });
 
-  it('should verify that `Save` button is enabled when there is a correct report and checkmarks', () => {
-    const descriptionArea = $(descriptionFieldSelector);
+  it('should verify that `Save` button is enabled when there is a correct report and checkboxes', () => {
+    const descriptionArea = $(selector.descriptionField);
     descriptionArea.setValue(dayReportText);
-    const isEnabled = $(saveButtonSelector).isEnabled();
+    const isEnabled = $(selector.saveButton).isEnabled();
     expect(isEnabled).to.be.true;
   });
 
   it('should verify that description area is-valid when day report length >= 30', () => {
-    const descriptionArea = $(descriptionFieldSelector);
+    const descriptionArea = $(selector.descriptionField);
     expect(descriptionArea.getAttribute('class')).includes('is-valid');
   });
 
   it('should verify that click to `Save` button should redirect to `Day reports` page', () => {
-    const saveButton = $(saveButtonSelector);
+    const saveButton = $(selector.saveButton);
     saveButton.click();
     browser.pause(1000);
     const actualUrl = browser.getUrl();
@@ -123,16 +123,15 @@ describe('Diary - Func', () => {
   });
 
   it('should verify that day report appeared on `Day reports` page', () => {
-    // const dataMinutesNew = new Date().getMinutes();
-    const lastDiaryRecord = $$(diaryRecordSelector)[0].getText();
+    const lastDiaryRecord = $$(selector.diaryRecord)[0].getText();
     expect(lastDiaryRecord).to.equal(dayReportText);
   });
 
   it('should check in API', async () => {
     const allDiaries = await diaryGetAll();
-    const firsrDiary = allDiaries[0];
-    console.log(firsrDiary);
+    const firstDiary = allDiaries[0];
+    console.log(firstDiary);
 
-    expect(firsrDiary.description).eq(dayReportText);
+    expect(firstDiary.description).to.equal(dayReportText);
   });
 });
