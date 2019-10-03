@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { randomBytes } from 'crypto';
 
 const baseUrl = 'https://stage.pasv.us';
 const url = {
@@ -29,6 +30,12 @@ const elements = {
   myGoalsField: {
     selector: '//textarea[@name="goals"]',
   },
+  submitButton: {
+    selector: '//button[@type="submit"]'
+  },
+  englishLevel: {
+    selector: '//label[@for="englishLevel"]/../../select'
+  },
   inputValue: {
     validEmail: '123@test.test',
     invalidEmail: '123test.test',
@@ -41,7 +48,9 @@ const elements = {
     validName: 'Test Test',
     validPhone: '+12345678900',
     validPassword: '1234567',
-  },
+    validAbout: 'qwerty qwerty',
+    validMyGoals: '1 qwerty'
+  }
 };
 
 describe('User registration form email functionality', () => {
@@ -111,6 +120,26 @@ describe('User registration form email functionality', () => {
     emailFieldElement.setValue(elements.inputValue.validEmailSpecialCharactersEnd);
     passwordFieldElement.click();
     expect(emailFieldElement.getAttribute('class')).includes('is-valid');
+  });
+
+  it('Verify that if the email field is empty while other info filled in, Submit button is deavctivated', () => {
+    const emailFieldElement = $(elements.emailField.selector);
+    const nameFieldElement = $(elements.nameField.selector);
+    const phoneFieldElement = $(elements.phoneField.selector);
+    const passwordFieldElement = $(elements.passwordField.selector);
+    const aboutFieldElement = $(elements.aboutField.selector);
+    const myGoalsFieldElement = $(elements.myGoalsField.selector);
+    const submitButtonElement = $(elements.submitButton.selector);
+    const englishLevelElement =$(elements.englishLevel.selector);
+    nameFieldElement.setValue(elements.inputValue.validName);
+    phoneFieldElement.setValue(elements.inputValue.validPhone);
+    passwordFieldElement.setValue(elements.inputValue.validPassword);
+    aboutFieldElement.setValue(elements.inputValue.validAbout);
+    myGoalsFieldElement.setValue(elements.inputValue.validMyGoals);
+    englishLevelElement.selectByVisibleText('Beginner');
+    emailFieldElement.setValue('\u0008');
+    let buttonIsEnabled = submitButtonElement.isEnabled();
+    expect(buttonIsEnabled).to.be.false;
   });
 
 });
