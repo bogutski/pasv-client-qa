@@ -10,9 +10,6 @@ const expectedMsg = 'Auth failed';
 const expectedSuccessMsg = 'Auth success';
 const failedMsg = '//div[@id="root"]//div/h4[(text()="Auth failed")]';
 const successMsg = '//div[@id="root"]//div/h4[(text()="Auth success")]';
-//const email = 'admin@test.com';
-//const password = '11111';
-//const url = 'https://stage.pasv.us/user/login';
 
 describe('User - LoginForm - Password - Func', () => {
   before(() => {
