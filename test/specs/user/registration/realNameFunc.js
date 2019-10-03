@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { url } from '../../../examples/constants';
+import { url } from '../../constants';
 
 const positiveNames = ['John Johnson', 'Johnjohnjohnjoh Johnjohnjohnjoh', 'Jo Jo'];
 const negativeNames = [
@@ -20,11 +20,10 @@ const errorMessage =
 
 describe('Verify the functionality of Real Name field on Registration page', () => {
   before(() => {
-    browser.url(url.registerUrl);
+    browser.url(url.register);
   });
 
   describe('Verify positive scenarios for Real Name field input', () => {
-    // eslint-disable-next-line mocha/no-setup-in-describe
     positiveNames.forEach(name => {
       it(`Name '${name}' is valid`, () => {
         const realNameField = $(realName);
@@ -37,7 +36,6 @@ describe('Verify the functionality of Real Name field on Registration page', () 
   });
 
   describe('Verify negative scenarios for Real Name field input', () => {
-    // eslint-disable-next-line mocha/no-setup-in-describe
     negativeNames.forEach(name => {
       it(`Name '${name}' is not valid`, () => {
         const realNameField = $(realName);

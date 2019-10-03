@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { url } from '../../../examples/constants';
+import { url } from '../../constants';
 import { user } from '../../../examples/user/constants';
 
 const inputFieldPhone = '//input[@name="phone"]';
@@ -22,9 +22,9 @@ const expectLabelColor = '#212529';
 const expectedAlign = 'left';
 const expectedDescTextSize = '13.6px';
 
-describe('Register Page - Cell Phone Number input field - Design', () => {
+describe('User - Register Page - Cell Phone Number input field - Design', () => {
   before(() => {
-    browser.url(url.registerUrl);
+    browser.url(url.register);
   });
 
   it('should check that the input field is displayed', () => {
@@ -40,7 +40,7 @@ describe('Register Page - Cell Phone Number input field - Design', () => {
 
 describe('Register Page - Cell Phone Number input field when user enters first symbol - Design', () => {
   before(() => {
-    browser.url(url.registerUrl);
+    browser.url(url.register);
     $(inputFieldPhone).setValue(firstSymbol);
     browser.pause(400);
   });
@@ -84,7 +84,7 @@ describe('Register Page - Cell Phone Number input field when user enters first s
 
 describe('Register Page - Cell Phone Number input field when the number is validated - Design', () => {
   it('should check border-color', () => {
-    browser.url(url.registerUrl);
+    browser.url(url.register);
     $(inputFieldPhone).setValue(user.admin.phone);
     browser.keys('Tab');
     browser.pause(300);
@@ -95,7 +95,7 @@ describe('Register Page - Cell Phone Number input field when the number is valid
 
 describe('Register Page - Cell phone number Label - Design', () => {
   before(() => {
-    browser.url(url.registerUrl);
+    browser.url(url.register);
   });
 
   it('should check that the label is displayed.', () => {
@@ -130,7 +130,7 @@ describe('Register Page - Cell phone number Label - Design', () => {
 
 describe('Register Page - Cell phone number description text - Design', () => {
   before(() => {
-    browser.url(url.registerUrl);
+    browser.url(url.register);
   });
 
   it('should check that the text is displayed', () => {

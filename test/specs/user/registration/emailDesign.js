@@ -1,13 +1,43 @@
 import { expect } from 'chai';
-import sel from './selectors/registration';
-import exp from './expected/registration';
-import data from './data/registration';
+import { url } from '../../constants';
 
 const pause = 500;
 
+const data = {
+  correctEmail: 'pasv' + new Date().getTime() + '@gmail.com',
+  firstSymbol: 'p',
+};
+
+const exp = {
+  emailInputBorderColor: '#ced4da',
+  emailInputFocusBorderColor: '#4d94ff',
+  emailInputFocusHighlightColor: '#0052cc',
+  emailInputFontColor: '#495057',
+  emailInputBackgroundColor: '#ffffff',
+  emailInputTextAlign: 'start',
+  emailInputFontFamily:
+    '"sf pro display", "sf pro icons", "helvetica neue", helvetica, arial, sans-serif',
+  emailInputFontWeight: 400,
+  validatedEmailInputBorderColor: '#24c88b',
+  validatedEmailInputFocusHighlightColor: '#24c88b',
+  labelEmailFontFamily:
+    '"sf pro display", "sf pro icons", "helvetica neue", helvetica, arial, sans-serif',
+  labelEmailFontSize: '17px',
+  labelEmailFontWeight: 400,
+  labelEmailFontColor: '#212529',
+  labelEmailTextAlign: 'left',
+};
+
+const sel = {
+  emailInputField: '//input[@name="email"]',
+  emailLabel: '//label[@for="email"]',
+  emailText: '//input[@name="email"]/following-sibling::small',
+  checkMark: '',
+};
+
 describe('User - Register Page - Email Input Field - Design', () => {
   before(() => {
-    browser.url(data.registerUrl);
+    browser.url(url.register);
   });
 
   it('should check email input field is displayed', () => {
@@ -75,9 +105,9 @@ describe('User - Register Page - Email Input Field - Design', () => {
   });
 });
 
-describe('Register Page--Email label--Design', () => {
+describe('User - Register Page - Email label - Design', () => {
   before(() => {
-    browser.url(data.registerUrl);
+    browser.url(url.register);
   });
 
   it('should check label font-family', () => {

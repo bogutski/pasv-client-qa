@@ -57,7 +57,7 @@ const elements = {
 
 describe('User registration form email functionality', () => {
   before(() => {
-    browser.url(url.registerUrl);
+    browser.url(url.register);
   });
 
   it('Verify that entered email can contain "@" and "." symbols', () => {

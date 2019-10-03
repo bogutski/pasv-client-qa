@@ -1,10 +1,10 @@
-import { url } from '../../constants';
+import { url } from '../../../specs/constants';
 import { user } from '../constants';
 import axios from 'axios/index';
 
 export default function userDeleteByEmail(email) {
   return axios
-    .post(`${url.serverUrl}/user/login`, {
+    .post(`${url.server}/user/login`, {
       email: user.admin.email,
       password: user.admin.password,
     })
@@ -13,7 +13,7 @@ export default function userDeleteByEmail(email) {
       const token = response.data.token;
 
       return axios({
-        url: `${url.serverUrl}/user/email/${email}`,
+        url: `${url.server}/user/email/${email}`,
         method: 'delete',
         data: {},
         headers: {

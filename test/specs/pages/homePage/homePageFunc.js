@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { url } from '../../../examples/constants';
+import { url } from '../../constants';
 
 describe('Home page - functionality', () => {
   before(() => {
@@ -19,7 +19,7 @@ describe('Home page - functionality', () => {
     const selector = '//div[@id="user-section"]//a[text()="Login"]';
     $(selector).click();
     const redirectUrl = browser.getUrl();
-    const expected = url.loginUrl;
+    const expected = url.login;
 
     expect(redirectUrl).to.equal(expected);
   });
@@ -37,7 +37,7 @@ describe('Home page - functionality', () => {
     const selector = '//div[@id="user-section"]//a[text()="Register"]';
     $(selector).click();
     const redirectUrl = browser.getUrl();
-    const expected = url.registerUrl;
+    const expected = url.register;
 
     expect(redirectUrl).to.equal(expected);
   });
