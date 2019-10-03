@@ -1,6 +1,4 @@
 import { expect } from 'chai';
-import { url } from '../../../examples/constants';
-import { user } from '../../../examples/user/constants';
 
 const loginButton = '//button[@type="submit"]';
 const passwordField = '//input[@name="password"]';
@@ -10,11 +8,14 @@ const expectedMsg = 'Auth failed';
 const expectedSuccessMsg = 'Auth success';
 const failedMsg = '//div[@id="root"]//div/h4[(text()="Auth failed")]';
 const successMsg = '//div[@id="root"]//div/h4[(text()="Auth success")]';
+const email = 'admin@test.com';
+const password = '11111';
+const url = 'https://stage.pasv.us/user/login';
 
 describe('User - LoginForm - Password - Func', () => {
   before(() => {
-    browser.url(url.loginUrl);
-    $(emailField).setValue(user.admin.email);
+    browser.url(url);
+    $(emailField).setValue(email);
   });
 
   it('should check that validation failed if password field is empty', () => {
@@ -33,13 +34,13 @@ describe('User - LoginForm - Password - Func', () => {
   it('should check error message appears if user enters incorrect password', () => {
     $(passwordField).setValue(incorrectPass);
     $(loginButton).click();
-    $(failedMsg).waitForDisplayed(2000);
+    $(failedMsg).waitForDisplayed(3000);
     const actualFailedMsg = $(failedMsg).getText();
     expect(actualFailedMsg).to.be.equal(expectedMsg);
   });
 
   it('should validate that Login button is enabled if password is correct', () => {
-    $(passwordField).setValue(user.admin.password);
+    $(passwordField).setValue(password);
     expect($(loginButton).isEnabled()).to.be.true;
   });
 
@@ -56,7 +57,7 @@ describe('User - LoginForm - Password - Func', () => {
   });
 
   it('should check success message appears with correct password', () => {
-    $(passwordField).setValue(user.admin.password);
+    $(passwordField).setValue(password);
     $(loginButton).click();
     $(successMsg).waitForDisplayed(2000);
     const actualSuccessMsg = $(successMsg).getText();
