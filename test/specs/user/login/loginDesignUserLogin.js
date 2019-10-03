@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { url } from '../../../examples/constants';
+import { url } from '../../constants';
 
 const el = {
   sel: {
@@ -25,9 +25,9 @@ const el = {
   },
 };
 
-describe('Login Page - Password - empty field - Design ', () => {
+describe('User - Login Page - Password - empty field - Design ', () => {
   before(() => {
-    browser.url(url.loginUrl);
+    browser.url(url.login);
   });
 
   it('should check that the input field is displayed', () => {
@@ -42,7 +42,7 @@ describe('Login Page - Password - empty field - Design ', () => {
   });
 });
 
-describe('Login Page - Password - put cursor - Design ', () => {
+describe('User - Login Page - Password - put cursor - Design ', () => {
   it('should check Focus highlight', () => {
     $(el.sel.inputFieldPassword).click(); //can't cath highlight without click and pause
     browser.pause(500);

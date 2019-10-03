@@ -1,10 +1,11 @@
 import { expect } from 'chai';
-import { url } from './../../../examples/constants';
+import { url } from './../../constants';
 
 const email = {
   inputField: '//input[@placeholder="Enter your email address"]',
   notFoundMessage: 'User not found',
 };
+
 const submitButtonDisabled = '//button[@class="btn btn-primary disabled"]';
 
 const validEmailData = {
@@ -19,7 +20,7 @@ const invalidEmailData = {
 
 describe('User - ForgotPassword - Email - Func', () => {
   before(() => {
-    browser.url(url.forgotPassUrl);
+    browser.url(url.forgotPassword);
   });
 
   it('should verify receiving error text if email is not registered', () => {
@@ -51,11 +52,13 @@ describe('User - ForgotPassword - Email - Func', () => {
 
   it('should verify invalid emails', () => {
     invalidEmailData.emails.forEach(invalidEmail => {
-      browser.url(url.forgotPassUrl);
+      browser.url(url.forgotPassword);
       const input = $(email.inputField);
       input.setValue(invalidEmail);
+
       const submitButtonIsEnabled = $(submitButtonDisabled).isEnabled();
       expect(submitButtonIsEnabled).to.eq(false);
+
       const actualInvalidMessage = $('//div[@class="invalid-feedback"]').getText();
       expect(actualInvalidMessage, '${invalidEmail} should be invalid').to.eq(
         invalidEmailData.message,

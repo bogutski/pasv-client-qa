@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const { url } = require('../../../../constants');
+const { url } = require('../../../../../specs/constants');
 
 const elements = {
   h1: {
@@ -10,7 +10,7 @@ const elements = {
 
 describe('User --- Login Form --- Design', () => {
   before(() => {
-    browser.url(url.loginUrl);
+    browser.url(url.login);
   });
 
   it('should validate h1 is displayed', () => {

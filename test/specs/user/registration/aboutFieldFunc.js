@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { url } from '../../../examples/constants';
+import { url } from '../../constants';
 
 const el = {
   sel: {
@@ -8,9 +8,9 @@ const el = {
   },
 };
 
-describe('Register Page - About field - Functionality', () => {
+describe('User - Register Page - About field - Functionality', () => {
   before(() => {
-    browser.url(url.registerUrl);
+    browser.url(url.register);
   });
 
   it('should have Submit button deactivated when the field is empty', () => {
