@@ -1,4 +1,4 @@
-export const user = {
+const user = {
   admin: {
     email: 'admin@test.com',
     password: '11111',
@@ -16,3 +16,5 @@ export const user = {
     goals: 'About Test Student About Test Student About Test Student About Test Student',
   },
 };
+
+module.exports = { user };

@@ -1,3 +1,5 @@
+const before = require('./hooks/before');
+
 exports.config = {
   //
   // ====================
@@ -165,6 +167,7 @@ exports.config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    * @param {Array.<String>} specs List of spec file paths that are to be run
    */
+  before: before,
   // before: function (capabilities, specs) {
   // },
   /**

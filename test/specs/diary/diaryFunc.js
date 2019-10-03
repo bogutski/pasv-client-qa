@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import { url } from './../constants';
 import loginAction from './../user/_actions/loginAction';
-import userGetAdminToken from './../user/_actions/userGetAdminToken';
 import diaryGetAll from './_actions/diaryGetAll';
 
 const selector = {
@@ -22,10 +21,6 @@ const dayReportText = `Today I watched ${Math.random()} lectures and solved 3 ta
 describe('Diary - Func', () => {
   before(() => {
     loginAction(browser);
-  });
-
-  it('should get admin token', async () => {
-    await userGetAdminToken();
   });
 
   it('should verify that `Diary`item is displayed in main menu', () => {

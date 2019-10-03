@@ -1,6 +1,6 @@
 const baseUrl = 'https://stage.pasv.us';
 
-export const url = {
+const url = {
   baseUrl,
 
   login: `${baseUrl}/user/login`,
@@ -13,7 +13,12 @@ export const url = {
   server: 'https://server-stage.pasv.us',
 };
 
-export const app = {
+const app = {
   name: 'Progress Monitor',
   slogan: 'eat(); sleep(); code(); repeat();',
+};
+
+module.exports = {
+  url,
+  app,
 };

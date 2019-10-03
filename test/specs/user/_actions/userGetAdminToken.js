@@ -1,18 +1,21 @@
-import { url } from '../../constants';
-import { user } from '../_data/data';
-import axios from 'axios';
+const { url } = require('../../constants');
+const { user } = require('../_data/data');
+const axios = require('axios');
 
-export default function userGetAdminToken() {
+module.exports = function userGetAdminToken() {
   return axios
     .post(`${url.server}/user/login`, {
       email: user.admin.email,
       password: user.admin.password,
     })
     .then(response => {
-      process.env.TOKEN = response.data.token;
+      // store token to global variable
+      process.env.TOKEN_ADMIN = response.data.token;
+
+      // also this function will return token
       return response.data.token;
     })
     .catch(() => {
       return null;
     });
-}
+};
