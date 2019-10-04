@@ -16,14 +16,17 @@ const tryAgainLink = '//a[contains(text(),"try again")]';
 const h1CheckMailPage = 'Check your email for a link to reset your password';
 const h1ForgotPasswordPage = 'Reset your password';
 const closeSign = '//span[@class="notification-dismiss"]';
+const h1 = '//h1';
 
 describe('User - Forgot Password - `Send password reset email` button - Functional', () => {
   before(() => {
     browser.url(url.forgotPassword);
   });
+
   it('should check that the button is displayed', () => {
     expect($(buttonReset).isDisplayed()).to.be.true;
   });
+
   it('should check that the button is disabled if email field is empty', () => {
     expect($(buttonReset).isEnabled()).to.be.false;
   });
@@ -70,7 +73,7 @@ describe('User - Check Mail - `try again` link - Fucntional', () => {
     $(emailField).setValue(user.student.email);
     $(buttonReset).click();
     browser.waitUntil(() => {
-      return $('//h1').getText() === h1CheckMailPage;
+      return $(h1).getText() === h1CheckMailPage;
     }, 3000);
   });
 

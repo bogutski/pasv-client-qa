@@ -50,11 +50,6 @@ describe('User - LoginForm - Password - Func', () => {
     expect(validation).to.be.true;
   });
 
-  it('should validate that symbols replaced by bullets', () => {
-    const bullets = $(passwordField).getCSSProperty('-webkit-text-security').value;
-    expect(bullets).to.be.equal('disc');
-  });
-
   it('should check success message appears with correct password', () => {
     $(passwordField).setValue(user.admin.password);
     $(loginButton).click();
