@@ -1,5 +1,5 @@
 import { url } from '../constants.js';
-const { expect } = require('chai');
+import { expect } from 'chai';
 const elementSelector = '//button[@type="submit"]';
 
 describe('Registration - Submit Button - Design', () => {
