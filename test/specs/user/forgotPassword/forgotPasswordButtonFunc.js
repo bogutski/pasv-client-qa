@@ -17,7 +17,7 @@ const h1CheckMailPage = 'Check your email for a link to reset your password';
 const h1ForgotPasswordPage = 'Reset your password';
 const closeSign = '//span[@class="notification-dismiss"]';
 
-describe('User - Forgot Password - `Send password reset email` button - Fucntional', () => {
+describe('User - Forgot Password - `Send password reset email` button - Functional', () => {
   before(() => {
     browser.url(url.forgotPassword);
   });
