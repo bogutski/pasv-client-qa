@@ -1,9 +1,10 @@
+import { url } from '../constants.js';
 const { expect } = require('chai');
 const elementSelector = '//button[@type="submit"]';
 
 describe('Registration - Submit Button - Design', () => {
   before(() => {
-    browser.url('https://app.pasv.us/user/register');
+    browser.url(url.register);
     const selectors = [
       '//input[@name="name"]',
       '//input[@name="phone"]',
@@ -36,9 +37,9 @@ describe('Registration - Submit Button - Design', () => {
   });
 
   it('should verify that submit button background-color is correct in usable state', () => {
-    const actualBackgrounColor = $(elementSelector).getCSSProperty('background-color').parsed.hex;
+    const actualBackgroundColor = $(elementSelector).getCSSProperty('background-color').parsed.hex;
     const expectedResult = '#0052cc';
-    expect(actualBackgrounColor).to.eq(expectedResult);
+    expect(actualBackgroundColor).to.eq(expectedResult);
   });
 
   it('should verify that submit button border-color is correct in usable state', () => {
