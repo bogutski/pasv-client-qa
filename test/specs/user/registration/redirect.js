@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { url } from '../../../examples/constants';
+import { url } from '../../constants';
 
 const elements = {
   registerButton: {
@@ -31,10 +31,10 @@ describe('User - Registration - Redirect (from Main page)', () => {
     expect(h1RegisterPage).eq(elements.registerForm.title);
   });
 
-  it(`should verify when Register button is clicked, url changed to ${url.registerUrl}`, () => {
+  it(`should verify when Register button is clicked, url changed to ${url.register}`, () => {
     clickRegisterButton();
     const urlAfterClick = browser.getUrl();
-    const expectedUrl = `${url.registerUrl}`;
+    const expectedUrl = `${url.register}`;
     expect(urlAfterClick).eq(expectedUrl);
   });
 
@@ -53,7 +53,7 @@ describe('User - Registration - Redirect (from Main page)', () => {
 
 describe('User - Registration - Redirect (from Login page)', () => {
   before(() => {
-    browser.url(url.loginUrl);
+    browser.url(url.login);
   });
 
   it('should verify when Register button is clicked, user is redirected to the Register page', () => {
@@ -62,10 +62,10 @@ describe('User - Registration - Redirect (from Login page)', () => {
     expect(h1RegisterPage).eq(elements.registerForm.title);
   });
 
-  it(`should verify when Register button is clicked, url changed to ${url.registerUrl}`, () => {
+  it(`should verify when Register button is clicked, url changed to ${url.register}`, () => {
     clickRegisterButton();
     const urlAfterClick = browser.getUrl();
-    const expectedUrl = `${url.registerUrl}`;
+    const expectedUrl = `${url.register}`;
     expect(urlAfterClick).eq(expectedUrl);
   });
 

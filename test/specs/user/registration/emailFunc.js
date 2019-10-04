@@ -1,12 +1,6 @@
 import { expect } from 'chai';
+import { url } from './../../constants';
 
-const baseUrl = 'https://stage.pasv.us';
-const url = {
-  baseUrl,
-  loginUrl: `${baseUrl}/user/login`,
-  registerUrl: `${baseUrl}/user/register`,
-  serverUrl: 'https://server-stage.pasv.us',
-};
 const elements = {
   emailField: {
     selector: '//input[@name="email"]',
@@ -46,7 +40,7 @@ const elements = {
 
 describe('User registration form email functionality', () => {
   before(() => {
-    browser.url(url.registerUrl);
+    browser.url(url.register);
   });
 
   it('Verify that entered email can contain "@" and "." symbols', () => {
@@ -112,5 +106,4 @@ describe('User registration form email functionality', () => {
     passwordFieldElement.click();
     expect(emailFieldElement.getAttribute('class')).includes('is-valid');
   });
-
 });

@@ -1,10 +1,10 @@
 const { expect } = require('chai');
-import { url } from '../../../../../examples/constants';
+import { url } from '../../../../constants';
 import { user } from '../../../../../examples/user/constants';
 
 describe('REGISTRATION FORM SUBMIT BUTTON SHOULD DISABLED WHEN REAL NAME IS EMPTY', () => {
   before(() => {
-    browser.url(url.registerUrl);
+    browser.url(url.register);
     const cellPhoneNumberField = $('//input[@name="phone"]');
     const emailField = $('//input[@name="email"]');
     const passwordField = $("//input[@name='password']");
@@ -40,7 +40,7 @@ describe('REGISTRATION FORM SUBMIT BUTTON SHOULD DISABLED WHEN REAL NAME IS EMPT
 
 describe('REGISTRATION FORM SUBMIT BUTTON SHOULD DISABLED WHEN REAL NAME FILLED INCORRECT', () => {
   before(() => {
-    browser.url(url.registerUrl);
+    browser.url(url.register);
 
     const cellPhoneNumberField = $('//input[@name="phone"]');
     const emailField = $('//input[@name="email"]');

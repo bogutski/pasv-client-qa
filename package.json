@@ -5,24 +5,23 @@
   "main": "index.js",
   "scripts": {
     "test": "wdio wdio.conf.js --inspect",
+
     "test:user:login:design": "wdio wdio.conf.js --spec test/specs/user/login/loginDesignUserLogin.js --inspect",
-    "test:login": "wdio wdio.conf.js --spec test/examples/pages/mainPage.js --inspect",
+    "test:user:login:password:design": "wdio wdio.conf.js --spec test/specs/user/login/loginUserPasswordDesign.js --inspect",
+
     "test:register": "wdio wdio.conf.js --spec test/examples/pages/mainPage.js --inspect",
-    "test:dairy:list": "wdio wdio.conf.js --spec test/examples/diary/diaryList.js --inspect",
-    "test:user:loginform:design": "wdio wdio.conf.js --spec test/examples/user/login/loginForm/design/user_loginForm_design.js --inspect",
-    "test:user:loginform:func": "wdio wdio.conf.js --spec test/examples/user/login/loginForm/func/user_loginForm_func.js --inspect",
-    "test:user:registerform:func": "wdio wdio.conf.js --spec test/examples/user/register/registerForm/user_reginsterForm_func.js --inspect",
+    "test:user:register:redirect": "wdio wdio.conf.js --spec test/specs/user/registration/redirect.js --inspect",
+    "test:user:register:submitButton:disabled:realName": "wdio wdio.conf.js --spec test/specs/user/registration/submit_button_func/negative/realNameEmptyAndIncorreect.js --inspect",
+    "test:user:register:aboutField:func": "wdio wdio.conf.js --spec test/specs/user/registration/aboutFieldFunc.js --inspect",
+    "test:user:register:submitButton:enabled": "wdio wdio.conf.js --spec test/specs/user/registration/submit_button_func/positive/submitButtonEnabled.js --inspect",
+    "test:user:forgotPassword:email:func": "wdio wdio.conf.js --spec ./test/specs/user/forgotPassword/user_forgotPas_emailFunc.js  --inspect",
+
+    "test:pages:home:general": "wdio wdio.conf.js --spec test/specs/pages/homePage/general.js --inspect",
     "test:pages:home:func": "wdio wdio.conf.js --spec test/specs/pages/homePage/homePageFunc.js --inspect",
     "test:pages:home:header:design": "wdio wdio.conf.js --spec test/specs/pages/homePage/homePageHeaderDesign.js --inspect",
     "test:pages:home:footer:design": "wdio wdio.conf.js --spec test/specs/pages/homePage/homePageFooterDesign.js --inspect",
-    "test:user:registerlogin:interg": "wdio wdio.conf.js --spec test/examples/user/_integration/user_register-login_integr.js --inspect",
-    "test:user:registration:redirect": "wdio wdio.conf.js --spec test/specs/user/registration/redirect.js --inspect",
-    "test:user:register:submitButton:disabled:realName": "wdio wdio.conf.js --spec test/specs/user/registration/submit_button_func/negative/realNameEmptyAndIncorreect.js --inspect",
-    "test:user:loginAdminToken": "wdio wdio.conf.js --spec test/examples/user/actions/userGetAdminToken.js --inspect",
-    "test:user:registration:submitButton:enabled": "wdio wdio.conf.js --spec test/specs/user/registration/submit_button_func/positive/submitButtonEnabled.js --inspect",
-    "test:user:login:password:design": "wdio wdio.conf.js --spec test/specs/user/login/loginUserPasswordDesign.js --inspect",
-    "test:pages:home:general": "wdio wdio.conf.js --spec test/specs/homePage/general.js --inspect",
-    "test:user:registration:aboutField:func": "wdio wdio.conf.js --spec test/specs/user/registration/aboutFieldFunc.js --inspect"
+
+    "test:dairy:func": "wdio wdio.conf.js --spec test/specs/diary/diaryFunc.js --inspect"
   },
   "author": "Viktor Bogutskii",
   "license": "MIT",

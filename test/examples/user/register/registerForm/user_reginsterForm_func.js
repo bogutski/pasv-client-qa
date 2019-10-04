@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const { url } = require('../../../constants');
+const { url } = require('../../../../specs/constants');
 import { user } from '../../constants';
 import userDeleteByEmail from '../../actions/deleteByEmail';
 
@@ -31,7 +31,7 @@ describe('User --- Register Form --- Func --- Form is displayed', () => {
 
   it('should have correct url', () => {
     const currentUrl = browser.getUrl();
-    expect(currentUrl).eq(url.registerUrl);
+    expect(currentUrl).eq(url.register);
   });
 
   it('should have `Real name` field', () => {

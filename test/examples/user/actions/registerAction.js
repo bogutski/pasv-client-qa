@@ -1,8 +1,8 @@
-import { url } from '../../constants';
+import { url } from '../../../specs/constants';
 import { user } from '../constants';
 
 export default function registerAction(browser) {
-  browser.url(url.registerUrl);
+  browser.url(url.register);
 
   const name = $('//input[@name="name"]');
   const phone = $('//input[@name="phone"]');

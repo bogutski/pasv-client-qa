@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { url } from '../../../examples/constants';
+import { url } from '../../constants';
 
 const el = {
   sel: {
@@ -25,9 +25,9 @@ const el = {
   },
 };
 
-describe('Login Page - Password - empty field - Design ', () => {
+describe('User - Login Page - Password - empty field - Design', () => {
   before(() => {
-    browser.url(url.loginUrl);
+    browser.url(url.login);
   });
 
   it('should check that the input field is displayed', () => {

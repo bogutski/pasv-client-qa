@@ -1,5 +1,5 @@
-import { url } from '../../../specs/constants';
-import { user } from '../constants';
+import { url } from '../../constants';
+import { user } from '../_data/data';
 
 export default function loginAction(browser) {
   browser.url(url.login);
@@ -12,5 +12,5 @@ export default function loginAction(browser) {
   passwordField.setValue(user.admin.password);
 
   button.click();
-  // browser.pause(1000)
+  browser.pause(1000);
 }
