@@ -1,12 +1,5 @@
 import { expect } from 'chai';
-
-const baseUrl = 'https://stage.pasv.us';
-const url = {
-  baseUrl,
-  loginUrl: `${baseUrl}/user/login`,
-  registerUrl: `${baseUrl}/user/register`,
-  serverUrl: 'https://server-stage.pasv.us',
-};
+import { url } from './../../constants';
 
 const elements = {
   emailField: {
@@ -140,7 +133,7 @@ describe('User registration form email functionality', () => {
     expect(emailFieldElement.getAttribute('class')).includes('is-invalid');
   });
 
-  it('Verify that if the email was cleared of data while other fields filled in, Submit button is deavctivated', () => {
+  it('Verify that if the email was cleared of data while other fields filled in, Submit button is deactivated', () => {
     const emailFieldElement = $(elements.emailField.selector);
     const nameFieldElement = $(elements.nameField.selector);
     const phoneFieldElement = $(elements.phoneField.selector);
@@ -160,7 +153,7 @@ describe('User registration form email functionality', () => {
     expect(buttonIsEnabled).to.be.false;
   });
 
-  it('Verify that if the email field was empty by default while other info filled in, Submit button is deavctivated', () => {
+  it('Verify that if the email field was empty by default while other info filled in, Submit button is deactivated', () => {
     browser.refresh();
     const nameFieldElement = $(elements.nameField.selector);
     const phoneFieldElement = $(elements.phoneField.selector);
