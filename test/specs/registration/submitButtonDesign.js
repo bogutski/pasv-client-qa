@@ -1,91 +1,94 @@
 import { url } from '../constants.js';
 import { expect } from 'chai';
 const elementSelector = '//button[@type="submit"]';
+const englishLevelSelector = '//label[@for="englishLevel"]/../../select';
+const selectors = [
+  '//input[@name="name"]',
+  '//input[@name="phone"]',
+  '//input[@name="email"]',
+  '//input[@name="password"]',
+  '//textarea[@name="about"]',
+  '//textarea[@name="goals"]',
+];
+const names = [
+  'Kate Saf',
+  '+19163906778',
+  'gjhghgh@gmail.com',
+  '11111',
+  'About about',
+  '1. My goals',
+];
+const expectedFontColor = '#ffffff';
+const expectedBackgroundColor = '#0052cc';
+const expectedBorderColor = '#0052cc';
+const expectedFontSize = '17px';
+const expectedFontWeight = 400;
+const expectedAlign = 'flex-start';
+const expectedColorHover = '#ffffff';
+const expectedBackgroundColorHover = '#0043a6';
+const expectedBorderColorHover = '#003e99';
+const expectedShadowBox = 'rgba(38,108,212,0.5)0px0px0px3.2px';
 
 describe('Registration - Submit Button - Design', () => {
   before(() => {
     browser.url(url.register);
-    const selectors = [
-      '//input[@name="name"]',
-      '//input[@name="phone"]',
-      '//input[@name="email"]',
-      '//input[@name="password"]',
-      '//textarea[@name="about"]',
-      '//textarea[@name="goals"]',
-    ];
-    const names = [
-      'Kate Saf',
-      '+19163906778',
-      'gjhghgh@gmail.com',
-      '11111',
-      'About about',
-      '1. My goals',
-    ];
+
     for (let i = 0; i < selectors.length; i++) {
       $(selectors[i]).click();
       browser.pause(50);
       $(selectors[i]).setValue(names[i]);
     }
-    $('//label[@for="englishLevel"]/../../select').selectByVisibleText('Elementary');
+    $(englishLevelSelector).selectByVisibleText('Elementary');
     browser.pause(50);
   });
 
   it('should verify that submit button font color is correct in usable state', () => {
     const actualFontColor = $(elementSelector).getCSSProperty('color').parsed.hex;
-    const expectedResult = '#ffffff';
-    expect(actualFontColor).to.eq(expectedResult);
+    expect(actualFontColor).to.eq(expectedFontColor);
   });
 
   it('should verify that submit button background-color is correct in usable state', () => {
     const actualBackgroundColor = $(elementSelector).getCSSProperty('background-color').parsed.hex;
-    const expectedResult = '#0052cc';
-    expect(actualBackgroundColor).to.eq(expectedResult);
+    expect(actualBackgroundColor).to.eq(expectedBackgroundColor);
   });
 
   it('should verify that submit button border-color is correct in usable state', () => {
     const actualBorderColor = $(elementSelector).getCSSProperty('background-color').parsed.hex;
-    const expectedResult = '#0052cc';
-    expect(actualBorderColor).to.eq(expectedResult);
+    expect(actualBorderColor).to.eq(expectedBorderColor);
   });
 
   it('should verify that submit button font-size is correct in usable state', () => {
     const actualFontSize = $(elementSelector).getCSSProperty('font-size').value;
-    const expectedResult = '17px';
-    expect(actualFontSize).to.eq(expectedResult);
+    expect(actualFontSize).to.eq(expectedFontSize);
   });
 
   it('should verify that submit button font-weight is correct in usable state', () => {
     const actualFontWeight = $(elementSelector).getCSSProperty('font-weight').value;
-    const expectedResult = 400;
-    expect(actualFontWeight).to.eq(expectedResult);
+    expect(actualFontWeight).to.eq(expectedFontWeight);
   });
 
   it('should verify that submit button align is correct in usable state', () => {
     const actualAlign = $(elementSelector).getCSSProperty('align-items').value;
-    const expectedResult = 'flex-start';
-    expect(actualAlign).to.eq(expectedResult);
+    expect(actualAlign).to.eq(expectedAlign);
   });
 
   it('should verify that submit button color is correct in hover state', () => {
-    const actualColor = $(elementSelector).getCSSProperty('color').parsed.hex;
-    const expectedResult = '#ffffff';
-    expect(actualColor).to.eq(expectedResult);
+    const actualColorHover = $(elementSelector).getCSSProperty('color').parsed.hex;
+    expect(actualColorHover).to.eq(expectedColorHover);
   });
 
   it('should verify that submit button background-color is correct in hover state', () => {
     $(elementSelector).moveTo();
     browser.pause(200);
-    const actualBackgrounColorHover = $(elementSelector).getCSSProperty('background-color').parsed
+    const actualBackgroundColorHover = $(elementSelector).getCSSProperty('background-color').parsed
       .hex;
-    const expectedResult = '#0043a6';
-    expect(actualBackgrounColorHover).to.eq(expectedResult);
+    expect(actualBackgroundColorHover).to.eq(expectedBackgroundColorHover);
   });
 
   it('should verify that submit button border-color is correct in hover state', () => {
     $(elementSelector).moveTo();
     const actualBorderColorHover = $(elementSelector).getCSSProperty('border-color').parsed.hex;
-    const expectedResult = '#003e99';
-    expect(actualBorderColorHover).to.eq(expectedResult);
+    expect(actualBorderColorHover).to.eq(expectedBorderColorHover);
   });
 
   it('should verify that when user clicks Submit button, shadow-box appears ', () => {
@@ -94,7 +97,6 @@ describe('Registration - Submit Button - Design', () => {
     browser.pause(200);
     const actualShadowBox = $(elementSelector).getCSSProperty('box-shadow').parsed.rgba;
     browser.buttonUp();
-    const expectedResult = 'rgba(38,108,212,0.5)0px0px0px3.2px';
-    expect(actualShadowBox).to.eq(expectedResult);
+    expect(actualShadowBox).to.eq(expectedShadowBox);
   });
 });
