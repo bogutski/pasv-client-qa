@@ -18,9 +18,17 @@ const createDiaryH1 = 'Create day report';
 const dayReportShortText = 'Today I wrote tests.';
 const dayReportText = `Today I watched ${Math.random()} lectures and solved 3 tasks on codewars. Also I wrote tests.`;
 
+let allDiaries;
+let initialDiaryCount;
+
 describe('Diary - Func', () => {
   before(() => {
     loginAction(browser);
+  });
+
+  it('should get all diaries from DB and store initial count', async () => {
+    const allDiaries = await diaryGetAll(process.env.TOKEN_ADMIN);
+    initialDiaryCount = allDiaries.length;
   });
 
   it('should verify that `Diary`item is displayed in main menu', () => {
@@ -122,11 +130,13 @@ describe('Diary - Func', () => {
     expect(lastDiaryRecord).to.equal(dayReportText);
   });
 
-  it('should check in API', async () => {
-    const allDiaries = await diaryGetAll();
+  it('should check correct description stored in DB with API call', async () => {
+    allDiaries = await diaryGetAll(process.env.TOKEN_ADMIN);
     const firstDiary = allDiaries[0];
-    console.log(firstDiary);
-
     expect(firstDiary.description).to.equal(dayReportText);
+  });
+
+  it('should verify that after creation new Diary total count increased by 1 ', () => {
+    expect(allDiaries.length).eq(initialDiaryCount + 1);
   });
 });

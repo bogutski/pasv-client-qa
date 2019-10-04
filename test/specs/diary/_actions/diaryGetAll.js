@@ -1,12 +1,12 @@
 import { url } from '../../constants';
 import axios from 'axios';
 
-export default function diaryGetAll() {
+export default function diaryGetAll(token) {
   return axios({
     method: 'GET',
     url: `${url.server}/diary`,
     headers: {
-      Authorization: process.env.TOKEN_ADMIN,
+      Authorization: token,
     },
   })
     .then(response => {

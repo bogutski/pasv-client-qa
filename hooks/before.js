@@ -1,5 +1,6 @@
-const userGetAdminToken = require('../test/specs/user/_actions/userGetAdminToken');
+const userGetToken = require('../test/specs/user/_actions/userGetToken');
 
 module.exports = async function before() {
-  await userGetAdminToken();
+  await userGetToken('admin');
+  await userGetToken('student');
 };
