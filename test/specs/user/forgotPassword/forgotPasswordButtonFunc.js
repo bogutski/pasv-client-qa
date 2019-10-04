@@ -100,7 +100,7 @@ describe('User - Check Mail - `try again` link - Fucntional', () => {
   it('should check that user gets redirected to  `Forgot Password` page after `try again` link clicked', () => {
     $(tryAgainLink).click();
     browser.waitUntil(() => {
-      return $('//h1').getText() === h1ForgotPasswordPage;
+      return $(h1).getText() === h1ForgotPasswordPage;
     }, 3000);
     expect(browser.getUrl()).to.be.equal(url.forgotPassword);
   });
