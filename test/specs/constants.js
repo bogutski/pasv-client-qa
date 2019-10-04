@@ -1,15 +1,25 @@
 const baseUrl = 'https://stage.pasv.us';
 
-export const url = {
+const url = {
   baseUrl,
+
   login: `${baseUrl}/user/login`,
   register: `${baseUrl}/user/register`,
   forgotPassword: `${baseUrl}/user/password/reset/request`,
+  checkEmail: `${baseUrl}/user/password/reset/mailed`,
+
+  diaryList: `${baseUrl}/diary`,
+  diaryCreateForm: `${baseUrl}/diary/create`,
 
   server: 'https://server-stage.pasv.us',
 };
 
-export const app = {
+const app = {
   name: 'Progress Monitor',
   slogan: 'eat(); sleep(); code(); repeat();',
+};
+
+module.exports = {
+  url,
+  app,
 };
