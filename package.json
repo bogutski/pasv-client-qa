@@ -8,12 +8,14 @@
 
     "test:user:login:design": "wdio wdio.conf.js --spec test/specs/user/login/loginDesignUserLogin.js --inspect",
     "test:user:login:password:design": "wdio wdio.conf.js --spec test/specs/user/login/loginUserPasswordDesign.js --inspect",
+    "test:user:login:func": "wdio wdio.conf.js --spec test/specs/user/login/user_loginForm_func.js --inspect",
 
     "test:register": "wdio wdio.conf.js --spec test/examples/pages/mainPage.js --inspect",
     "test:user:register:redirect": "wdio wdio.conf.js --spec test/specs/user/registration/redirect.js --inspect",
     "test:user:register:submitButton:disabled:realName": "wdio wdio.conf.js --spec test/specs/user/registration/submit_button_func/negative/realNameEmptyAndIncorreect.js --inspect",
     "test:user:register:aboutField:func": "wdio wdio.conf.js --spec test/specs/user/registration/aboutFieldFunc.js --inspect",
     "test:user:register:submitButton:enabled": "wdio wdio.conf.js --spec test/specs/user/registration/submit_button_func/positive/submitButtonEnabled.js --inspect",
+
     "test:user:forgotPassword:email:func": "wdio wdio.conf.js --spec ./test/specs/user/forgotPassword/user_forgotPas_emailFunc.js  --inspect",
 
     "test:pages:home:general": "wdio wdio.conf.js --spec test/specs/pages/homePage/general.js --inspect",
