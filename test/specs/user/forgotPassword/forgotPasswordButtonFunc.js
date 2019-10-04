@@ -2,21 +2,25 @@ import { expect } from 'chai';
 import { url } from '../../constants';
 import { user } from '../_data/data';
 
-const buttonReset = '//button[contains(text(),"Send password reset email")]';
-const emailField = '//input[@name="email"]';
-const incorrectEmailFormat = 'student_viktor@testcom';
-const invalidMsg = '//input[@name="email"]/../div[contains(text(), "Invalid")]';
-const textInvalidMsg = 'Invalid email address';
-const failedMsg = '//div/h4[text() = "User not found"]';
-const incorrectEmail = 'zasxcd@test.asd';
-const textFailedMsg = 'User not found';
-const successMsg = '//div/h4[contains(text(), "Check mail")]';
-const textSuccessMsg = 'Check mail for reset password link';
-const tryAgainLink = '//a[contains(text(),"try again")]';
-const h1CheckMailPage = 'Check your email for a link to reset your password';
-const h1ForgotPasswordPage = 'Reset your password';
-const closeSign = '//span[@class="notification-dismiss"]';
-const h1 = '//h1';
+const sel = {
+  buttonReset: '//button[contains(text(),"Send password reset email")]',
+  emailField: '//input[@name="email"]',
+  invalidMsg: '//input[@name="email"]/../div[contains(text(), "Invalid")]',
+  failedMsg: '//div/h4[text() = "User not found"]',
+  successMsg: '//div/h4[contains(text(), "Check mail")]',
+  tryAgainLink: '//a[contains(text(),"try again")]',
+  closeSign: '//span[@class="notification-dismiss"]',
+  h1: '//h1',
+};
+const data = {
+  incorrectEmailFormat: 'student_viktor@testcom',
+  textInvalidMsg: 'Invalid email address',
+  incorrectEmail: 'zasxcd@test.asd',
+  textFailedMsg: 'User not found',
+  textSuccessMsg: 'Check mail for reset password link',
+  h1CheckMailPage: 'Check your email for a link to reset your password',
+  h1ForgotPasswordPage: 'Reset your password',
+};
 
 describe('User - Forgot Password - `Send password reset email` button - Functional', () => {
   before(() => {
@@ -24,56 +28,56 @@ describe('User - Forgot Password - `Send password reset email` button - Function
   });
 
   it('should check that the button is displayed', () => {
-    expect($(buttonReset).isDisplayed()).to.be.true;
+    expect($(sel.buttonReset).isDisplayed()).to.be.true;
   });
 
   it('should check that the button is disabled if email field is empty', () => {
-    expect($(buttonReset).isEnabled()).to.be.false;
+    expect($(sel.buttonReset).isEnabled()).to.be.false;
   });
 
   it('should check that the button is disabled if incorrect format of email was entered', () => {
-    $(emailField).setValue(incorrectEmailFormat);
+    $(sel.emailField).setValue(data.incorrectEmailFormat);
     browser.keys('Enter');
-    expect($(buttonReset).isEnabled()).to.be.false;
+    expect($(sel.buttonReset).isEnabled()).to.be.false;
   });
 
   it('should check that the invalid message appears if incorrect format of email was entered', () => {
-    expect($(invalidMsg).isDisplayed()).to.be.true;
+    expect($(sel.invalidMsg).isDisplayed()).to.be.true;
   });
 
   it('should check that the text of invalid message is `Invalid email address`', () => {
-    $(emailField).setValue(incorrectEmailFormat);
+    $(sel.emailField).setValue(data.incorrectEmailFormat);
     browser.keys('Enter');
-    expect($(invalidMsg).getText()).to.be.equal(textInvalidMsg);
+    expect($(sel.invalidMsg).getText()).to.be.equal(data.textInvalidMsg);
   });
 
   it('should check that the button is enabled if email was entered', () => {
-    $(emailField).setValue(incorrectEmail);
-    expect($(buttonReset).isEnabled()).to.be.true;
+    $(sel.emailField).setValue(data.incorrectEmail);
+    expect($(sel.buttonReset).isEnabled()).to.be.true;
   });
 
   it('should check that failed message appears if incorrect email was entered', () => {
-    $(emailField).setValue(incorrectEmail);
-    $(buttonReset).click();
-    $(failedMsg).waitForDisplayed();
-    expect($(failedMsg).isDisplayed()).to.be.true;
-    $(closeSign).click();
+    $(sel.emailField).setValue(data.incorrectEmail);
+    $(sel.buttonReset).click();
+    $(sel.failedMsg).waitForDisplayed();
+    expect($(sel.failedMsg).isDisplayed()).to.be.true;
+    $(sel.closeSign).click();
   });
 
   it('should check that failed message text is `User not found', () => {
-    $(emailField).setValue(incorrectEmail);
-    $(buttonReset).click();
-    $(failedMsg).waitForDisplayed();
-    expect($(failedMsg).getText()).to.be.equal(textFailedMsg);
+    $(sel.emailField).setValue(data.incorrectEmail);
+    $(sel.buttonReset).click();
+    $(sel.failedMsg).waitForDisplayed();
+    expect($(sel.failedMsg).getText()).to.be.equal(data.textFailedMsg);
   });
 });
 
 describe('User - Check Mail - `try again` link - Fucntional', () => {
   before(() => {
-    $(emailField).setValue(user.student.email);
-    $(buttonReset).click();
+    $(sel.emailField).setValue(user.student.email);
+    $(sel.buttonReset).click();
     browser.waitUntil(() => {
-      return $(h1).getText() === h1CheckMailPage;
+      return $(sel.h1).getText() === data.h1CheckMailPage;
     }, 3000);
   });
 
@@ -82,25 +86,25 @@ describe('User - Check Mail - `try again` link - Fucntional', () => {
   });
 
   it('should check that successful message appears after user gets redirected', () => {
-    expect($(successMsg).isDisplayed()).to.be.true;
+    expect($(sel.successMsg).isDisplayed()).to.be.true;
   });
 
   it('should verify the text of successful message', () => {
-    expect($(successMsg).getText()).to.be.equal(textSuccessMsg);
+    expect($(sel.successMsg).getText()).to.be.equal(data.textSuccessMsg);
   });
 
   it('should check that link `try again` is displayed', () => {
-    expect($(tryAgainLink).isDisplayed()).to.be.true;
+    expect($(sel.tryAgainLink).isDisplayed()).to.be.true;
   });
 
   it('should check that link `try again` is enabled', () => {
-    expect($(tryAgainLink).isEnabled()).to.be.true;
+    expect($(sel.tryAgainLink).isEnabled()).to.be.true;
   });
 
   it('should check that user gets redirected to  `Forgot Password` page after `try again` link clicked', () => {
-    $(tryAgainLink).click();
+    $(sel.tryAgainLink).click();
     browser.waitUntil(() => {
-      return $(h1).getText() === h1ForgotPasswordPage;
+      return $(sel.h1).getText() === data.h1ForgotPasswordPage;
     }, 3000);
     expect(browser.getUrl()).to.be.equal(url.forgotPassword);
   });
