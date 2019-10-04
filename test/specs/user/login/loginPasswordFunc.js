@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { url } from '../../constants';
-import { user } from '../user_constants';
+import { user } from '../_data/data';
 
 const loginButton = '//button[@type="submit"]';
 const passwordField = '//input[@name="password"]';
