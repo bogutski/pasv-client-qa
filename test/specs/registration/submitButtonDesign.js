@@ -3,7 +3,8 @@ import { expect } from 'chai';
 const elementSelector = '//button[@type="submit"]';
 const englishLevelSelector = '//label[@for="englishLevel"]/../../select';
 const selectors = [
-  '//input[@name="name"]',
+  '//input[@name="firstName"]',
+  '//input[@name="lastName"]',
   '//input[@name="phone"]',
   '//input[@name="email"]',
   '//input[@name="password"]',
@@ -11,8 +12,9 @@ const selectors = [
   '//textarea[@name="goals"]',
 ];
 const names = [
-  'Kate Saf',
-  '+19163906778',
+  'Kate',
+  'Saf',
+  '19163906778',
   'gjhghgh@gmail.com',
   '11111',
   'About about',

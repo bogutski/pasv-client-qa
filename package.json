@@ -18,7 +18,7 @@
     "test:user:registration:cellPhoneNumber:design": "wdio wdio.conf.js --spec test/specs/user/registration/cellPhoneNumberDesign.js --inspect",
     "test:user:forgotPassword:email:func": "wdio wdio.conf.js --spec ./test/specs/user/forgotPassword/user_forgotPas_emailFunc.js  --inspect",
     "test:user:forgotPassword:button:func": "wdio wdio.conf.js --spec ./test/specs/user/forgotPassword/forgotPasswordButtonFunc.js  --inspect",
-    "test:registration:submitButton:design": "wdio wdio.conf.js --spec test/specs/registration/submitButtonDesign.js --inspect",
+    "test:registration:submitButton:design": "wdio wdio.conf.js --spec ./test/specs/registration/submitButtonDesign.js --inspect",
 
     "test:pages:home:general": "wdio wdio.conf.js --spec test/specs/pages/homePage/general.js --inspect",
     "test:pages:home:func": "wdio wdio.conf.js --spec test/specs/pages/homePage/homePageFunc.js --inspect",
