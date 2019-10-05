@@ -4,10 +4,10 @@ import loginAction from './../user/_actions/loginAction';
 import diaryGetAll from './_actions/diaryGetAll';
 
 const selector = {
-  menuDiary: '//div[@id="site-menu"]//a[text() = "Diary"]',
+  menuDiary: '//a[@qa="diary-link"]',
   header: '//h1',
-  diaryRecord: '//div[@class="mt-2"]',
-  createDayReportButton: '//a[text()="Create day report"]',
+  diaryRecord: '//div[@qa="description"]',
+  createDayReportButton: '//a[@qa="create-day-report-button"]',
   saveButton: '//button[@type="submit"]',
   checkBox: '//input[@type="checkbox"]',
   descriptionField: '//textarea[@name="description"]',
@@ -23,7 +23,7 @@ const dayReportText = `Today I watched ${Math.trunc(
 let allDiaries;
 let initialDiaryCount;
 
-describe('Diary - Func', () => {
+describe('Diary - Functionality', () => {
   before(() => {
     loginAction(browser);
   });
@@ -38,7 +38,7 @@ describe('Diary - Func', () => {
     expect(diaryIsDisplayed).to.be.true;
   });
 
-  it('should verify that click to `Diary` in main menu should redirect to Diary page', () => {
+  it('should verify that click to `Diary` in main menu should redirect to `Day reports` page', () => {
     $(selector.menuDiary).click();
     const actualUrl = browser.getUrl();
     expect(actualUrl).to.equal(url.diaryList);
@@ -85,7 +85,7 @@ describe('Diary - Func', () => {
 
   it('should verify that `Save` button is disabled when there are checkboxes, but there is no day report', () => {
     //checkboxes
-    for (let i = 0; i <= 6; i++) {
+    for (let i = 1; i < 12; i++) {
       const selector = $('//input[@id="input-[' + i + ']"]');
       selector.click();
     }
