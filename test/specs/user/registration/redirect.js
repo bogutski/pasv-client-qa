@@ -3,10 +3,19 @@ import { url } from '../../constants';
 
 const elements = {
   registerButton: {
-    selector: '//div[@id="user-section"]/ul/li/a[text() = "Register"]',
+    selector: '//a[@qa="register-link"]',
   },
   registerForm: {
     title: 'User Register',
+    firstNameField: '//input[@name="firstName"]',
+    lastNameField: '//input[@name="lastName"]',
+    cellPhoneNumberField: '//input[@name="phone"]',
+    emailField: '//input[@name="email"]',
+    passwordField: '//input[@name="password"]',
+    aboutTextArea: '//textarea[@name="about"]',
+    myGoalsArea: '//textarea[@name="goals"]',
+    englishLevelField: '//select[@name="englishLevel"]',
+    submitButton: '//button[@type="submit"]',
   },
   globalHeader: {
     selector: '//div[@id="main-bar"]',
@@ -79,5 +88,53 @@ describe('User - Registration - Redirect (from Login page)', () => {
     clickRegisterButton();
     const globalFooterIsDisplayed = $(elements.globalFooter.selector).isDisplayed();
     expect(globalFooterIsDisplayed).to.be.true;
+  });
+});
+
+describe('User - Registration - Redirect - All fields are displayed', () => {
+  before(() => {
+    browser.url(url.baseUrl);
+    clickRegisterButton();
+  });
+
+  it('should verify that User Register Text is displayed', () => {
+    const h1RegisterPage = $('//h1').getText();
+    expect(h1RegisterPage).eq(elements.registerForm.title);
+  });
+
+  it('should verify that First Name field is displayed', () => {
+    expect($(elements.registerForm.firstNameField).isDisplayed()).true;
+  });
+
+  it('should verify that Last Name field is displayed', () => {
+    expect($(elements.registerForm.lastNameField).isDisplayed()).true;
+  });
+
+  it('should verify that Cell Phone number field is displayed', () => {
+    expect($(elements.registerForm.cellPhoneNumberField).isDisplayed()).true;
+  });
+
+  it('should verify that Email Field is displayed', () => {
+    expect($(elements.registerForm.emailField).isDisplayed()).true;
+  });
+
+  it('should verify that Password Field is displayed', () => {
+    expect($(elements.registerForm.passwordField).isDisplayed()).true;
+  });
+
+  it('should verify that About text area is displayed', () => {
+    expect($(elements.registerForm.aboutTextArea).isDisplayed()).true;
+  });
+
+  it('should verify that My Goals area is displayed', () => {
+    expect($(elements.registerForm.myGoalsArea).isDisplayed()).true;
+  });
+
+  it('should verify that English level drop-down menu is displayed', () => {
+    expect($(elements.registerForm.englishLevelField).isDisplayed()).true;
+  });
+
+  it('should verify that Submit button is displayed', () => {
+    expect($(elements.registerForm.submitButton).isDisplayed()).true;
   });
 });
