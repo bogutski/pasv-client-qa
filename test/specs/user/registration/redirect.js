@@ -32,62 +32,36 @@ const clickRegisterButton = () => {
 describe('User - Registration - Redirect (from Main page)', () => {
   before(() => {
     browser.url(url.baseUrl);
+    clickRegisterButton();
   });
 
   it('should verify when Register button is clicked, user is redirected to the Register page', () => {
-    clickRegisterButton();
     const h1RegisterPage = $('//h1').getText();
     expect(h1RegisterPage).eq(elements.registerForm.title);
   });
 
   it(`should verify when Register button is clicked, url changed to ${url.register}`, () => {
-    clickRegisterButton();
     const urlAfterClick = browser.getUrl();
     const expectedUrl = `${url.register}`;
     expect(urlAfterClick).eq(expectedUrl);
-  });
-
-  it('should verify after redirect Global Header is displayed', () => {
-    clickRegisterButton();
-    const globalHeaderIsDisplayed = $(elements.globalHeader.selector).isDisplayed();
-    expect(globalHeaderIsDisplayed).to.be.true;
-  });
-
-  it('should verify after redirect Global Footer is displayed', () => {
-    clickRegisterButton();
-    const globalFooterIsDisplayed = $(elements.globalFooter.selector).isDisplayed();
-    expect(globalFooterIsDisplayed).to.be.true;
   });
 });
 
 describe('User - Registration - Redirect (from Login page)', () => {
   before(() => {
     browser.url(url.login);
+    clickRegisterButton();
   });
 
   it('should verify when Register button is clicked, user is redirected to the Register page', () => {
-    clickRegisterButton();
     const h1RegisterPage = $('//h1').getText();
     expect(h1RegisterPage).eq(elements.registerForm.title);
   });
 
   it(`should verify when Register button is clicked, url changed to ${url.register}`, () => {
-    clickRegisterButton();
     const urlAfterClick = browser.getUrl();
     const expectedUrl = `${url.register}`;
     expect(urlAfterClick).eq(expectedUrl);
-  });
-
-  it('should verify after redirect Global Header is displayed', () => {
-    clickRegisterButton();
-    const globalHeaderIsDisplayed = $(elements.globalHeader.selector).isDisplayed();
-    expect(globalHeaderIsDisplayed).to.be.true;
-  });
-
-  it('should verify after redirect Global Footer is displayed', () => {
-    clickRegisterButton();
-    const globalFooterIsDisplayed = $(elements.globalFooter.selector).isDisplayed();
-    expect(globalFooterIsDisplayed).to.be.true;
   });
 });
 
@@ -97,7 +71,11 @@ describe('User - Registration - Redirect - All fields are displayed', () => {
     clickRegisterButton();
   });
 
-  it('should verify that User Register Text is displayed', () => {
+  it('should verify Global Header is displayed', () => {
+    expect($(elements.globalHeader.selector).isDisplayed()).true;
+  });
+
+  it('should verify that h1 text is User Register', () => {
     const h1RegisterPage = $('//h1').getText();
     expect(h1RegisterPage).eq(elements.registerForm.title);
   });
@@ -136,5 +114,9 @@ describe('User - Registration - Redirect - All fields are displayed', () => {
 
   it('should verify that Submit button is displayed', () => {
     expect($(elements.registerForm.submitButton).isDisplayed()).true;
+  });
+
+  it('should verify Global Footer is displayed', () => {
+    expect($(elements.globalFooter.selector).isDisplayed()).true;
   });
 });
