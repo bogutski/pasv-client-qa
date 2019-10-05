@@ -12,6 +12,7 @@
 
     "test:register": "wdio wdio.conf.js --spec test/examples/pages/mainPage.js --inspect",
     "test:user:register:redirect": "wdio wdio.conf.js --spec test/specs/user/registration/redirect.js --inspect",
+    "test:user:register:textUserRegister:design": "wdio wdio.conf.js --spec test/specs/user/registration/textUserRegisterDesign.js --inspect",
     "test:user:register:submitButton:disabled:realName": "wdio wdio.conf.js --spec test/specs/user/registration/submit_button_func/negative/realNameEmptyAndIncorreect.js --inspect",
     "test:user:register:aboutField:func": "wdio wdio.conf.js --spec test/specs/user/registration/aboutFieldFunc.js --inspect",
     "test:user:register:submitButton:enabled": "wdio wdio.conf.js --spec test/specs/user/registration/submit_button_func/positive/submitButtonEnabled.js --inspect",
@@ -23,7 +24,6 @@
     "test:pages:home:func": "wdio wdio.conf.js --spec test/specs/pages/homePage/homePageFunc.js --inspect",
     "test:pages:home:header:design": "wdio wdio.conf.js --spec test/specs/pages/homePage/homePageHeaderDesign.js --inspect",
     "test:pages:home:footer:design": "wdio wdio.conf.js --spec test/specs/pages/homePage/homePageFooterDesign.js --inspect",
-
     "test:dairy:func": "wdio wdio.conf.js --spec test/specs/diary/diaryFunc.js --inspect"
   },
   "author": "Viktor Bogutskii",
