@@ -16,7 +16,9 @@ const selector = {
 const diaryH1 = 'Day reports';
 const createDiaryH1 = 'Create day report';
 const dayReportShortText = 'Today I wrote tests.';
-const dayReportText = `Today I watched ${Math.random()} lectures and solved 3 tasks on codewars. Also I wrote tests.`;
+const dayReportText = `Today I watched ${Math.trunc(
+  Math.random() * 10,
+)} lectures and solved ${Math.trunc(Math.random() * 10)} tasks on codewars. Also I wrote tests.`;
 
 let allDiaries;
 let initialDiaryCount;

@@ -6,6 +6,7 @@ const url = {
   login: `${baseUrl}/user/login`,
   register: `${baseUrl}/user/register`,
   forgotPassword: `${baseUrl}/user/password/reset/request`,
+  checkEmail: `${baseUrl}/user/password/reset/mailed`,
 
   diaryList: `${baseUrl}/diary`,
   diaryCreateForm: `${baseUrl}/diary/create`,
