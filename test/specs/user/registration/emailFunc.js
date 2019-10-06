@@ -24,10 +24,10 @@ const elements = {
     selector: '//textarea[@name="goals"]',
   },
   submitButton: {
-    selector: '//button[@type="submit"]'
+    selector: '//button[@type="submit"]',
   },
   englishLevel: {
-    selector: '//label[@for="englishLevel"]/../../select'
+    selector: '//label[@for="englishLevel"]/../../select',
   },
   inputValue: {
     validEmail: '123@test.test',
@@ -44,8 +44,8 @@ const elements = {
     validPhone: '+12345678900',
     validPassword: '1234567',
     validAbout: 'qwerty qwerty',
-    validMyGoals: '1 qwerty'
-  }
+    validMyGoals: '1 qwerty',
+  },
 };
 
 describe('User registration form email functionality', () => {
@@ -141,7 +141,7 @@ describe('User registration form email functionality', () => {
     const aboutFieldElement = $(elements.aboutField.selector);
     const myGoalsFieldElement = $(elements.myGoalsField.selector);
     const submitButtonElement = $(elements.submitButton.selector);
-    const englishLevelElement =$(elements.englishLevel.selector);
+    const englishLevelElement = $(elements.englishLevel.selector);
     nameFieldElement.setValue(elements.inputValue.validName);
     phoneFieldElement.setValue(elements.inputValue.validPhone);
     passwordFieldElement.setValue(elements.inputValue.validPassword);
@@ -161,7 +161,7 @@ describe('User registration form email functionality', () => {
     const aboutFieldElement = $(elements.aboutField.selector);
     const myGoalsFieldElement = $(elements.myGoalsField.selector);
     const submitButtonElement = $(elements.submitButton.selector);
-    const englishLevelElement =$(elements.englishLevel.selector);
+    const englishLevelElement = $(elements.englishLevel.selector);
     nameFieldElement.setValue(elements.inputValue.validName);
     phoneFieldElement.setValue(elements.inputValue.validPhone);
     passwordFieldElement.setValue(elements.inputValue.validPassword);
@@ -171,5 +171,4 @@ describe('User registration form email functionality', () => {
     let buttonIsEnabled = submitButtonElement.isEnabled();
     expect(buttonIsEnabled).to.be.false;
   });
-
 });
