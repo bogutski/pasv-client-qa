@@ -1,31 +1,10 @@
 import { expect } from 'chai';
-import {url} from './../../constants';
+import registerAction from './../../../examples/user/actions/registerAction.js';
 
 describe('User - Registration - ErrorMessage - Design', () => {
 
   before(() => {
-    browser.url(url.register);
-
-    const firstNameField = $('//input[@name="firstName"]');
-    const lastNameField = $('//input[@name="lastName"]');
-    const cellPhoneNumberField = $('//input[@name="phone"]');
-    const emailField = $('//input[@name="email"]');
-    const passwordField = $('//input[@name="password"]');
-    const aboutTextArea = $('//textarea[@name="about"]');
-    const myGoalsTextArea = $('//textarea[@name="goals"]');
-    const englishLevelDropDown = $('//label[@for="englishLevel"]/../../select');
-    const submitButton = $('//button[@type="submit"]');
-
-    firstNameField.setValue('Test');
-    lastNameField.setValue('Kate');
-    cellPhoneNumberField.setValue('380653332245');
-    emailField.setValue('testKate1@gmail.com');
-    passwordField.setValue('12345');
-    aboutTextArea.setValue('PASV');
-    myGoalsTextArea.setValue('QA Engineer');
-    englishLevelDropDown.selectByAttribute('value', 'Beginner');
-
-    submitButton.click();
+    registerAction(browser);
   });
 
   const errorMessage = '//div[contains(@class,"notification-error")]/h4';
@@ -52,8 +31,6 @@ describe('User - Registration - ErrorMessage - Design', () => {
 
   it('should have the correct text', () => {
     const actualText = $(errorMessage).getText();
-    // const expectedText = 'User with this e-mail exists';
-    // expect(actualText).to.be.equal(expectedText);
     expect(actualText).includes('e-mail exists');
   });
 
