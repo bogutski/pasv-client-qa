@@ -89,13 +89,6 @@ describe('User - Register - `My goals` area - Func', () => {
     expect(areaIsValid).to.be.true;
   });
 
-  it('should check that the area has multiple lines with the line breaks', () => {
-    const areaRowsDefault = $(sel.goalsArea).getAttribute('rows').value;
-    $(sel.goalsArea).setValue(data.textNoLimit);
-    const areaRows = $(sel.goalsArea).getAttribute('rows').value;
-    expect(areaRows) > areaRowsDefault;
-  });
-
   it('should check that the area can be resized vertically', () => {
     const areaResized = $(sel.goalsArea).getCSSProperty('resize').value;
     expect(areaResized).to.be.equal(data.areaResize);
