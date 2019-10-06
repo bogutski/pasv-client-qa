@@ -141,7 +141,6 @@ describe('Register Page - Cell phone number description text - Design', () => {
 
   it('should check that the text is “Format 17770005511 or 380653332244”', () => {
     const actualDescText = $(descText).getText();
-    console.log(actualDescText);
     expect(actualDescText).to.be.equal(expectedDescText);
   });
 
