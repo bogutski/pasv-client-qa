@@ -14,7 +14,7 @@ let yourDiary;
 const selector = {
   menuDiary: '//div[@id="site-menu"]//a[text() = "Diary"]',
   diaryRecord: '//div[@class="mt-2"]',
-  createDayReportButton: '//a[text()="Create day report"]',
+  createDayReportButton: '//a[@qa="create-day-report-button"]',
   saveButton: '//button[@type="submit"]',
   checkBox: '//input[@type="checkbox"]',
   descriptionField: '//textarea[@name="description"]',
@@ -52,15 +52,14 @@ describe('Diary - Func', () => {
         yourDiary = el;
       }
     }
-    //lastDiary = allDiaries[0];
   });
 
-  it('should check if the diary was not approved in DB with API call', async () => {
+  it('should check if the diary was not approved in DB with API call', () => {
     const isApproved = yourDiary.approved;
     expect(isApproved).to.be.false;
   });
 
-  it('should git the Id of the diary with API call', async () => {
+  it('should git the Id of the diary with API call', () => {
     diaryId = yourDiary._id;
   });
 
