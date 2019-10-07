@@ -3,6 +3,14 @@ import loginAction from './../user/_actions/loginAction';
 import diaryGetAll from './_actions/diaryGetAll';
 import diaryGetByID from './_actions/diaryGetByID';
 
+const dayReportText = `Latyshev test # ${Math.floor(
+  Math.random() * 1000,
+)}, test test test test test test test test.`;
+const token = process.env.TOKEN_ADMIN;
+let allDiaries;
+let diaryId;
+let yourDiary;
+
 const selector = {
   menuDiary: '//div[@id="site-menu"]//a[text() = "Diary"]',
   diaryRecord: '//div[@class="mt-2"]',
@@ -10,18 +18,9 @@ const selector = {
   saveButton: '//button[@type="submit"]',
   checkBox: '//input[@type="checkbox"]',
   descriptionField: '//textarea[@name="description"]',
-  approveBtn: '(//div[@class="pb-4 mb-4 border-bottom"]//..//button[text()="Approve"])[1]',
-  approvedSign: '(//span[text()="Approved"])[1]',
+  approveBtn: `//div[@qa="description"][contains(text(),'${dayReportText}')]/..//button[@qa="approve-button"]`,
+  approvedSign: `//div[@qa="description"][contains(text(),'${dayReportText}')]/..//span[@qa="approve"]`,
 };
-const dayReportText = `Latyshev test # ${Math.floor(
-  Math.random() * 1000,
-)}, test test test test test test test test.`;
-
-const token = process.env.TOKEN_ADMIN;
-let allDiaries;
-let lastDiary;
-let diaryId;
-let yourDiary;
 
 describe('Diary - Func', () => {
   before(() => {
@@ -48,25 +47,29 @@ describe('Diary - Func', () => {
 
   it('should get the last diary in DB with API call', async () => {
     allDiaries = await diaryGetAll(token);
-    lastDiary = allDiaries[0];
-    console.log(lastDiary);
+    for (let el of allDiaries) {
+      if (el.description === dayReportText) {
+        yourDiary = el;
+      }
+    }
+    //lastDiary = allDiaries[0];
   });
 
   it('should check if the diary was not approved in DB with API call', async () => {
-    const isApproved = lastDiary.approved;
+    const isApproved = yourDiary.approved;
     expect(isApproved).to.be.false;
   });
 
   it('should git the Id of the diary with API call', async () => {
-    diaryId = lastDiary._id;
+    diaryId = yourDiary._id;
   });
 
-  it('should approve the diary and verify that approve button changed it text', () => {
+  it('should approve the diary', () => {
     const approveBtn = $(selector.approveBtn);
     approveBtn.click();
   });
 
-  it('should verify that the Approve btn is not active', () => {
+  it('should verify that the diary has Approved mark', () => {
     $(selector.approvedSign).waitForDisplayed(5000);
     const approved = $(selector.approvedSign);
     expect(approved.isDisplayed()).to.be.true;
@@ -74,7 +77,6 @@ describe('Diary - Func', () => {
 
   it('should check if the diary was approved in DB with API call', async () => {
     yourDiary = await diaryGetByID(token, diaryId);
-    console.log(yourDiary);
     const isApproved = yourDiary.approved;
     expect(isApproved).to.be.true;
   });
