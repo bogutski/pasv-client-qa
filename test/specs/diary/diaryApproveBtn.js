@@ -59,7 +59,7 @@ describe('Diary - Func', () => {
     expect(isApproved).to.be.false;
   });
 
-  it('should git the Id of the diary with API call',  () => {
+  it('should get the Id of the diary with API call',  () => {
     diaryId = yourDiary._id;
   });
 
