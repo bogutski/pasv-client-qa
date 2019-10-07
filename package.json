@@ -18,6 +18,7 @@
     "test:user:register:submitButton:enabled": "wdio wdio.conf.js --spec test/specs/user/registration/submit_button_func/positive/submitButtonEnabled.js --inspect",
     "test:user:register:cellPhoneNumber:design": "wdio wdio.conf.js --spec test/specs/user/registration/cellPhoneNumberDesign.js --inspect",
     "test:user:register:goals:func": "wdio wdio.conf.js --spec test/specs/user/registration/goalsFunc.js --inspect",
+    "test:user:register:password:design": "wdio wdio.conf.js --spec test/specs/user/registration/passwordDesign.js --inspect",
     "test:registration:submitButton:design": "wdio wdio.conf.js --spec ./test/specs/registration/submitButtonDesign.js --inspect",
     "test:user:register:errorMessage:design": "wdio wdio.conf.js --spec test/specs/user/registration/errorMessageDesign.js --inspect",
    
@@ -25,6 +26,7 @@
     "test:user:forgotPassword:button:func": "wdio wdio.conf.js --spec ./test/specs/user/forgotPassword/forgotPasswordButtonFunc.js  --inspect",
    
     "test:pages:home:general": "wdio wdio.conf.js --spec test/specs/pages/homePage/general.js --inspect",
+    "test:pages:home:footer:design": "wdio wdio.conf.js --spec test/specs/pages/homePage/homePageFooterDesign.js --inspect",
     "test:pages:home:func": "wdio wdio.conf.js --spec test/specs/pages/homePage/homePageFunc.js --inspect",
     "test:pages:home:header:design": "wdio wdio.conf.js --spec test/specs/pages/homePage/homePageHeaderDesign.js --inspect",
     "test:dairy:func": "wdio wdio.conf.js --spec test/specs/diary/diaryFunc.js --inspect"
