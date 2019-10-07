@@ -14,7 +14,7 @@ let yourDiary;
 const selector = {
   menuDiary: '//div[@id="site-menu"]//a[text() = "Diary"]',
   diaryRecord: '//div[@class="mt-2"]',
-  createDayReportButton: '//a[text()="Create day report"]',
+  createDayReportButton: '//a[@qa="create-day-report-button"]',
   saveButton: '//button[@type="submit"]',
   checkBox: '//input[@type="checkbox"]',
   descriptionField: '//textarea[@name="description"]',
