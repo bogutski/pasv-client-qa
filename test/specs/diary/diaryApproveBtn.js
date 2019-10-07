@@ -54,12 +54,12 @@ describe('Diary - Func', () => {
     }
   });
 
-  it('should check if the diary was not approved in DB with API call', async () => {
+  it('should check if the diary was not approved in DB with API call',  () => {
     const isApproved = yourDiary.approved;
     expect(isApproved).to.be.false;
   });
 
-  it('should git the Id of the diary with API call', async () => {
+  it('should git the Id of the diary with API call',  () => {
     diaryId = yourDiary._id;
   });
 
