@@ -55,7 +55,7 @@ describe('Register - Password - when user enters first symbol - Design', () => {
     expect(actualFocusBorderColor).equal(expected.focusBorderColor);
   });
 
-  it('should verify focus highlight color', function() {
+  it('should verify focus highlight color', () => {
     const actualHighlightColor = $(passwordField)
       .getCSSProperty('box-shadow')
       .parsed.hex.toLowerCase();
@@ -95,7 +95,7 @@ describe('Register - Password - when password is validated - Design', () => {
     expect(actualBorderColorValid).equal(expected.borderColorValid);
   });
 
-  it('should verify focus highlight color', function() {
+  it('should verify focus highlight color', () => {
     $(passwordField).click();
     const actualHighlightColorValid = $(passwordField).getCSSProperty('box-shadow').parsed.hex;
     expect(actualHighlightColorValid).equal(expected.highlightColorValid);
@@ -111,11 +111,11 @@ describe('Register - Password - Label - Design', () => {
     browser.url(url.register);
   });
 
-  it('should verify that label is displayed', function() {
+  it('should verify that label is displayed', () => {
     expect($(label).isDisplayed()).to.be.true;
   });
 
-  it('should verify that label has correct text', function() {
+  it('should verify that label has correct text', () => {
     const actualLabelText = $(label).getText();
     expect(actualLabelText).to.equal(expected.labelText);
   });
