@@ -22,7 +22,7 @@ const selector = {
   approvedSign: `//div[@qa="description"][contains(text(),'${dayReportText}')]/..//span[@qa="approve"]`,
 };
 
-describe('Diary - Func', () => {
+describe('Diary - Approve - Button', () => {
   before(() => {
     loginAction(browser);
   });
