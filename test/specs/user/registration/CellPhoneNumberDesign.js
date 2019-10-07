@@ -1,11 +1,12 @@
 import { expect } from 'chai';
 import { url } from '../../constants';
-import { user } from '../../../examples/user/constants';
+import { user } from '../_data/data';
 
 const inputFieldPhone = '//input[@name="phone"]';
 const label = '//label[@for="phone"]';
-const descText = '//input[@name="phone"]/following-sibling::small';
-const firstSymbol = '+';
+const descText = '//small[contains(text(),"Format 17775551122 or 380653332244")]';
+
+const firstSymbol = '1';
 const expectedBorder = '#ced4da';
 const expectedFontColor = '#495057';
 const expectedFocusBorderColor = '#4d94ff';
@@ -16,7 +17,7 @@ const expectedWeight = 400;
 const expectedFontFamily =
   '"sf pro display", "sf pro icons", "helvetica neue", helvetica, arial, sans-serif';
 const expectedBorderColorValid = '#24c88b';
-const expectedDescText = 'Format +17770005511 or +380653332244';
+const expectedDescText = 'Format 17775551122 or 380653332244';
 const expectedLabelSize = '17px';
 const expectLabelColor = '#212529';
 const expectedAlign = 'left';
@@ -57,6 +58,7 @@ describe('Register Page - Cell Phone Number input field when user enters first s
 
   it('should check focus highlight color', () => {
     const actualFocusHighlightColor = $(inputFieldPhone).getCSSProperty('box-shadow').parsed.hex;
+    browser.pause(500);
     expect(actualFocusHighlightColor).to.be.equal(expectedFocusHighlightColor);
   });
 
@@ -87,7 +89,7 @@ describe('Register Page - Cell Phone Number input field when the number is valid
     browser.url(url.register);
     $(inputFieldPhone).setValue(user.admin.phone);
     browser.keys('Tab');
-    browser.pause(300);
+    browser.pause(500);
     const actualBorderColorValid = $(inputFieldPhone).getCSSProperty('border-color').parsed.hex;
     expect(actualBorderColorValid).to.be.equal(expectedBorderColorValid);
   });
@@ -98,7 +100,7 @@ describe('Register Page - Cell phone number Label - Design', () => {
     browser.url(url.register);
   });
 
-  it('should check that the label is displayed.', () => {
+  it('should check that the label is displayed', () => {
     expect($(label).isDisplayed()).to.be.true;
   });
 
@@ -137,7 +139,7 @@ describe('Register Page - Cell phone number description text - Design', () => {
     expect($(descText).isDisplayed()).to.be.true;
   });
 
-  it('should check that the text is “Format +17770005511 or +380653332244”', () => {
+  it('should check that the text is “Format 17770005511 or 380653332244”', () => {
     const actualDescText = $(descText).getText();
     expect(actualDescText).to.be.equal(expectedDescText);
   });

@@ -50,6 +50,11 @@ describe('User - LoginForm - Password - Func', () => {
     expect($(sel.loginButton).isEnabled()).to.be.true;
   });
 
+  it('should validate that symbols in password field replaced by bullets', () => {
+    const bullets = $(sel.passwordField).getAttribute('type');
+    expect(bullets).to.be.equal('password');
+  });
+
   it('should check that validation success with correct password', () => {
     const validation = $(sel.passwordField)
       .getAttribute('class')
