@@ -52,7 +52,6 @@ describe('Diary - Func', () => {
         yourDiary = el;
       }
     }
-    //lastDiary = allDiaries[0];
   });
 
   it('should check if the diary was not approved in DB with API call', async () => {
