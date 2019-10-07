@@ -45,22 +45,19 @@ describe('Diary - Approve - Button', () => {
     $(selector.saveButton).click();
   });
 
-  it('should get the last diary in DB with API call', async () => {
+  it('should get your diary and it`s Id in DB with API call', async () => {
     allDiaries = await diaryGetAll(token);
     for (let el of allDiaries) {
       if (el.description === dayReportText) {
         yourDiary = el;
       }
     }
+    diaryId = yourDiary._id;
   });
 
   it('should check if the diary was not approved in DB with API call', () => {
     const isApproved = yourDiary.approved;
     expect(isApproved).to.be.false;
-  });
-
-  it('should get the Id of the diary with API call', () => {
-    diaryId = yourDiary._id;
   });
 
   it('should approve the diary', () => {
