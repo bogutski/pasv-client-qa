@@ -9,17 +9,16 @@ const dayReportText = `Latyshev test # ${Math.floor(
 const token = process.env.TOKEN_ADMIN;
 let allDiaries;
 let diaryId;
-let yourDiary;
+let lastDiary;
 
 const selector = {
   menuDiary: '//div[@id="site-menu"]//a[text() = "Diary"]',
   diaryRecord: '//div[@class="mt-2"]',
   createDayReportButton: '//a[@qa="create-day-report-button"]',
   saveButton: '//button[@type="submit"]',
-  checkBox: '//input[@type="checkbox"]',
   descriptionField: '//textarea[@name="description"]',
-  approveBtn: `//div[@qa="description"][contains(text(),'${dayReportText}')]/..//button[@qa="approve-button"]`,
-  approvedSign: `//div[@qa="description"][contains(text(),'${dayReportText}')]/..//span[@qa="approve"]`,
+  approveBtn: '(//button[@qa="approve-button"])[1]',
+  approvedSign: '(//span[@qa="approve"])[1]',
 };
 
 describe('Diary - Approve - Button', () => {
@@ -27,7 +26,7 @@ describe('Diary - Approve - Button', () => {
     loginAction(browser);
   });
 
-  it('should  redirect to Diary page and day report creations field', () => {
+  it('should redirect to Diary page and day report creations field', () => {
     $(selector.menuDiary).waitForDisplayed(5000);
     $(selector.menuDiary).click();
     $(selector.createDayReportButton).waitForDisplayed(5000);
@@ -45,22 +44,18 @@ describe('Diary - Approve - Button', () => {
     $(selector.saveButton).click();
   });
 
-  it('should get your diary and it`s Id in DB with API call', async () => {
+  it('should get the last diary and it`s Id in DB with API call', async () => {
     allDiaries = await diaryGetAll(token);
-    for (let el of allDiaries) {
-      if (el.description === dayReportText) {
-        yourDiary = el;
-      }
-    }
-    diaryId = yourDiary._id;
+    lastDiary = allDiaries[0];
+    diaryId = lastDiary._id;
   });
 
   it('should check if the diary was not approved in DB with API call', () => {
-    const isApproved = yourDiary.approved;
+    const isApproved = lastDiary.approved;
     expect(isApproved).to.be.false;
   });
 
-  it('should approve the diary', () => {
+  it('should approve the last diary', () => {
     const approveBtn = $(selector.approveBtn);
     approveBtn.click();
   });
@@ -72,8 +67,8 @@ describe('Diary - Approve - Button', () => {
   });
 
   it('should check if the diary was approved in DB with API call', async () => {
-    yourDiary = await diaryGetByID(token, diaryId);
-    const isApproved = yourDiary.approved;
+    lastDiary = await diaryGetByID(token, diaryId);
+    const isApproved = lastDiary.approved;
     expect(isApproved).to.be.true;
   });
 });

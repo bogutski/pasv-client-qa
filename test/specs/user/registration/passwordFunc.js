@@ -11,7 +11,7 @@ const registrationFields = {
   goals: '//textarea[@name="goals"]',
   english: '//select[@name="englishLevel"]',
   button: '//button[@type="submit"]',
-  shortPassErr: '//div[text()="Must be 5 characters or more"]',
+  shortPassErr: '//input[@name="password"]/../div[@class="invalid-feedback"]',
   longPassErr: '//div[text()="Must be 30 characters or less"]',
 };
 
@@ -31,45 +31,20 @@ const data = {
   invalid: 'is-invalid',
 };
 
-describe('Password functionality', () => {
+describe('User - Registration - Password - Functionality', () => {
   before(() => {
     browser.url(url.register);
     browser.maximizeWindow();
   });
 
-  it('should enter first Name', () => {
-    const field = $(registrationFields.firstName);
-    field.setValue(data.firstName);
-  });
-
-  it('should enter last Name', () => {
-    const field = $(registrationFields.lastName);
-    field.setValue(data.lastName);
-  });
-
-  it('should enter Cellphone', () => {
-    const field = $(registrationFields.phone);
-    field.setValue(data.phone);
-  });
-
-  it('should enter Email', () => {
-    const field = $(registrationFields.email);
-    field.setValue(data.email);
-  });
-
-  it('should enter About', () => {
-    const field = $(registrationFields.about);
-    field.setValue(data.about);
-  });
-
-  it('should enter My Goals', () => {
-    const field = $(registrationFields.goals);
-    field.setValue(data.goals);
-  });
-
-  it('should choose English Level', () => {
-    const field = $(registrationFields.english);
-    field.selectByVisibleText(data.english);
+  it('should fill all fields except the Password', () => {
+    $(registrationFields.firstName).setValue(data.firstName);
+    $(registrationFields.lastName).setValue(data.lastName);
+    $(registrationFields.phone).setValue(data.phone);
+    $(registrationFields.email).setValue(data.email);
+    $(registrationFields.about).setValue(data.about);
+    $(registrationFields.goals).setValue(data.goals);
+    $(registrationFields.english).selectByVisibleText(data.english);
   });
 
   it('should verify that "Password field" is required', () => {
@@ -84,10 +59,10 @@ describe('Password functionality', () => {
     browser.keys('Tab');
   });
 
-  it('should check that all symbols in the "Password field" are covered with bullets ', () => {
+  it('should verify that the "Password field" has type Password', () => {
     const field = $(registrationFields.password);
-    const bullets = field.getCSSProperty('-webkit-text-security').value;
-    expect(bullets).to.be.equal('disc');
+    const type = field.getAttribute('type');
+    expect(type).to.be.equal('password');
   });
 
   it('should allow to submit with correct password', () => {
