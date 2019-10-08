@@ -4,7 +4,8 @@ import { user } from '../constants';
 export default function registerAction(browser) {
   browser.url(url.register);
 
-  const name = $('//input[@name="name"]');
+  const firstName = $('//input[@name="firstName"]');
+  const lastName = $('//input[@name="lastName"]');
   const phone = $('//input[@name="phone"]');
   const email = $('//input[@name="email"]');
   const password = $('//input[@name="password"]');
@@ -12,13 +13,14 @@ export default function registerAction(browser) {
   const goals = $('//textarea[@name="goals"]');
   const englishLevel = $('//label[@for="englishLevel"]/../../select');
 
-  name.setValue(user.student.name);
+  firstName.setValue(user.student.firstName);
+  lastName.setValue(user.student.lastName);
   phone.setValue(user.student.phone);
   email.setValue(user.student.email);
   password.setValue(user.student.password);
   about.setValue(user.student.about);
   goals.setValue(user.student.goals);
-  englishLevel.selectByVisibleText('Elementary');
+  englishLevel.selectByVisibleText(user.student.englishLevel);
 
   const button = $('//button[@type="submit"]');
 
