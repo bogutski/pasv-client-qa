@@ -11,8 +11,7 @@ const registrationFields = {
   goals: '//textarea[@name="goals"]',
   english: '//select[@name="englishLevel"]',
   button: '//button[@type="submit"]',
-  shortPassErr: '//input[@name="password"]/../div[@class="invalid-feedback"]',
-  longPassErr: '//div[text()="Must be 30 characters or less"]',
+  passErr: '//input[@name="password"]/../div[@class="invalid-feedback"]',
 };
 
 const data = {
@@ -29,6 +28,8 @@ const data = {
   symbolPass: '1Aa@#$%^&*()_+\\|/<>=',
   valid: 'is-valid',
   invalid: 'is-invalid',
+  longPassErr: 'Must be 30 characters or less',
+  shortPassErr: 'Must be 5 characters or more',
 };
 
 describe('User - Registration - Password - Functionality', () => {
@@ -89,9 +90,12 @@ describe('User - Registration - Password - Functionality', () => {
   });
 
   it('should display error message for short password', () => {
-    const message = $(registrationFields.shortPassErr);
+    const message = $(registrationFields.passErr);
     const actual = message.isDisplayed();
     expect(actual).to.be.true;
+    const actMsgText = message.getText();
+    const msgText = data.shortPassErr;
+    expect(actMsgText).to.be.eq(msgText);
   });
 
   it('should mark field as invalid with short password', () => {
@@ -112,9 +116,12 @@ describe('User - Registration - Password - Functionality', () => {
   });
 
   it('should displayed error message for long password', () => {
-    const message = $(registrationFields.longPassErr);
+    const message = $(registrationFields.passErr);
     const actual = message.isDisplayed();
     expect(actual).to.be.true;
+    const actMsgText = message.getText();
+    const msgText = data.longPassErr;
+    expect(actMsgText).to.be.eq(msgText);
   });
 
   it('should mark field as invalid with long password', () => {
