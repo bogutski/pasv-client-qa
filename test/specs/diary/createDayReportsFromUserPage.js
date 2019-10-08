@@ -5,7 +5,7 @@ import loginAction from './../user/_actions/loginAction';
 
 const selector = {
   headerH1: '//h1',
-  headerH3: '//h3',
+  headerH3: '//h3[contains(text(),"Daily reports")]',
   numberOfDayReports: '//h3/span[@class="badge badge-light"]',
   diaryRecord: '//div[@qa="description"]',
   createDayReportButton: '//a[@qa="create-day-report-button"]',
@@ -15,6 +15,7 @@ const selector = {
 
 //const diaryH1 = 'Daily reports';
 const createDiaryH1 = 'Create day report';
+const expectedHeaderH3Text = 'Daily reports';
 const dayReportText = `Today I watched ${Math.trunc(
   Math.random() * 10,
 )} lectures and solved ${Math.trunc(Math.random() * 10)} tasks on codewars. Also I wrote tests.`;
@@ -29,6 +30,11 @@ describe('Diary - From User Page - Functionality', () => {
     const actualH1Text = $(selector.headerH1).getText();
     const expectedH1Text = `${user.admin.firstName} ${user.admin.lastName}`;
     expect(actualH1Text).to.equal(expectedH1Text);
+  });
+
+  it("should verify that user's page has correct header h3", () => {
+    const headerH3Text = $(selector.headerH3).getText();
+    expect(headerH3Text).equal(expectedHeaderH3Text);
   });
 
   it('should verify that initial number of day reports > 0', () => {
