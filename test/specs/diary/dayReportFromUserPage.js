@@ -44,7 +44,7 @@ describe('Diary - From User Page - Functionality', () => {
     expect(headerH3Text).to.include(expectedHeaderH3Text);
   });
 
-  it("should verify that initial number of user's day reports > 0", () => {
+  it('should verify that initial number of user`s day reports > 0', () => {
     browser.pause(1000);
     initialNumber = $(selector.numberOfDayReports).getText();
     expect(+initialNumber > 0).to.be.true;
@@ -80,7 +80,7 @@ describe('Diary - From User Page - Functionality', () => {
     expect(lastDiaryRecord).to.equal(dayReportText);
   });
 
-  it("should verify that click on `user name`- profile  in upper-right corner redirect to user's page", () => {
+  it('should verify that click on `user name`- profile  in upper-right corner redirect to user`s page', () => {
     const selector = '//a[@class="dropdown-toggle nav-link"]';
     $(selector).click();
     const option = '//button[contains(text(),"Profile")]';
@@ -91,13 +91,13 @@ describe('Diary - From User Page - Functionality', () => {
     expect(actualUrl).equal(expectedUrl);
   });
 
-  it("should verify that number of user's day reports on user's page increased by 1", () => {
+  it('should verify that number of user`s day reports on users page increased by 1', () => {
     browser.pause(1000);
     let initialNumber1 = $(selector.numberOfDayReports).getText();
     expect(+initialNumber1 === +initialNumber + 1).to.be.true;
   });
 
-  it('should verify that day report appeared on users page', () => {
+  it('should verify that day report appeared on user`s page', () => {
     const lastDiaryRecord = $$(selector.diaryRecord)[0].getText();
     expect(lastDiaryRecord).to.equal(dayReportText);
   });

@@ -21,7 +21,8 @@
     "test:user:register:password:design": "wdio wdio.conf.js --spec test/specs/user/registration/passwordDesign.js --inspect",
     "test:registration:submitButton:design": "wdio wdio.conf.js --spec ./test/specs/registration/submitButtonDesign.js --inspect",
     "test:user:register:errorMessage:design": "wdio wdio.conf.js --spec test/specs/user/registration/errorMessageDesign.js --inspect",
-   
+    "test:user:register:passwordField:func": "wdio wdio.conf.js --spec test/specs/user/registration/passwordFunc.js --inspect",
+
     "test:user:forgotPassword:email:func": "wdio wdio.conf.js --spec ./test/specs/user/forgotPassword/user_forgotPas_emailFunc.js  --inspect",
     "test:user:forgotPassword:button:func": "wdio wdio.conf.js --spec ./test/specs/user/forgotPassword/forgotPasswordButtonFunc.js  --inspect",
    
@@ -29,9 +30,12 @@
     "test:pages:home:footer:design": "wdio wdio.conf.js --spec test/specs/pages/homePage/homePageFooterDesign.js --inspect",
     "test:pages:home:func": "wdio wdio.conf.js --spec test/specs/pages/homePage/homePageFunc.js --inspect",
     "test:pages:home:header:design": "wdio wdio.conf.js --spec test/specs/pages/homePage/homePageHeaderDesign.js --inspect",
+
     "test:dairy:func": "wdio wdio.conf.js --spec test/specs/diary/diaryFunc.js --inspect",
-    "test:dairyFromUserPage:func": "wdio wdio.conf.js --spec test/specs/diary/dayReportFromUserPage.js --inspect"
+    "test:dairyFromUserPage:func": "wdio wdio.conf.js --spec test/specs/diary/dayReportFromUserPage.js --inspect",
+    "test:dairy:approve": "wdio wdio.conf.js --spec test/specs/diary/diaryApproveBtn.js --inspect"
   },
+
   "author": "Viktor Bogutskii",
   "license": "MIT",
   "devDependencies": {
