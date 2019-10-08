@@ -12,7 +12,7 @@ const selector = {
   saveButton: '//button[@type="submit"]',
   descriptionField: '//textarea[@name="description"]',
 };
-
+let initialNumber;
 //const diaryH1 = 'Daily reports';
 const createDiaryH1 = 'Create day report';
 const expectedHeaderH3Text = 'Daily reports';
@@ -24,6 +24,7 @@ describe('Diary - From User Page - Functionality', () => {
   before(() => {
     loginAction(browser);
     browser.pause(500);
+    initialNumber = $(selector.numberOfDayReports).getText();
   });
 
   it('should verify that after login actions should redirect to User page', () => {
@@ -32,14 +33,14 @@ describe('Diary - From User Page - Functionality', () => {
     expect(actualH1Text).to.equal(expectedH1Text);
   });
 
-  it("should verify that user's page has correct header h3", () => {
+  it('should verify that users page has correct header h3', () => {
     const headerH3Text = $(selector.headerH3).getText();
     expect(headerH3Text).to.include(expectedHeaderH3Text);
   });
 
   it('should verify that initial number of day reports > 0', () => {
     browser.pause(1000);
-    const initialNumber = $(selector.numberOfDayReports).getText();
+    initialNumber = $(selector.numberOfDayReports).getText();
     expect(+initialNumber > 0).to.be.true;
   });
 
