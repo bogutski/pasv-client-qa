@@ -34,7 +34,7 @@ describe('Diary - From User Page - Functionality', () => {
 
   it("should verify that user's page has correct header h3", () => {
     const headerH3Text = $(selector.headerH3).getText();
-    expect(headerH3Text).equal(expectedHeaderH3Text);
+    expect(headerH3Text).to.include(expectedHeaderH3Text);
   });
 
   it('should verify that initial number of day reports > 0', () => {
