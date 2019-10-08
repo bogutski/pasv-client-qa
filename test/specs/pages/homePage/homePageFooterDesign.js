@@ -23,7 +23,7 @@ describe('Home page - Footer - design', () => {
 
   it('should  verify that current version is displayed', () => {
     const actualVersionLength = $(version).getText().length;
-    expect(actualVersionLength > 4 && actualVersionLength < 10).to.be.true;
+    expect(actualVersionLength > 4 && actualVersionLength < 13).to.be.true;
   });
 
   it('should verify that `copyright sign ©` is in the text', () => {
