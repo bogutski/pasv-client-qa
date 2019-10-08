@@ -86,21 +86,20 @@ describe('Diary - From User Page - Functionality', () => {
     expect(lastDiaryRecord).to.equal(dayReportText);
   });
 
-  it('should verify that click on `user name` in upper-right corner redirect to users page', function() {
-    //englishLevelElement.selectByVisibleText('Beginner');
-    // const selector = '//a[@class=\'dropdown-toggle nav-link\']';
+  it('should verify that click on `user name`- profile  in upper-right corner redirect to users page', function() {
     const selector = '//a[@class="dropdown-toggle nav-link"]';
     $(selector).click();
     const option = '//button[contains(text(),"Profile")]';
     $(option).click();
     browser.pause(10000);
-  });
-  /*
-  it('should verify that number of user\'s day reports increased by 1', () => {
-    browser.pause(1000);
-    let initialNumber1 = $(selector.numberOfDayReports).getText();
-    expect(initialNumber1 === initialNumber + 1).to.be.true;
+    const actualUrl = browser.getUrl();
+    const expectedUrl = `${url.baseUrl}/user/${user.admin.id}`;
+    expect(actualUrl).equal(expectedUrl);
   });
 
- */
+  it("should verify that number of user's day reports increased by 1", () => {
+    browser.pause(1000);
+    let initialNumber1 = $(selector.numberOfDayReports).getText();
+    expect(+initialNumber1 === +initialNumber + 1).to.be.true;
+  });
 });
