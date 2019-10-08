@@ -22,10 +22,11 @@
     "test:registration:submitButton:design": "wdio wdio.conf.js --spec ./test/specs/registration/submitButtonDesign.js --inspect",
     "test:user:register:errorMessage:design": "wdio wdio.conf.js --spec test/specs/user/registration/errorMessageDesign.js --inspect",
     "test:user:register:passwordField:func": "wdio wdio.conf.js --spec test/specs/user/registration/passwordFunc.js --inspect",
+    "test:user:register:cellPhone:func": "wdio wdio.conf.js --spec test/specs/user/registration/cellPhoneFunc.js --inspect", 
 
     "test:user:forgotPassword:email:func": "wdio wdio.conf.js --spec ./test/specs/user/forgotPassword/user_forgotPas_emailFunc.js  --inspect",
     "test:user:forgotPassword:button:func": "wdio wdio.conf.js --spec ./test/specs/user/forgotPassword/forgotPasswordButtonFunc.js  --inspect",
-   
+
     "test:pages:home:general": "wdio wdio.conf.js --spec test/specs/pages/homePage/general.js --inspect",
     "test:pages:home:footer:design": "wdio wdio.conf.js --spec test/specs/pages/homePage/homePageFooterDesign.js --inspect",
     "test:pages:home:func": "wdio wdio.conf.js --spec test/specs/pages/homePage/homePageFunc.js --inspect",
