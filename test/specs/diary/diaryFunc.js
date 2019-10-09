@@ -13,7 +13,7 @@ const selector = {
   descriptionField: '//textarea[@name="description"]',
 };
 
-const diaryH1 = 'Day reports';
+const diaryH1 = 'Daily reports';
 const createDiaryH1 = 'Create day report';
 const dayReportShortText = 'Today I wrote tests.';
 const dayReportText = `Today I watched ${Math.trunc(

@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import registerAction from '../../../../../examples/user/actions/registerAction';
+import registerAction from '../../../_actions/registerAction';
 import { url } from '../../../../constants';
 import { user } from '../../../../../examples/user/constants';
 // eslint-disable-next-line no-unused-vars
