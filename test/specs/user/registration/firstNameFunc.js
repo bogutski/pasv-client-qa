@@ -1,16 +1,11 @@
 import { expect } from 'chai';
 import { url } from '../../constants';
 
-const positiveFirstName = ['Yulia', 'YULIA', 'Jojojojojojojojojojo', 'Yu-Yu', "Yu'yu"];
-const negativeFirstName = [
-  'Jojojojojojojojojojoj',
-  'Johnson1',
-  'J!@#$%^&*()_+',
-  'John John',
-  'Том',
-];
+const positiveFirstName = ['Yulia', 'YULIA', 'Jojojojojojojojojojo', 'Yu-Yu', "Yu'yu", 'J'];
+const negativeFirstName = ['Jojojojojojojojojojoj', 'J!@#$%^&*()_+', 'John John', 'Джек'];
 
 const firstName = '//input[@name="firstName"]';
+const errorMessageSel = '//div[@class="invalid-feedback"]';
 const errorMessage = 'Only letters please';
 
 describe('Verify the functionality of First Name field on Registration page', () => {
@@ -20,7 +15,7 @@ describe('Verify the functionality of First Name field on Registration page', ()
 
   describe('Verify positive scenarios for First Name field input', () => {
     positiveFirstName.forEach(name => {
-      it(`firstName '${name}' is valid`, () => {
+      it(`First Name '${name}' is valid`, () => {
         const firstNameField = $(firstName);
         firstNameField.setValue(name);
         browser.keys('Tab');
@@ -45,8 +40,7 @@ describe('Verify the functionality of First Name field on Registration page', ()
   it('Verify that correct error message is displayed below the field', () => {
     const firstNameField = $(firstName);
     firstNameField.setValue('12');
-    const errorMessageSel = $('//div[@class="invalid-feedback"]');
-    const expectedErrorText = errorMessageSel.getText();
+    const expectedErrorText = $(errorMessageSel).getText();
     expect(expectedErrorText).to.be.eq(errorMessage);
   });
 });

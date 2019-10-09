@@ -2,15 +2,10 @@ import { expect } from 'chai';
 import { url } from '../../constants';
 
 const positiveLastName = ['Smith', 'SMITH', 'Jojojojojojojojojojo', 'Yu-Yu', "Yu'yu"];
-const negativeLastName = [
-  'Jojojojojojojojojojoj',
-  'Johnson1',
-  'J!@#$%^&*()_+',
-  'Smith Smith',
-  'Том',
-];
+const negativeLastName = ['Jojojojojojojojojojoj', 'J!@#$%^&*()_+', 'Smith Smith', 'Джек'];
 
 const lastName = '//input[@name="lastName"]';
+const errorMessageSel = '//div[@class="invalid-feedback"]';
 const errorMessage = 'Only letters please';
 
 describe('Verify the functionality of Last Name field on Registration page', () => {
@@ -45,8 +40,7 @@ describe('Verify the functionality of Last Name field on Registration page', () 
   it('Verify that correct error message is displayed below the field', () => {
     const lastNameField = $(lastName);
     lastNameField.setValue('12');
-    const errorMessageSel = $('//div[@class="invalid-feedback"]');
-    const expectedErrorText = errorMessageSel.getText();
+    const expectedErrorText = $(errorMessageSel).getText();
     expect(expectedErrorText).to.be.eq(errorMessage);
   });
 });
