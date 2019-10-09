@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import registerAction from './../../../examples/user/actions/registerAction.js';
+import registerAction from '../_actions/registerAction.js';
 
 describe('User - Registration - ErrorMessage - Design', () => {
 
