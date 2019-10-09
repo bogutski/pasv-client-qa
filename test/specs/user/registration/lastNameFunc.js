@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import { url } from '../../constants';
 
-const positiveLastName = ['Smith', 'SMITH', 'Jojojojojojojojojojo', 'Yu-Yu', "Yu'yu"];
-const negativeLastName = ['Jojojojojojojojojojoj', 'J!@#$%^&*()_+', 'Smith Smith', 'Джек'];
+const positiveLastName = ['Smith', 'SMITH', 'Jojojojojojojojojojo', 'Yu-Yu', "Yu'yu", 'J'];
+const negativeLastName = ['Jojojojojojojojojojoj', '1J!@#$%^&*()_+', 'Smith Smith', 'Джек'];
 
 const lastName = '//input[@name="lastName"]';
 const errorMessageSel = '//div[@class="invalid-feedback"]';
