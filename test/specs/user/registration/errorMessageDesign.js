@@ -1,27 +1,26 @@
 import { expect } from 'chai';
 import registerAction from '../_actions/registerAction.js';
 
+const errorMessage = '//div[contains(@class,"notification-error")]/h4';
+const wrapperErrorMessage = '//div[contains(@class,"notification-error")]';
+const expected = {
+  fontSize: '14px',
+  fontWeight: '700',
+  fontColor: '#ec3d3d',
+  textAlignment: 'left',
+  fontFamily: '"sf pro display", "sf pro icons", "helvetica neue", helvetica, arial, sans-serif',
+  backgroundColor: '#f4e9e9',
+  borderTopWidth: '2px',
+  borderTopStyle: 'solid',
+  borderTopColor: '#ec3d3d',
+  boxShadow: '#ec3d3d',
+};
+
 describe('User - Registration - ErrorMessage - Design', () => {
 
   before(() => {
     registerAction(browser);
   });
-
-  const errorMessage = '//div[contains(@class,"notification-error")]/h4';
-  const wrapperErrorMessage = '//div[contains(@class,"notification-error")]';
-  const expected = {
-    fontSize: '14px',
-    fontWeight: '700',
-    fontColor: '#ec3d3d',
-    textAlignment: 'left',
-    fontFamily: '"sf pro display", "sf pro icons", "helvetica neue", helvetica, arial, sans-serif',
-    backgroundColor: '#f4e9e9',
-    borderTopWidth: '2px',
-    borderTopStyle: 'solid',
-    borderTopColor: '#ec3d3d',
-    boxShadow: '#ec3d3d',
-  };
-
 
   it('should wait until error message appears', () => {
     browser.waitUntil(() => {
