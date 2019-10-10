@@ -9,11 +9,13 @@ const selector = {
   numberOfDayReports: '//h3/span[@class="badge badge-light"]',
   diaryRecord: '//div[@qa="description"]',
   createDayReportButton: '//a[@qa="create-day-report-button"]',
+  checkBox: '//input[@type="checkbox"]',
   saveButton: '//button[@type="submit"]',
   descriptionField: '//textarea[@name="description"]',
 };
 
 let initialNumber;
+let countOfCheckBoxes;
 
 const expectedHeaderH3Text = 'Daily reports';
 const dayReportText = `Today I watched ${Math.trunc(
@@ -57,7 +59,8 @@ describe('Diary - From User Page - Functionality', () => {
   });
 
   it('should verify that `Save` button is enabled when report is correct', () => {
-    for (let i = 1; i < 12; i++) {
+    countOfCheckBoxes = $$(selector.checkBox).length;
+    for (let i = 1; i < countOfCheckBoxes; i++) {
       const selector = $('//input[@id="input-[' + i + ']"]');
       selector.click();
     }
