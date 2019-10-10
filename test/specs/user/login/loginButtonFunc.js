@@ -1,21 +1,15 @@
 import { expect } from 'chai';
 import { url } from '../../constants';
-//import {user} from './../_data/data';
+import { user } from './../_data/data';
 
 const sel = {
   loginButton: '//button[@type="submit"]',
   passwordField: '//input[@name="password"]',
   emailField: '//input[@name="email"]',
   failedMsg: '//div[@id="root"]//div/h4[contains(text(),"failed")]',
-  //successMsg: '//div[@id="root"]//div/h4[contains(text(), "success")]',
-  successMsg: '//div[@class="notifications-br"]',
+  successMsg: '//div[@id="root"]//div/h4[contains(text(), "success")]',
   invalidMsg: '//input[@name="email"]/../div[@class="invalid-feedback"]',
   header: '//h1',
-  linkUserName: '//a[@class="dropdown-toggle nav-link"]',
-  logoutBtn: '//button[contains(text(),"Logout")]',
-  closeSign: '//span[@class="notification-dismiss"]',
-  warnEl: '//div[@class="alert-line-container"]',
-  profileLink: '//a[contains(text(),"profile")]',
 };
 
 const data = {
@@ -25,58 +19,53 @@ const data = {
   incorrectEmail: 'qwert@tyty',
   notExistEmail: 'yututututuytutyutuyty@ru.ru',
   expectedInvalidMsg: 'Invalid email address',
-  email: 'student_new@qwe.qwe',
-  password: '11111',
-  firstName: 'Student',
-  lastName: 'New',
-  id: '5d9e356984ee430038d6fe3b',
 };
 
-describe('User - Login - `Login Button` - Empty Field/Fields - Functional', () => {
+describe('User - Login - `Login Button` is disabled - Empty Field/Fields - Functional', () => {
   before(() => {
     browser.url(url.login);
   });
 
-  it('should check that the button is disabled if password and email are empty', () => {
+  it('should check the button if password and email are empty', () => {
     $(sel.emailField).click();
     browser.keys('Tab');
     browser.keys('Tab');
     expect($(sel.loginButton).isEnabled()).to.be.false;
   });
 
-  it('should check that the button is disabled if email is empty', () => {
+  it('should check the button if email is empty', () => {
     $(sel.emailField).click();
     browser.keys('Tab');
-    $(sel.passwordField).setValue(data.password);
+    $(sel.passwordField).setValue(user.admin.password);
     expect($(sel.loginButton).isEnabled()).to.be.false;
     $(sel.passwordField).clearValue();
   });
 
-  it('should check that the button is disabled if password is empty', () => {
-    $(sel.emailField).setValue(data.email);
+  it('should check the button if password is empty', () => {
+    $(sel.emailField).setValue(user.admin.email);
     browser.keys('Tab');
     browser.keys('Tab');
     expect($(sel.loginButton).isEnabled()).to.be.false;
   });
 });
 
-describe('User - Login - `Login Button` - Incorrect email - Functional', () => {
+describe('User - Login - `Login Button` is disabled - Incorrect email - Functional', () => {
   before(() => {
     browser.url(url.login);
     $(sel.emailField).setValue(data.incorrectEmail);
     browser.keys('Tab');
   });
 
-  it('should check that the button is disabled if email is incorrect format', () => {
-    $(sel.passwordField).setValue(data.password);
+  it('should check that the button is disabled', () => {
+    $(sel.passwordField).setValue(user.admin.password);
     expect($(sel.loginButton).isEnabled()).false;
   });
 
-  it('should check that the error message appears if email is incorrect format', () => {
+  it('should check that the error message appears ', () => {
     expect($(sel.invalidMsg).isDisplayed()).to.be.true;
   });
 
-  it('should check that the text of the message if email is incorrect format', () => {
+  it('should check the text of the message ', () => {
     expect($(sel.invalidMsg).getText()).to.be.equal(data.expectedInvalidMsg);
   });
 });
@@ -85,22 +74,22 @@ describe('User - Login - `Login Button` - Email is not registered - Functional',
   before(() => {
     browser.url(url.login);
     $(sel.emailField).setValue(data.notExistEmail);
-    $(sel.passwordField).setValue(data.password);
+    $(sel.passwordField).setValue(user.admin.password);
     $(sel.loginButton).click();
     browser.waitUntil(
       () => {
         return $(sel.failedMsg).isDisplayed() === true;
       },
-      2000,
+      5000,
       'expected text to be different after 5s',
     );
   });
 
-  it('should check that the error message appears if email is not registered', () => {
+  it('should check that the error message appears', () => {
     expect($(sel.failedMsg).isDisplayed()).to.be.true;
   });
 
-  it('should check that the text of error message if email is not registered', () => {
+  it('should check the text of error message ', () => {
     expect($(sel.failedMsg).getText()).to.be.equal(data.expectedFailedMsg);
   });
 });
@@ -108,76 +97,60 @@ describe('User - Login - `Login Button` - Email is not registered - Functional',
 describe('User - Login - `Login Button` - Password is incorrect - Functional', () => {
   before(() => {
     browser.url(url.login);
-    $(sel.emailField).setValue(data.email);
+    $(sel.emailField).setValue(user.admin.email);
     $(sel.passwordField).setValue(data.incorrectPass);
     $(sel.loginButton).click();
-    browser.pause(500);
+    browser.waitUntil(
+      () => {
+        return $(sel.failedMsg).isDisplayed() === true;
+      },
+      2000,
+      'expected text to be different after 2s',
+    );
   });
 
-  it('should check that `Auth failed` message appears if password is incorrect', () => {
+  it('should check that the error message appears', () => {
     expect($(sel.failedMsg).isDisplayed()).to.be.true;
   });
 
-  it('should check that the text of error message if password is incorrect', () => {
+  it('should check the text of error message ', () => {
     expect($(sel.failedMsg).getText()).to.be.equal(data.expectedFailedMsg.slice(0, -1));
+  });
+});
+
+describe('User - Login - `Login Button` is Enable - Functional', () => {
+  it('should check the button if email and password are filled', () => {
+    browser.url(url.login);
+    $(sel.emailField).setValue(user.admin.email);
+    $(sel.passwordField).setValue(user.admin.password);
+    expect($(sel.loginButton).isEnabled()).to.be.true;
   });
 });
 
 describe('User - Login - `Login Button` - Correct credentials - Functional', () => {
   before(() => {
     browser.url(url.login);
-  });
-
-  it('should check that the button is enabled if email and password are filled', () => {
-    $(sel.emailField).setValue(data.email);
-    $(sel.passwordField).setValue(data.password);
-    expect($(sel.loginButton).isEnabled()).to.be.true;
-  });
-
-  it('should check that the user with correct credentials sees `Auth success` message', () => {
-    $(sel.emailField).setValue(data.email);
-    $(sel.passwordField).setValue(data.password);
+    $(sel.emailField).setValue(user.admin.email);
+    $(sel.passwordField).setValue(user.admin.password);
     $(sel.loginButton).click();
-    // browser.pause(200);
-    // $(sel.successMsg).waitForDisplayed(3000);
+    browser.waitUntil(
+      () => {
+        return $(sel.successMsg).isDisplayed() === true;
+      },
+      2000,
+      'expected text to be different after 2s',
+    );
+  });
+
+  it('should check that the user sees the success message', () => {
     expect($(sel.successMsg).isDisplayed()).to.be.true;
-
-    /*if($(sel.warnEl).isDisplayed()===true){
-      $(sel.profileLink).click();
-      $(sel.linkUserName).click();
-      $(sel.logoutBtn).click();
-      browser.pause(200);
-    }*/
-    $(sel.closeSign).click();
-    $(sel.linkUserName).click();
-    $(sel.logoutBtn).click();
   });
 
-  it('should check that the text of success message ', () => {
-    $(sel.emailField).setValue(data.email);
-    $(sel.passwordField).setValue(data.password);
-    $(sel.loginButton).click();
-    //  browser.pause(1000);
-    // $(sel.successMsg).waitForDisplayed(3000);
+  it('should check the text of success message ', () => {
     expect($(sel.successMsg).getText()).to.be.equal(data.expectedSuccessMsg);
-    /*if($(sel.warnEl).isDisplayed()===true){
-      $(sel.profileLink).click();
-      $(sel.linkUserName).click();
-      $(sel.logoutBtn).click();
-      browser.pause(200);
-    }
-    console.log('!!!!!!!!!!', $(sel.successMsg).getText(), data.expectedSuccessMsg);*/
-    $(sel.closeSign).click();
-    $(sel.linkUserName).click();
-    $(sel.logoutBtn).click();
   });
 
-  it('should check that the user with correct credentials successfully logged in', () => {
-    $(sel.emailField).setValue(data.email);
-    $(sel.passwordField).setValue(data.password);
-    $(sel.loginButton).click();
-    // browser.pause(1000);
-    console.log('!!!!!!!!!!!!!!!!!!!', $(sel.header).getText(), `${url.baseUrl}/user/${data.id}`);
-    expect($(sel.header).getText()).to.be.equal(`${data.firstName} ${data.lastName}`);
+  it('should check that the user successfully logged in', () => {
+    expect($(sel.header).getText()).to.be.equal(`${user.admin.firstName} ${user.admin.lastName}`);
   });
 });
