@@ -1,4 +1,4 @@
-const { expect } = require('chai');
+import { expect } from 'chai';
 import { url } from '../../../../constants';
 import { user } from '../../../../../examples/user/constants';
 
