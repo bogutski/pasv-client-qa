@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { url } from '../../../../constants';
-import { user } from '../../../../../examples/user/constants';
+import { user } from '../../../_data/data';
 
 let firstNameField = '//input[@name="firstName"]';
 let lastName = '//input[@name="lastName"]';
@@ -12,7 +12,7 @@ let goalsField = '//textarea[@name="goals"]';
 let englishLevelField = '//select[@name="englishLevel"]';
 let submitButton = '//button[@type="submit"]';
 
-const arrNames = [
+const negativeNames = [
   'J Jhonson',
   'jo smith',
   '1 Smith',
@@ -64,8 +64,8 @@ describe('User - Register - Submit button - Disabled - First name incorrect', ()
   });
 
   it('should check that first name filled incorrect', () => {
-    for (let i = 0; i < arrNames.length; i++) {
-      $(firstNameField).setValue(arrNames[i]);
+    for (let i = 0; i < negativeNames.length; i++) {
+      $(firstNameField).setValue(negativeNames[i]);
       browser.keys('Tab');
       browser.pause(1000);
       const actualBorderColor = $(firstNameField).getCSSProperty('border-color').parsed.hex;
