@@ -16,6 +16,6 @@ export const user = {
     phone: '12312312334',
     about: 'About Test Student About Test Student About Test Student About Test Student',
     goals: 'About Test Student About Test Student About Test Student About Test Student',
-    englishLevel: 'Elementary'
+    englishLevel: 'Elementary',
   },
 };

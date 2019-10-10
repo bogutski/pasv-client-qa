@@ -20,7 +20,6 @@ const expected = {
 };
 
 describe('User - Registration - ErrorMessage - Design', () => {
-
   before(async () => {
     const allUsers = await userGetAll(token);
     if (!allUsers.some(existingUser => existingUser.email === user.student.email)) {
@@ -116,5 +115,4 @@ describe('User - Registration - ErrorMessage - Design', () => {
       .parsed.hex.toLowerCase();
     expect(actualBoxShadow).to.be.equal(expected.boxShadow);
   });
-
 });
