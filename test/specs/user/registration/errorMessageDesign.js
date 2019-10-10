@@ -1,6 +1,9 @@
 import { expect } from 'chai';
 import registerAction from '../_actions/registerAction.js';
+import userGetAll from './../_actions/userGetAll';
+import { user } from './../_data/data';
 
+const token = process.env.TOKEN_ADMIN;
 const wrapperErrorMessage = '//div[contains(@class,"notification-error")]';
 const errorMessage = `${wrapperErrorMessage}/h4`;
 const expected = {
@@ -18,7 +21,14 @@ const expected = {
 
 describe('User - Registration - ErrorMessage - Design', () => {
 
-  before(() => {
+  before(async () => {
+    const allUsers = await userGetAll(token);
+    if (!allUsers.some(existingUser => existingUser.email === user.student.email)) {
+      registerAction(browser);
+    }
+  });
+
+  it('should try to register the user with existing email', () => {
     registerAction(browser);
   });
 
