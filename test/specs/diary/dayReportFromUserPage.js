@@ -39,7 +39,7 @@ describe('Diary - From User Page - Functionality', () => {
     expect(actualH1Text).to.equal(expectedH1Text);
   });
 
-  it("should verify that user's page has header `Daily reports`", () => {
+  it('should verify that user`s page has header `Daily reports`', () => {
     const headerH3Text = $(selector.headerH3).getText();
     expect(headerH3Text).to.include(expectedHeaderH3Text);
   });
