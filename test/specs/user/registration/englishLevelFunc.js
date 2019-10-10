@@ -61,7 +61,7 @@ describe('User - Registration - EnglishLevel - Functionality', () => {
       expect(noRedSignRequired).to.be.undefined;
     });
   }
-  //'verify that user should be unable to register'
+
   it('should find the empty option', () => {
     $(englishLevelDropDown).selectByAttribute('value', englishLevelList[0]);
     browser.keys('Tab');
