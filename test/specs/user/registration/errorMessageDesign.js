@@ -1,25 +1,35 @@
 import { expect } from 'chai';
 import registerAction from '../_actions/registerAction.js';
+import userGetAll from './../_actions/userGetAll';
+import { user } from './../_data/data';
+
+const token = process.env.TOKEN_ADMIN;
+const wrapperErrorMessage = '//div[contains(@class,"notification-error")]';
+const errorMessage = `${wrapperErrorMessage}/h4`;
+const expected = {
+  fontSize: '14px',
+  fontWeight: '700',
+  fontColor: '#ec3d3d',
+  textAlignment: 'left',
+  fontFamily: '"sf pro display", "sf pro icons", "helvetica neue", helvetica, arial, sans-serif',
+  backgroundColor: '#f4e9e9',
+  borderTopWidth: '2px',
+  borderTopStyle: 'solid',
+  borderTopColor: '#ec3d3d',
+  boxShadow: '#ec3d3d',
+};
 
 describe('User - Registration - ErrorMessage - Design', () => {
-  before(() => {
-    registerAction(browser);
+  before(async () => {
+    const allUsers = await userGetAll(token);
+    if (!allUsers.some(existingUser => existingUser.email === user.student.email)) {
+      registerAction(browser);
+    }
   });
 
-  const errorMessage = '//div[contains(@class,"notification-error")]/h4';
-  const wrapperErrorMessage = '//div[contains(@class,"notification-error")]';
-  const expected = {
-    fontSize: '14px',
-    fontWeight: '700',
-    fontColor: '#ec3d3d',
-    textAlignment: 'left',
-    fontFamily: '"sf pro display", "sf pro icons", "helvetica neue", helvetica, arial, sans-serif',
-    backgroundColor: '#f4e9e9',
-    borderTopWidth: '2px',
-    borderTopStyle: 'solid',
-    borderTopColor: '#ec3d3d',
-    boxShadow: '#ec3d3d',
-  };
+  it('should try to register the user with existing email', () => {
+    registerAction(browser);
+  });
 
   it('should wait until error message appears', () => {
     browser.waitUntil(
@@ -53,9 +63,9 @@ describe('User - Registration - ErrorMessage - Design', () => {
     expect(actualFontColor).to.be.equal(expected.fontColor);
   });
 
-  it('should have the correct text-aligment', () => {
-    const actualTextAligment = $(errorMessage).getCSSProperty('text-align').parsed.string;
-    expect(actualTextAligment).to.be.equal(expected.textAlignment);
+  it('should have the correct text-alignment', () => {
+    const actualTextAlignment = $(errorMessage).getCSSProperty('text-align').parsed.string;
+    expect(actualTextAlignment).to.be.equal(expected.textAlignment);
   });
 
   it('should have the correct font-family', () => {
