@@ -19,7 +19,6 @@ const englishLevelList = [
 ];
 
 describe('User - Registration - EnglishLevel - Functionality', () => {
-
   before(() => {
     browser.url(url.register);
   });
@@ -45,7 +44,6 @@ describe('User - Registration - EnglishLevel - Functionality', () => {
   });
 
   for (let i = 1; i < englishLevelList.length; i++) {
-
     it(`should find '${englishLevelList[i]}'`, () => {
       $(englishLevelDropDown).selectByVisibleText(englishLevelList[i]); //повтор
       browser.keys('Tab');
@@ -81,5 +79,4 @@ describe('User - Registration - EnglishLevel - Functionality', () => {
     const submitButtonIsDisabled = $(submitButton).getAttribute('class').includes('disabled');
     expect(submitButtonIsDisabled).to.be.true;
   });
-
 });
