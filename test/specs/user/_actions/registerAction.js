@@ -1,5 +1,5 @@
-import { url } from '../../../specs/constants';
-import { user } from '../constants';
+import { url } from '../../constants';
+import { user } from '../../../examples/user/constants';
 
 export default function registerAction(browser) {
   browser.url(url.register);
