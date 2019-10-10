@@ -25,6 +25,7 @@
     "test:user:register:cellPhone:func": "wdio wdio.conf.js --spec test/specs/user/registration/cellPhoneFunc.js --inspect",
     "test:user:register:firstName:func": "wdio wdio.conf.js --spec test/specs/user/registration/firstNameFunc.js --inspect",
     "test:user:register:lastName:func": "wdio wdio.conf.js --spec test/specs/user/registration/lastNameFunc.js --inspect",
+    "test:user:register:englishLevel:func": "wdio wdio.conf.js --spec test/specs/user/registration/englishLevelFunc.js --inspect",
 
     "test:user:forgotPassword:email:func": "wdio wdio.conf.js --spec ./test/specs/user/forgotPassword/user_forgotPas_emailFunc.js  --inspect",
     "test:user:forgotPassword:button:func": "wdio wdio.conf.js --spec ./test/specs/user/forgotPassword/forgotPasswordButtonFunc.js  --inspect",
