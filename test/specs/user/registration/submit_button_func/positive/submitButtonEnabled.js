@@ -1,12 +1,8 @@
-// eslint-disable-next-line no-unused-vars
-import registerAction from '../../../../../examples/user/actions/registerAction';
 import { url } from '../../../../constants';
 import { user } from '../../../../../examples/user/constants';
-// eslint-disable-next-line no-unused-vars
-const { expect } = require('chai');
+import { expect } from 'chai';
 
 describe('User - Register - Submit button', () => {
-  // eslint-disable-next-line mocha/no-hooks-for-single-case
   before(() => {
     browser.url(url.register);
 
