@@ -1,11 +1,12 @@
 import { expect } from 'chai';
 import { url } from './../constants';
 import loginAction from './../user/_actions/loginAction';
+import groupsGetAll from './_actions/groupsGetAll';
 
 const selector = {
   menuGroups: '//li/a[@qa="groups-link"]',
   h1: '//h1',
-  createGroupbutton: '//a[@qa="create-group-button"]',
+  createGroupButton: '//a[@qa="create-group-button"]',
   groupListItem: '//div[@qa="group-list-item"]',
   submitButton: '//button[@type="submit"]',
   groupNameField: '//input[@name="name"]',
@@ -26,11 +27,19 @@ const data = {
   accessType: 'All',
 };
 
+const token = process.env.TOKEN_ADMIN;
+
 let numberOfGroups;
+let allGroups;
 
 describe('Groups - Create group - Functionality', () => {
   before(() => {
     loginAction(browser);
+  });
+
+  it('should get all groups throw API amd verify that is array', async () => {
+    allGroups = await groupsGetAll(token);
+    expect(allGroups).to.be.an('array');
   });
 
   it('should verify that `Groups` item is displayed in main menu', () => {
@@ -51,17 +60,19 @@ describe('Groups - Create group - Functionality', () => {
   });
 
   it('should verify that button `Create new Group` is displayed', () => {
-    expect($(selector.createGroupbutton).isDisplayed()).to.be.true;
+    expect($(selector.createGroupButton).isDisplayed()).to.be.true;
   });
 
-  it('should verify that count of existing groups > 0', () => {
+  // API check
+  it('should verify that count of existing groups eq API count', () => {
     $(selector.groupListItem).waitForDisplayed(5000);
     numberOfGroups = $$(selector.groupListItem).length;
-    expect(numberOfGroups > 0).to.be.true;
+
+    expect(numberOfGroups).equal(allGroups.length);
   });
 
   it('should verify URL after clicking on `Create new group` button', () => {
-    $(selector.createGroupbutton).click();
+    $(selector.createGroupButton).click();
     const actualUrl = browser.getUrl();
     expect(actualUrl).equal(url.createGroup);
   });
@@ -88,7 +99,7 @@ describe('Groups - Create group - Functionality', () => {
   });
 
   it('should verify that `Group name` field is required', () => {
-    $(selector.groupNameField).setValue('');
+    $(selector.groupNameField).clearValue();
     $(selector.groupDescriptionField).setValue(data.groupDescription);
     $(selector.accessTypeField).selectByVisibleText(data.accessType);
     expect($(selector.submitButton).isEnabled()).to.be.false;
@@ -103,7 +114,7 @@ describe('Groups - Create group - Functionality', () => {
 
   it('should verify that `Group description` field is not required', () => {
     $(selector.groupNameField).setValue(data.groupName);
-    $(selector.groupDescriptionField).setValue('');
+    $(selector.groupDescriptionField).clearValue();
     $(selector.accessTypeField).selectByVisibleText(data.accessType);
     expect($(selector.submitButton).isEnabled()).to.be.true;
   });
@@ -129,9 +140,9 @@ describe('Groups - Create group - Functionality', () => {
 
   it('should verify URL after clicking on `Create` button', () => {
     $(selector.submitButton).click();
-    browser.pause(1000);
-    const actualUrl = browser.getUrl();
-    expect(actualUrl).equal(url.group);
+    browser.waitUntil(() => {
+      return browser.getUrl() === url.group;
+    }, 3000);
   });
 
   it('should verify that after click on button `Create` success message is displayed', () => {
@@ -143,7 +154,16 @@ describe('Groups - Create group - Functionality', () => {
   });
 
   it('should verify that amount of groups increased by 1 after creating group', () => {
-    const numberOfGroups1 = $$(selector.groupListItem).length;
-    expect(numberOfGroups1 === numberOfGroups + 1).to.be.true;
+    const numberOfGroupsAfterCreate = $$(selector.groupListItem).length;
+    expect(numberOfGroupsAfterCreate === numberOfGroups + 1).to.be.true;
+  });
+
+  it('should verify through API that total amount eq UI count', async () => {
+    const groupsAfterCreateUI = await $$(selector.groupListItem);
+    const numberOfGroupsAfterCreateUI = groupsAfterCreateUI.length;
+
+    const groupsAfterCreateAPI = await groupsGetAll(token);
+    const numberOfGroupsAfterCreateAPI = groupsAfterCreateAPI.length;
+    expect(numberOfGroupsAfterCreateAPI).equal(numberOfGroupsAfterCreateUI);
   });
 });
