@@ -57,12 +57,11 @@ describe('Creating Group', () => {
 
   it('should check the amount of the existing groups > 0', () => {
     groupNum = $(sel.groupAll).$$(sel.groupList).length;
-    expect(groupNum > 0).to.be.true;
+    expect(groupNum > 0).to.be.true; //
   });
 
   it('should check that the user gets redirected to `Create new Group` page', () => {
     $(sel.createGroupBtn).click();
-    browser.pause(200);
     expect($(sel.header).getText()).to.be.equal(data.expHeader);
   });
 
