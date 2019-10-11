@@ -131,7 +131,7 @@ describe('Groups - Create group - Functionality', () => {
     $(selector.submitButton).click();
     browser.pause(1000);
     const actualUrl = browser.getUrl();
-    expect(actualUrl).equal(url.groupCreated);
+    expect(actualUrl).equal(url.group);
   });
 
   it('should verify that after click on button `Create` success message is displayed', () => {
@@ -143,8 +143,6 @@ describe('Groups - Create group - Functionality', () => {
   });
 
   it('should verify that amount of groups increased by 1 after creating group', () => {
-    $(selector.menuGroups).click();
-    $(selector.groupListItem).waitForDisplayed(5000);
     const numberOfGroups1 = $$(selector.groupListItem).length;
     expect(numberOfGroups1 === numberOfGroups + 1).to.be.true;
   });

@@ -12,7 +12,7 @@ const url = {
   diaryCreateForm: `${baseUrl}/diary/create`,
 
   group: `${baseUrl}/group`,
-  groupCreated: `${baseUrl}/groups`,
+  //groupCreated: `${baseUrl}/groups`,
   createGroup: `${baseUrl}/group/create`,
 
   server: 'https://server-stage.pasv.us',
