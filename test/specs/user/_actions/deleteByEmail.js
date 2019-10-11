@@ -1,5 +1,5 @@
-import { url } from '../../../specs/constants';
-import { user } from '../constants';
+import { url } from '../../constants';
+import { user } from '../../../examples/user/constants';
 import axios from 'axios/index';
 
 export default function userDeleteByEmail(email) {
