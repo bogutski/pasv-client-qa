@@ -39,10 +39,11 @@ describe('User - Register - Submit button - Disabled - First name empty', () => 
     $(firstNameField).click();
     browser.keys('Tab');
     browser.pause(1000);
-    const actualBorderColor = $(firstNameField).getCSSProperty('border-color').parsed.hex;
-    const expectedBorderColor = '#ff4465';
+    const actualBorderColor = $(firstNameField)
+      .getAttribute('class')
+      .includes('form-control is-invalid ');
 
-    expect(actualBorderColor).equal(expectedBorderColor);
+    expect(actualBorderColor).true;
   });
   it('should check that submit button is disabled when first name field is empty', () => {
     const actualResult = $(submitButton).isEnabled();
@@ -68,10 +69,11 @@ describe('User - Register - Submit button - Disabled - First name incorrect', ()
       $(firstNameField).setValue(negativeNames[i]);
       browser.keys('Tab');
       browser.pause(1000);
-      const actualBorderColor = $(firstNameField).getCSSProperty('border-color').parsed.hex;
-      const expectedBorderColor = '#ff4465';
+      const actualBorderColor = $(firstNameField)
+        .getAttribute('class')
+        .includes('form-control is-invalid');
 
-      expect(actualBorderColor).equal(expectedBorderColor);
+      expect(actualBorderColor).true;
     }
   });
 
