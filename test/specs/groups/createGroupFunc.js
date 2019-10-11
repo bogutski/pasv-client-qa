@@ -37,7 +37,7 @@ const data = {
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus magna orci, pretium eget est sed, pretium egestas odio. Maecenas viverra lacinia ante vel scelerisque. Sed ut nibh lacus. Aenean dui nisl, accumsan non risus eget, malesuada congue nullam.',
   isValid: 'is-valid',
   isInvalid: 'is-invalid',
-  expUrl: 'https://stage.pasv.us/groups',
+  expUrl: 'https://stage.pasv.us/group',
   textMsg: 'Group created',
 };
 let valid;
@@ -223,8 +223,6 @@ describe('Creating Group', () => {
   });
 
   it('should check that the Group`s list increased by 1', () => {
-    $(sel.groupLink).click();
-    $(sel.createGroupBtn).waitForDisplayed(500);
     const groupNumNew = $(sel.groupAll).$$(sel.groupList).length;
     expect(groupNumNew).to.be.equal(groupNum + 1);
   });
