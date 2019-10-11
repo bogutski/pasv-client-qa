@@ -39,13 +39,13 @@ describe('User - Register - Submit button - Disabled - First name empty', () => 
     $(firstNameField).click();
     browser.keys('Tab');
     browser.pause(1000);
-    const actualBorderColor = $(firstNameField)
+    const actualAttribute = $(firstNameField)
       .getAttribute('class')
       .includes('form-control is-invalid ');
 
-    expect(actualBorderColor).true;
+    expect(actualAttribute).true;
   });
-  it('should check that submit button is disabled when first name field is empty', () => {
+  it('should check that submit buttgit on is disabled when first name field is empty', () => {
     const actualResult = $(submitButton).isEnabled();
 
     expect(actualResult).false;
@@ -69,11 +69,11 @@ describe('User - Register - Submit button - Disabled - First name incorrect', ()
       $(firstNameField).setValue(negativeNames[i]);
       browser.keys('Tab');
       browser.pause(1000);
-      const actualBorderColor = $(firstNameField)
+      const actualAttribute = $(firstNameField)
         .getAttribute('class')
         .includes('form-control is-invalid');
 
-      expect(actualBorderColor).true;
+      expect(actualAttribute).true;
     }
   });
 
