@@ -15,20 +15,17 @@ describe('User - Login - Forgot Password Link - Func', () => {
     browser.url(url.login);
   });
 
-  //Verify that the "Forgot password?" link is active
   it('Should verify that  Forgot password link is active', () => {
     $(forgotPasswordLinkSelector).click();
     const h1ForgotPasswordPage = $('//h1').getText();
     expect(h1ForgotPasswordPage).eq(expectedh1ForgotPasswordPage);
   });
 
-  //Verify that the "Password reset email" button is inactive
   it('Should verify that Password reset email button is inactive', () => {
     const buttonIsEnabled = $(buttonSelector).isEnabled();
     expect(buttonIsEnabled).to.be.false;
   });
 
-  //Verify that the "Enter your Email address" text field can be filled
   it('Should verify that Enter your email address field can be filled', () => {
     $(enterYourEmailFieldSelector).click();
     $(enterYourEmailFieldSelector).setValue(validEmail);
@@ -36,13 +33,11 @@ describe('User - Login - Forgot Password Link - Func', () => {
     expect(validEmail).to.eq(expectedText);
   });
 
-  //Verify that the "Password reset email" button is active
   it('Should verify that Password reset email button is active', () => {
     const buttonIsEnabled = $(buttonSelector).isEnabled();
     expect(buttonIsEnabled).to.be.true;
   });
 
-  //Verify the  “Auth failed. User not found” message
   it('Should verify the Auth failed. User not found message', () => {
     $(enterYourEmailFieldSelector).click();
     $(enterYourEmailFieldSelector).setValue(invalidEmail);
@@ -52,12 +47,11 @@ describe('User - Login - Forgot Password Link - Func', () => {
     expect(failMessage).eq(expectedfailMessage);
   });
 
-  //Verify the “Auth success” message
   it('Should verify the Auth success message', () => {
     $(enterYourEmailFieldSelector).click();
     $(enterYourEmailFieldSelector).setValue(validEmail);
     $(buttonSelector).click();
-    browser.pause(1500);
+    browser.pause(2000);
     const h1SuccessMessage = $('//h1').getText();
     expect(h1SuccessMessage).eq(expectedh1SuccessMessage);
   });
