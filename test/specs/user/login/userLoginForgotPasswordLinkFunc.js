@@ -13,7 +13,6 @@ const validEmail = 'admin@test.com';
 const invalidEmail = 'goa@gmail.com';
 const expectedh1ForgotPasswordPage = 'Reset your password';
 const expectedh1SuccessMessage = 'Check your email for a link to reset your password';
-const expectedfailMessage = 'User not found';
 
 describe('User - Login - Forgot Password Link - Func', () => {
   before(() => {
@@ -35,6 +34,16 @@ describe('User - Login - Forgot Password Link - Func', () => {
     expect(buttonIsEnabled).to.be.false;
   });
 
+  it('Should verify that "Enter your email address" text field is valid', () => {
+    $(selectors.enterYourEmailField).setValue(validEmail);
+    browser.keys('Tab');
+    expect(
+      $(selectors.enterYourEmailField)
+        .getAttribute('class')
+        .includes('is-valid'),
+    ).to.be.true;
+  });
+
   it('Should verify that "Enter your email address" text field can be filled', () => {
     $(selectors.enterYourEmailField).click();
     $(selectors.enterYourEmailField).setValue(validEmail);
@@ -51,17 +60,25 @@ describe('User - Login - Forgot Password Link - Func', () => {
     $(selectors.enterYourEmailField).click();
     $(selectors.enterYourEmailField).setValue(invalidEmail);
     $(selectors.button).click();
-    browser.pause(1500);
-    const failMessage = $(selectors.failMessage).getText();
-    expect(failMessage).eq(expectedfailMessage);
+    browser.waitUntil(
+      () => {
+        return $(selectors.failMessage).isDisplayed();
+      },
+      1500,
+      'fail message is not displayed',
+    );
   });
 
   it('Should verify the Auth success message', () => {
     $(selectors.enterYourEmailField).click();
     $(selectors.enterYourEmailField).setValue(validEmail);
     $(selectors.button).click();
-    browser.pause(2000);
-    const h1SuccessMessage = $(selectors.h1).getText();
-    expect(h1SuccessMessage).eq(expectedh1SuccessMessage);
+    browser.waitUntil(
+      () => {
+        return $(selectors.h1).getText() === expectedh1SuccessMessage;
+      },
+      2000,
+      'success message is not displayed',
+    );
   });
 });
