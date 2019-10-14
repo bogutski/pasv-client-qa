@@ -9,18 +9,47 @@ const extraNumber = new Date().getTime();
 const dayReportText = extraNumber + ' Watched a video about methods bind(), call(), apply() in Javascript.';
 const h1DailyReports = 'Daily reports';
 const h1CreateDayReport = 'Create day report';
+const notificationText = 'Diary deleted';
+const attributeClass = 'class';
+const classHasWarning = 'has-warning';
+const checkBoxesList = [
+  'I need help',
+  'I understood everything',
+  'Helped classmates',
+  'Watched lectures',
+  'Read documentation',
+  'Code practice',
+  'Quiz practice',
+  'Interview preparation',
+  'Recruiter phone call',
+  'Interview technical screen',
+  'Interview onsite',
+  'Got a job offer',
+];
+let checkBoxesCount;
+let allCheckBoxes;
+let thisCheckBox;
+let formGroupOfCheckBoxes;
+let hasWarningClass;
 let allDiariesInDB;
 let allDiariesCount;
+let allDiariesCountAfterDeleting;
 let myDiary;
+let myDiaryCount;
 let diaryId;
 
 const selector = {
   menuDiary: '//a[@qa="diary-link"]',
   createDayReportButton: '//a[@qa="create-day-report-button"]',
+  checkBox: '//input[@type="checkbox"]',
+  checkBoxesOnThePage: '//input[@type="checkbox"]/..//label[contains(@for,"input")]/div',
+  formGroup: '//div[contains(@class,"form-group") and .//input[@type="checkbox"]]',
   descriptionArea: '//textarea[@name="description"]',
+  allDiariesOnThePage: '//div[@qa="description"]',
   saveButton: '//button[@type="submit"]',
   deleteButton: '(//button[@qa="delete-button"])[1]',
   h1: '//h1',
+  diaryDeletedMessage: '//div[contains(@class,"notification-success")]/h4',
 };
 
 describe('Diary - Delete button - Functionality', () => {
@@ -59,34 +88,73 @@ describe('Diary - Delete button - Functionality', () => {
     expect(actualUrl).to.be.equal(url.diaryCreateForm);
   });
 
+  it('should find all the checkboxes on the page', () => {
+    allCheckBoxes = $$(selector.checkBoxesOnThePage);
+  });
 
-  it('should fill day report area and mark checkboxes', () => {
-    $(selector.descriptionArea).setValue(dayReportText);
-    for (let i = 0; i <= 11; i++) {   //length, массив, что есть в том порядке! что они не нажаты, а потом нажаты
-      const selector = $('//input[@id="input-[' + i + ']"]');
-      selector.click();
+  it('should verify the amount of checkboxes', () => {
+    checkBoxesCount = allCheckBoxes.length;
+    expect(checkBoxesCount).equal(checkBoxesList.length);
+  });
+
+  it('should verify that all checkboxes have correct text', () => {
+    const checkBoxesText = allCheckBoxes.map(option => option.getText());
+    expect(checkBoxesText).to.deep.equal(checkBoxesList);
+  });
+
+  it('should verify that no checkbox is marked', () => {
+    formGroupOfCheckBoxes = $(selector.formGroup);
+    hasWarningClass = formGroupOfCheckBoxes.getAttribute(attributeClass).includes(classHasWarning);
+    expect(hasWarningClass).to.be.true;
+  });
+
+  for (let i = 1; i <= checkBoxesList.length; i++) {
+    it(`should verify that '${checkBoxesList[i - 1]}' is marked`, () => {
+      thisCheckBox = $('(' + selector.checkBox + ')[' + i + ']');
+      thisCheckBox.click();
+      hasWarningClass = formGroupOfCheckBoxes.getAttribute(attributeClass).includes(classHasWarning);
+      expect(hasWarningClass).to.be.false;
+    });
+
+    it(`should verify that '${checkBoxesList[i - 1]}' is unmarked`, () => {
+      thisCheckBox = $('(' + selector.checkBox + ')[' + i + ']');
+      thisCheckBox.click();
+      hasWarningClass = formGroupOfCheckBoxes.getAttribute(attributeClass).includes(classHasWarning);
+      expect(hasWarningClass).to.be.true;
+    });
+  }
+
+  it('should mark all checkboxes', () => {
+    for (let i = 1; i <= checkBoxesCount; i++) {
+      thisCheckBox = $('(' + selector.checkBox + ')[' + i + ']');
+      thisCheckBox.click();
     }
-    browser.pause(1000); //попробовать без
+  });
+
+  it('should fill in the description area', () => {
+    $(selector.descriptionArea).setValue(dayReportText);
+  });
+
+  it('should create "My Diary"', () => {
     $(selector.saveButton).click();
   });
 
-
   it('should get all diaries from the DB', async () => {
     allDiariesInDB = await diaryGetAll(token);
-    allDiariesCount = allDiariesInDB.length;
   });
 
-  it('verify that the amount of diaries is more than 0', () => {
+  it('should verify that the amount of all diaries is more than 0', () => {
+    allDiariesCount = allDiariesInDB.length;
     expect(allDiariesCount > 0).to.be.true;
   });
 
-  it('verify that the null element from all diaries has the necessary description', () => {
+  it('should verify that the null element has the necessary description', () => {
     expect(allDiariesInDB[0].description).contains(extraNumber);
     myDiary = allDiariesInDB[0];
   });
 
-  it('verify that in "All Diaries" array only 1 element has a unique description', () => {
-    const myDiaryCount = allDiariesInDB.filter(dairy => dairy['description'].startsWith(extraNumber));
+  it('should verify that only 1 element has a unique description in "All Diaries" array', () => {
+    myDiaryCount = allDiariesInDB.filter(dairy => dairy['description'].startsWith(extraNumber));
     expect(myDiaryCount.length).to.be.equal(1);
   });
 
@@ -94,26 +162,44 @@ describe('Diary - Delete button - Functionality', () => {
     diaryId = myDiary['_id'];
   });
 
-
   it('should delete "My diary"', () => {
     $(selector.deleteButton).click();
-    browser.refresh();
   });
 
-  it('should verify that "My diary" has been deleted from DB', async () => {
+  it('should verify that the DB does not have a diary with "My diary" Id', async () => {
     myDiary = await diaryGetByID(token, diaryId);
     expect(myDiary).to.be.null;
   });
 
-  it('should verify that after deleting "My diary" the amount of all diaries decreased by 1', async () => {
+  it('should get all diaries from the DB after deleting "My diary"', async () => {
     allDiariesInDB = await diaryGetAll(token);
-    expect(allDiariesInDB.length).to.be.equal(allDiariesCount - 1);
   });
 
-  //DB по всем нет с моим description
-  //notification
-  // it('should verify that "My diary" has been deleted on the page', () => {
-  //   myDiaryOnThePage = $$(selector.allDiaries);
-  //   expect(myDiaryOnThePage.length).to.be.equal(0);
-  // });
+  it('should verify that the amount of all diaries decreased by 1 after deleting "My diary"', () => {
+    allDiariesCountAfterDeleting = allDiariesCount - 1;
+    expect(allDiariesInDB.length).to.be.equal(allDiariesCountAfterDeleting);
+  });
+
+  it('should verify that there is not a single diary with my description in "All Diaries" array', () => {
+    myDiaryCount = allDiariesInDB.filter(dairy => dairy['description'].startsWith(extraNumber));
+    expect(myDiaryCount.length).to.be.equal(0);
+  });
+
+  it('should verify that success message is displayed', () => {
+    const messageIsDisplayed = $(selector.diaryDeletedMessage).isDisplayed();
+    expect(messageIsDisplayed).to.be.true;
+  });
+
+  it('should verify that success message has the correct text', () => {
+    const actualText = $(selector.diaryDeletedMessage).getText();
+    expect(actualText).to.be.equal(notificationText);
+  });
+
+  it('should verify that there is not a single diary with my description on the "Diary" page', () => {
+    browser.refresh();
+    for (let i = 1; i <= allDiariesCountAfterDeleting; i++) {
+      const diaryText = $('(' + selector.allDiariesOnThePage + ')[' + i + ']').getText();
+      expect(diaryText).to.not.include(extraNumber);
+    }
+  });
 });
