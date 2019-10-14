@@ -41,7 +41,8 @@
     "test:dairy:approve": "wdio wdio.conf.js --spec test/specs/diary/diaryApproveBtn.js --inspect",
 
     "test:groups:createGroup:func": "wdio wdio.conf.js --spec test/specs/groups/createGroupFunc.js --inspect",
-    "test:groups:editGroup:func": "wdio wdio.conf.js --spec test/specs/groups/editGroupFunc.js --inspect"
+    "test:groups:editGroup:func": "wdio wdio.conf.js --spec test/specs/groups/editGroupFunc.js --inspect",
+    "test:groups:createLecture:func": "wdio wdio.conf.js --spec test/specs/groups/createLectureFunc.js --inspect"
   },
 
   "author": "Viktor Bogutskii",
