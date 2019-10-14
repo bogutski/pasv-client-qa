@@ -1,8 +1,6 @@
 import { expect } from 'chai';
-
 import { url } from './../constants';
 import loginAction from './../user/_actions/loginAction';
-
 import groupsGetAll from './_actions/groupsGetAll';
 
 const selector = {
