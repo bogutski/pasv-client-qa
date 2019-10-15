@@ -24,7 +24,6 @@ let classIsInvalid = 'is-invalid';
 let classDisabled = 'disabled';
 let valueKeys = 'Tab';
 
-
 describe('User - Registration - EnglishLevel - Functionality', () => {
   before(() => {
     browser.url(url.register);
