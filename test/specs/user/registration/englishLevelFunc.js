@@ -17,12 +17,12 @@ const englishLevelList = [
   'Proficient',
   'Native',
 ];
-let attributeValue = 'value';
-let attributeClass = 'class';
-let classIsValid = 'is-valid';
-let classIsInvalid = 'is-invalid';
-let classDisabled = 'disabled';
-let valueKeys = 'Tab';
+const attributeValue = 'value';
+const attributeClass = 'class';
+const classIsValid = 'is-valid';
+const classIsInvalid = 'is-invalid';
+const classDisabled = 'disabled';
+const valueKeys = 'Tab';
 
 describe('User - Registration - EnglishLevel - Functionality', () => {
   before(() => {
