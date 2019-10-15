@@ -141,6 +141,7 @@ describe('Diary - Delete button - Functionality', () => {
 
   it('should get all diaries from the DB', async () => {
     allDiariesInDB = await diaryGetAll(token);
+    expect(allDiariesInDB).to.be.an('array');
   });
 
   it('should verify that the amount of all diaries is more than 0', () => {
@@ -148,9 +149,9 @@ describe('Diary - Delete button - Functionality', () => {
     expect(allDiariesCount > 0).to.be.true;
   });
 
-  it('should verify that the null element has the necessary description', () => {
-    expect(allDiariesInDB[0].description).contains(extraNumber);
+  it('should verify that the first element has the necessary description', () => {
     myDiary = allDiariesInDB[0];
+    expect(myDiary.description).contains(extraNumber);
   });
 
   it('should verify that only 1 element has a unique description in "All Diaries" array', () => {
@@ -159,7 +160,7 @@ describe('Diary - Delete button - Functionality', () => {
   });
 
   it('should get "My diary" Id', () => {
-    diaryId = myDiary['_id'];
+    diaryId = myDiary._id;
   });
 
   it('should delete "My diary"', () => {
