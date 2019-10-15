@@ -108,6 +108,10 @@ describe('Diary - Delete button - Functionality', () => {
     expect(hasWarningClass).to.be.true;
   });
 
+  it('should fill in the description area', () => {
+    $(selector.descriptionArea).setValue(dayReportText);
+  });
+
   for (let i = 1; i <= checkBoxesList.length; i++) {
     it(`should verify that '${checkBoxesList[i - 1]}' is marked`, () => {
       thisCheckBox = $('(' + selector.checkBox + ')[' + i + ']');
@@ -129,10 +133,6 @@ describe('Diary - Delete button - Functionality', () => {
       thisCheckBox = $('(' + selector.checkBox + ')[' + i + ']');
       thisCheckBox.click();
     }
-  });
-
-  it('should fill in the description area', () => {
-    $(selector.descriptionArea).setValue(dayReportText);
   });
 
   it('should create "My Diary"', () => {
