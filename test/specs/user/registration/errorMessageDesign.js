@@ -36,7 +36,7 @@ describe('User - Registration - ErrorMessage - Design', () => {
     allUsers = await userGetAll(token);
   });
 
-  it('should register the user if he is not in the database', () => {
+  it('should register the user if does not exist already', () => {
     if (!allUsers.some(existingUser => existingUser.email === user.student.email)) {
       registerAction(browser);
     }
