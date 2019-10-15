@@ -17,6 +17,13 @@ const englishLevelList = [
   'Proficient',
   'Native',
 ];
+let attributeValue = 'value';
+let attributeClass = 'class';
+let classIsValid = 'is-valid';
+let classIsInvalid = 'is-invalid';
+let classDisabled = 'disabled';
+let valueKeys = 'Tab';
+
 
 describe('User - Registration - EnglishLevel - Functionality', () => {
   before(() => {
@@ -34,7 +41,7 @@ describe('User - Registration - EnglishLevel - Functionality', () => {
   });
 
   it('verify that the button "Submit" is disabled', () => {
-    const submitButtonIsDisabled = $(submitButton).getAttribute('class').includes('disabled');
+    const submitButtonIsDisabled = $(submitButton).getAttribute(attributeClass).includes(classDisabled);
     expect(submitButtonIsDisabled).to.be.true;
   });
 
@@ -45,12 +52,12 @@ describe('User - Registration - EnglishLevel - Functionality', () => {
 
   for (let i = 1; i < englishLevelList.length; i++) {
     it(`should find '${englishLevelList[i]}'`, () => {
-      $(englishLevelDropDown).selectByVisibleText(englishLevelList[i]); //повтор
-      browser.keys('Tab');
+      $(englishLevelDropDown).selectByVisibleText(englishLevelList[i]);
+      browser.keys(valueKeys);
     });
 
     it(`verify that user should be able select '${englishLevelList[i]}' in the "English level" dropdown`, () => {
-      const hasValidClass = $(englishLevelDropDown).getAttribute('class').includes('is-valid');
+      const hasValidClass = $(englishLevelDropDown).getAttribute(attributeClass).includes(classIsValid);
       expect(hasValidClass).to.be.true;
     });
 
@@ -61,12 +68,12 @@ describe('User - Registration - EnglishLevel - Functionality', () => {
   }
 
   it('should find the empty option', () => {
-    $(englishLevelDropDown).selectByAttribute('value', englishLevelList[0]);
-    browser.keys('Tab');
+    $(englishLevelDropDown).selectByAttribute(attributeValue, englishLevelList[0]);
+    browser.keys(valueKeys);
   });
 
   it('verify that the "English level" field is marked invalid when the user selected an empty option', () => {
-    const hasValidClass = $(englishLevelDropDown).getAttribute('class').includes('is-invalid');
+    const hasValidClass = $(englishLevelDropDown).getAttribute(attributeClass).includes(classIsInvalid);
     expect(hasValidClass).to.be.true;
   });
 
@@ -76,7 +83,7 @@ describe('User - Registration - EnglishLevel - Functionality', () => {
   });
 
   it('verify that the button "Submit" is disabled when the user selected an empty option', () => {
-    const submitButtonIsDisabled = $(submitButton).getAttribute('class').includes('disabled');
+    const submitButtonIsDisabled = $(submitButton).getAttribute(attributeClass).includes(classDisabled);
     expect(submitButtonIsDisabled).to.be.true;
   });
 });
