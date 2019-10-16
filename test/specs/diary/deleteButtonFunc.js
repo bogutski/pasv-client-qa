@@ -200,7 +200,7 @@ describe('Diary - Delete button - Functionality', () => {
   });
 
   it('should verify that there is not a single diary with my description on the "Diary" page', () => {
-    for (let i = 1; i <= allDiariesCountAfterDeleting; i++) {
+    for (let i = 1; i <= allDiariesCountAfterDeleting.length; i++) {
       const diaryText = $('(' + selector.allDiariesOnThePage + ')[' + i + ']').getText();
       expect(diaryText).to.not.include(extraNumber);
     }
