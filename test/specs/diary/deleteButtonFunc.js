@@ -167,6 +167,17 @@ describe('Diary - Delete button - Functionality', () => {
     $(selector.deleteButton).click();
   });
 
+  it('should verify that success message is displayed', () => {
+    browser.waitUntil(
+      () => {
+        return $(selector.diaryDeletedMessage).getText() === notificationText;
+      },
+      5000,
+    );
+    const messageIsDisplayed = $(selector.diaryDeletedMessage).isDisplayed();
+    expect(messageIsDisplayed).to.be.true;
+  });
+
   it('should verify that the DB does not have a diary with "My diary" Id', async () => {
     myDiary = await diaryGetByID(token, diaryId);
     expect(myDiary).to.be.null;
@@ -176,31 +187,27 @@ describe('Diary - Delete button - Functionality', () => {
     allDiariesInDB = await diaryGetAll(token);
   });
 
-  it('should verify that the amount of all diaries decreased by 1 after deleting "My diary"', () => {
-    allDiariesCountAfterDeleting = allDiariesCount - 1;
-    expect(allDiariesInDB.length).to.be.equal(allDiariesCountAfterDeleting);
-  });
-
-  it('should verify that there is not a single diary with my description in "All Diaries" array', () => {
-    myDiaryCount = allDiariesInDB.filter(dairy => dairy['description'].startsWith(extraNumber));
-    expect(myDiaryCount.length).to.be.equal(0);
-  });
-
-  it('should verify that success message is displayed', () => {
-    const messageIsDisplayed = $(selector.diaryDeletedMessage).isDisplayed();
-    expect(messageIsDisplayed).to.be.true;
-  });
-
-  it('should verify that success message has the correct text', () => {
-    const actualText = $(selector.diaryDeletedMessage).getText();
-    expect(actualText).to.be.equal(notificationText);
+  it('should verify that the total number of diaries on the "Diary" page is equal to the amount in the DB', () => {
+    browser.refresh();
+    browser.waitUntil(
+      () => {
+        return $$(selector.allDiariesOnThePage).length >= allDiariesInDB.length;
+      },
+      5000,
+    );
+    allDiariesCountAfterDeleting = $$(selector.allDiariesOnThePage);
+    expect(allDiariesCountAfterDeleting.length).to.be.equal(allDiariesInDB.length);
   });
 
   it('should verify that there is not a single diary with my description on the "Diary" page', () => {
-    browser.refresh();
     for (let i = 1; i <= allDiariesCountAfterDeleting; i++) {
       const diaryText = $('(' + selector.allDiariesOnThePage + ')[' + i + ']').getText();
       expect(diaryText).to.not.include(extraNumber);
     }
+  });
+
+  it('should verify that there is not a single diary with my description in the DB', () => {
+    myDiaryCount = allDiariesInDB.filter(dairy => dairy['description'].startsWith(extraNumber));
+    expect(myDiaryCount.length).to.be.equal(0);
   });
 });
