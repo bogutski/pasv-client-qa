@@ -6,12 +6,16 @@ const selector = {
   menuCards: '//li/a[@qa="cards-link"]',
   h1: '//h1',
   createNewFlashGroupButton: '//a[@class="btn btn-secondary"]',
+  h4: '//h4',
   //    submitButton: '//button[@type="submit"]',
 };
 const expected = {
   h1Cards: 'FlashCards',
   buttonText: 'Create new FlashGroup',
 };
+
+let numberOfFlashGroups;
+
 describe('Cards - Create card - Functionality', () => {
   before(() => {
     loginAction(browser);
@@ -38,7 +42,12 @@ describe('Cards - Create card - Functionality', () => {
     expect($(selector.createNewFlashGroupButton).isDisplayed()).to.be.true;
   });
 
-  it('should verify that button `Create new FlashGroup` contains correct text', () => {
+  it('should verify that button `Create new FlashGroup` has correct text', () => {
     expect($(selector.createNewFlashGroupButton).getText()).equal(expected.buttonText);
+  });
+
+  it('should verify that amount of flashgroups is > 0', () => {
+    numberOfFlashGroups = $$(selector.h4).length;
+    expect(numberOfFlashGroups > 0).to.be.true;
   });
 });
