@@ -7,6 +7,8 @@ const selector = {
   h1: '//h1',
   createNewFlashGroupButton: '//a[@class="btn btn-secondary"]',
   h4: '//h4',
+  groupNameField: '//input[@name="name"]',
+  groupDescriptionField: '//input[@name="description"]',
   //    submitButton: '//button[@type="submit"]',
 };
 const expected = {
@@ -52,14 +54,22 @@ describe('Cards - Create card - Functionality', () => {
     expect(numberOfFlashGroups > 0).to.be.true;
   });
 
-  it('should verify URL after clicking on `Create new FlashGoup` button', () => {
+  it('should verify URL after clicking on `Create new FlashGroup` button', () => {
     $(selector.createNewFlashGroupButton).click();
     const actualUrl = browser.getUrl();
     expect(actualUrl).equal(url.createFlashGroup);
   });
 
-  it('should verify that `Create new Flash Goup` page has correct h1', () => {
+  it('should verify that `Create new Flash Group` page has correct h1', () => {
     const actualH1Text = $(selector.h1).getText();
     expect(actualH1Text).to.equal(expected.h1CreateNewFlashGroup);
+  });
+
+  it('should verify that `Group name` field is displayed', () => {
+    expect($(selector.groupNameField).isDisplayed()).to.be.true;
+  });
+
+  it('should verify that `Group description` field is displayed', () => {
+    expect($(selector.groupDescriptionField).isDisplayed()).to.be.true;
   });
 });
