@@ -10,8 +10,8 @@ const selector = {
   groupNameField: '//input[@name="name"]',
   groupDescriptionField: '//input[@name="description"]',
   createButton: '//button[@class="btn btn-primary"]',
-  //    submitButton: '//button[@type="submit"]',
 };
+
 const expected = {
   h1Cards: 'FlashCards',
   buttonText: 'Create new FlashGroup',
