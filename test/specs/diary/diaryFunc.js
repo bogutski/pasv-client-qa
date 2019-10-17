@@ -22,6 +22,7 @@ const dayReportText = `Today I watched ${Math.trunc(
 
 let allDiaries;
 let initialDiaryCount;
+let countOfCheckBoxes;
 
 describe('Diary - Functionality', () => {
   before(() => {
@@ -67,7 +68,7 @@ describe('Diary - Functionality', () => {
   });
 
   it('should verify that there are checkboxes on `Create day report` page', () => {
-    const countOfCheckBoxes = $$(selector.checkBox).length;
+    countOfCheckBoxes = $$(selector.checkBox).length;
     expect(countOfCheckBoxes).equal(12);
   });
 
@@ -85,7 +86,7 @@ describe('Diary - Functionality', () => {
 
   it('should verify that `Save` button is disabled when there are checkboxes, but there is no day report', () => {
     //checkboxes
-    for (let i = 1; i < 12; i++) {
+    for (let i = 1; i < countOfCheckBoxes; i++) {
       const selector = $('//input[@id="input-[' + i + ']"]');
       selector.click();
     }
