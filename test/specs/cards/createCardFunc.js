@@ -79,14 +79,16 @@ describe('Cards - Create card - Functionality', () => {
     expect($(selector.groupDescriptionField).isDisplayed()).to.be.true;
   });
 
-  it('should verify that button `Create` is disabled', () => {
-    expect($(selector.createButton).isEnabled()).to.be.false;
+  it('should verify that button `Create` is displayed', () => {
+    expect($(selector.createButton).isDisplayed()).to.be.true;
   });
 
-  it('should verify that button `Create` is-valid after filling required', () => {
+  it('should verify that after filling fields and click on Create button redirect to `FlashCards` page', () => {
     $(selector.groupNameField).setValue(data.groupName);
     $(selector.groupDescriptionField).setValue(data.groupDescription);
     $(selector.createButton).click();
-    // expect($(selector.createButton).isEnabled()).to.be.true;
+    browser.pause(1000);
+    const actualUrl = browser.getUrl();
+    expect(actualUrl).to.equal(url.card);
   });
 });
