@@ -10,6 +10,7 @@ const selector = {
 };
 const expected = {
   h1Cards: 'FlashCards',
+  buttonText: 'Create new FlashGroup',
 };
 describe('Cards - Create card - Functionality', () => {
   before(() => {
@@ -33,7 +34,11 @@ describe('Cards - Create card - Functionality', () => {
     expect(actualH1Text).to.equal(expected.h1Cards);
   });
 
-  it('should verify that button `Create new Flash Group` is displayed', () => {
+  it('should verify that button `Create new FlashGroup` is displayed', () => {
     expect($(selector.createNewFlashGroupButton).isDisplayed()).to.be.true;
+  });
+
+  it('should verify that button `Create new FlashGroup` contains correct text', () => {
+    expect($(selector.createNewFlashGroupButton).getText()).equal(expected.buttonText);
   });
 });
