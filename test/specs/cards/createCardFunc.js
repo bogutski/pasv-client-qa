@@ -10,6 +10,7 @@ const selector = {
   groupNameField: '//input[@name="name"]',
   groupDescriptionField: '//input[@name="description"]',
   createButton: '//button[@class="btn btn-primary"]',
+  successMessage: '//div[@class="notification notification-success notification-visible"]',
 };
 
 const expected = {
@@ -55,7 +56,7 @@ describe('Cards - Create card - Functionality', () => {
     expect($(selector.createNewFlashGroupButton).getText()).equal(expected.buttonText);
   });
 
-  it('should verify that amount of flashgroups is > 0', () => {
+  it('should verify that amount of flashGroups is > 0', () => {
     numberOfFlashGroups = $$(selector.h4).length;
     expect(numberOfFlashGroups > 0).to.be.true;
   });
@@ -90,5 +91,14 @@ describe('Cards - Create card - Functionality', () => {
     browser.pause(1000);
     const actualUrl = browser.getUrl();
     expect(actualUrl).to.equal(url.card);
+  });
+
+  it('should verify that success message is displayed', () => {
+    expect($(selector.successMessage).isDisplayed()).to.be.true;
+  });
+
+  it('should verify that amount of flashGroups is increased by 1', () => {
+    const newNumberOfFlashGroups = $$(selector.h4).length;
+    expect(newNumberOfFlashGroups === numberOfFlashGroups + 1).to.be.true;
   });
 });
