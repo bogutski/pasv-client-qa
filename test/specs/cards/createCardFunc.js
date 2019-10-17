@@ -52,9 +52,14 @@ describe('Cards - Create card - Functionality', () => {
     expect(numberOfFlashGroups > 0).to.be.true;
   });
 
-  it('should verify URL after clicking on `Create new group` button', () => {
+  it('should verify URL after clicking on `Create new FlashGoup` button', () => {
     $(selector.createNewFlashGroupButton).click();
     const actualUrl = browser.getUrl();
     expect(actualUrl).equal(url.createFlashGroup);
+  });
+
+  it('should verify that `Create new Flash Goup` page has correct h1', () => {
+    const actualH1Text = $(selector.h1).getText();
+    expect(actualH1Text).to.equal(expected.h1CreateNewFlashGroup);
   });
 });
