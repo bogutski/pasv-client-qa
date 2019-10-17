@@ -12,6 +12,7 @@ const selector = {
 const expected = {
   h1Cards: 'FlashCards',
   buttonText: 'Create new FlashGroup',
+  h1CreateNewFlashGroup: 'Create new Flash Group',
 };
 
 let numberOfFlashGroups;
@@ -49,5 +50,11 @@ describe('Cards - Create card - Functionality', () => {
   it('should verify that amount of flashgroups is > 0', () => {
     numberOfFlashGroups = $$(selector.h4).length;
     expect(numberOfFlashGroups > 0).to.be.true;
+  });
+
+  it('should verify URL after clicking on `Create new group` button', () => {
+    $(selector.createNewFlashGroupButton).click();
+    const actualUrl = browser.getUrl();
+    expect(actualUrl).equal(url.createFlashGroup);
   });
 });
