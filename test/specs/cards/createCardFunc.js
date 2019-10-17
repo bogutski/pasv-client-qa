@@ -9,12 +9,18 @@ const selector = {
   h4: '//h4',
   groupNameField: '//input[@name="name"]',
   groupDescriptionField: '//input[@name="description"]',
+  createButton: '//button[@class="btn btn-primary"]',
   //    submitButton: '//button[@type="submit"]',
 };
 const expected = {
   h1Cards: 'FlashCards',
   buttonText: 'Create new FlashGroup',
   h1CreateNewFlashGroup: 'Create new Flash Group',
+};
+
+const data = {
+  groupName: 'QA',
+  groupDescription: 'common questions',
 };
 
 let numberOfFlashGroups;
@@ -71,5 +77,16 @@ describe('Cards - Create card - Functionality', () => {
 
   it('should verify that `Group description` field is displayed', () => {
     expect($(selector.groupDescriptionField).isDisplayed()).to.be.true;
+  });
+
+  it('should verify that button `Create` is disabled', () => {
+    expect($(selector.createButton).isEnabled()).to.be.false;
+  });
+
+  it('should verify that button `Create` is-valid after filling required', () => {
+    $(selector.groupNameField).setValue(data.groupName);
+    $(selector.groupDescriptionField).setValue(data.groupDescription);
+    $(selector.createButton).click();
+    // expect($(selector.createButton).isEnabled()).to.be.true;
   });
 });
