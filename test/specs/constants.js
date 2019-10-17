@@ -14,6 +14,8 @@ const url = {
   group: `${baseUrl}/group`,
   createGroup: `${baseUrl}/group/create`,
 
+  card: `${baseUrl}/flash`,
+
   server: 'https://server-stage.pasv.us',
 };
 

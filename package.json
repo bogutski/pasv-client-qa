@@ -42,7 +42,9 @@
 
     "test:groups:createGroup:func": "wdio wdio.conf.js --spec test/specs/groups/createGroupFunc.js --inspect",
     "test:groups:editGroup:func": "wdio wdio.conf.js --spec test/specs/groups/editGroupFunc.js --inspect",
-    "test:groups:createLecture:func": "wdio wdio.conf.js --spec test/specs/groups/createLectureFunc.js --inspect"
+    "test:groups:createLecture:func": "wdio wdio.conf.js --spec test/specs/groups/createLectureFunc.js --inspect",
+
+    "test:cards:createCard:func": "wdio wdio.conf.js --spec test/specs/cards/createCardFunc.js --inspect"
   },
   "author": "Viktor Bogutskii",
   "license": "MIT",
