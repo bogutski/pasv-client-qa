@@ -5,7 +5,7 @@ import loginAction from './../user/_actions/loginAction';
 const selector = {
   menuCards: '//li/a[@qa="cards-link"]',
   h1: '//h1',
-  //   createCardButton: '//a[@qa="create-group-button"]',
+  createNewFlashGroupButton: '//a[@class="btn btn-secondary"]',
   //    submitButton: '//button[@type="submit"]',
 };
 const expected = {
@@ -31,5 +31,9 @@ describe('Cards - Create card - Functionality', () => {
   it('should verify that `FlashCards` page has correct h1', () => {
     const actualH1Text = $(selector.h1).getText();
     expect(actualH1Text).to.equal(expected.h1Cards);
+  });
+
+  it('should verify that button `Create new Flash Group` is displayed', () => {
+    expect($(selector.createNewFlashGroupButton).isDisplayed()).to.be.true;
   });
 });
