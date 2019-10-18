@@ -114,14 +114,14 @@ describe('Diary - Delete button - Functionality', () => {
 
   for (let i = 1; i <= checkBoxesList.length; i++) {
     it(`should verify that '${checkBoxesList[i - 1]}' is marked`, () => {
-      thisCheckBox = $('(' + selector.checkBox + ')[' + i + ']');
+      thisCheckBox = $(`(${selector.checkBox})[${i}]`);
       thisCheckBox.click();
       hasWarningClass = formGroupOfCheckBoxes.getAttribute(attributeClass).includes(classHasWarning);
       expect(hasWarningClass).to.be.false;
     });
 
     it(`should verify that '${checkBoxesList[i - 1]}' is unmarked`, () => {
-      thisCheckBox = $('(' + selector.checkBox + ')[' + i + ']');
+      thisCheckBox = $(`(${selector.checkBox})[${i}]`);
       thisCheckBox.click();
       hasWarningClass = formGroupOfCheckBoxes.getAttribute(attributeClass).includes(classHasWarning);
       expect(hasWarningClass).to.be.true;
@@ -130,7 +130,7 @@ describe('Diary - Delete button - Functionality', () => {
 
   it('should mark all checkboxes', () => {
     for (let i = 1; i <= checkBoxesCount; i++) {
-      thisCheckBox = $('(' + selector.checkBox + ')[' + i + ']');
+      thisCheckBox = $(`(${selector.checkBox})[${i}]`);
       thisCheckBox.click();
     }
   });
@@ -201,7 +201,7 @@ describe('Diary - Delete button - Functionality', () => {
 
   it('should verify that there is not a single diary with my description on the "Diary" page', () => {
     for (let i = 1; i <= allDiariesCountAfterDeleting.length; i++) {
-      const diaryText = $('(' + selector.allDiariesOnThePage + ')[' + i + ']').getText();
+      const diaryText = $(`(${selector.allDiariesOnThePage})[${i}]`).getText();
       expect(diaryText).to.not.include(extraNumber);
     }
   });
