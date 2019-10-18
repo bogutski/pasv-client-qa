@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { url } from './../constants';
 import loginAction from './../user/_actions/loginAction';
-//import flashCardGroupGetAll from './_actions/flashCardGroupGetAll';
+import flashCardGroupGetAll from './_actions/flashCardGroupGetAll';
 
 const selector = {
   menuCards: '//li/a[@qa="cards-link"]',
@@ -27,20 +27,21 @@ const data = {
   flashCardGroupDescription: 'common questions',
 };
 
-//const token = process.env.TOKEN_ADMIN;
-//let allGroups;
+const token = process.env.TOKEN_ADMIN;
+let allGroups;
 let numberOfFlashGroups;
 
 describe('Cards - Create FlashCardGroup - Functionality', () => {
   before(() => {
     loginAction(browser);
   });
-  /*
+
   it('should get all FlasfCardGroups throw API amd verify that is array', async () => {
     allGroups = await flashCardGroupGetAll(token);
-    expect(allGroups).to.be.an('array');
+    //expect(allGroups).to.be.an('object');
+    expect(allGroups.payload).to.be.an('array');
   });
-*/
+
   it('should verify that `Cards` item is displayed in main menu', () => {
     $(selector.menuCards).waitForDisplayed(1000);
     const cardsIsDisplayed = $(selector.menuCards).isDisplayed();
@@ -69,6 +70,14 @@ describe('Cards - Create FlashCardGroup - Functionality', () => {
   it('should verify that amount of flashCardGroups is > 0', () => {
     numberOfFlashGroups = $$(selector.flashGroupName).length;
     expect(numberOfFlashGroups > 0).to.be.true;
+  });
+  //API
+
+  it('should get all FlasfCardGroups throw API amd verify length', async () => {
+    // allGroups = await flashCardGroupGetAll(token);
+    const count = allGroups.payload.length;
+    //  expect(count > 0).to.be.true;
+    expect(count).equal(numberOfFlashGroups);
   });
 
   it('should verify URL after clicking on `Create new FlashGroup` button', () => {
