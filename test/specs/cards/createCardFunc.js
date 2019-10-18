@@ -1,16 +1,19 @@
 import { expect } from 'chai';
 import { url } from './../constants';
 import loginAction from './../user/_actions/loginAction';
+//import flashCardGroupGetAll from './_actions/flashCardGroupGetAll';
 
 const selector = {
   menuCards: '//li/a[@qa="cards-link"]',
   h1: '//h1',
   createNewFlashGroupButton: '//a[@class="btn btn-secondary"]',
-  h4: '//h4',
+  flashGroupName: '//h4[@qa="name"]',
   groupNameField: '//input[@name="name"]',
   groupDescriptionField: '//input[@name="description"]',
+  groupDescription: '//div[@qa="description"]',
   createButton: '//button[@class="btn btn-primary"]',
   successMessage: '//div[@class="notification notification-success notification-visible"]',
+  editButton: '//a[@class="edit"]',
 };
 
 const expected = {
@@ -20,17 +23,24 @@ const expected = {
 };
 
 const data = {
-  groupName: 'QA',
-  groupDescription: 'common questions',
+  flashCardGroupName: 'QA',
+  flashCardGroupDescription: 'common questions',
 };
 
+//const token = process.env.TOKEN_ADMIN;
+//let allGroups;
 let numberOfFlashGroups;
 
-describe('Cards - Create card - Functionality', () => {
+describe('Cards - Create FlashCardGroup - Functionality', () => {
   before(() => {
     loginAction(browser);
   });
-
+  /*
+  it('should get all FlasfCardGroups throw API amd verify that is array', async () => {
+    allGroups = await flashCardGroupGetAll(token);
+    expect(allGroups).to.be.an('array');
+  });
+*/
   it('should verify that `Cards` item is displayed in main menu', () => {
     $(selector.menuCards).waitForDisplayed(1000);
     const cardsIsDisplayed = $(selector.menuCards).isDisplayed();
@@ -56,8 +66,8 @@ describe('Cards - Create card - Functionality', () => {
     expect($(selector.createNewFlashGroupButton).getText()).equal(expected.buttonText);
   });
 
-  it('should verify that amount of flashGroups is > 0', () => {
-    numberOfFlashGroups = $$(selector.h4).length;
+  it('should verify that amount of flashCardGroups is > 0', () => {
+    numberOfFlashGroups = $$(selector.flashGroupName).length;
     expect(numberOfFlashGroups > 0).to.be.true;
   });
 
@@ -85,8 +95,8 @@ describe('Cards - Create card - Functionality', () => {
   });
 
   it('should verify that after filling fields and click on Create button redirect to `FlashCards` page', () => {
-    $(selector.groupNameField).setValue(data.groupName);
-    $(selector.groupDescriptionField).setValue(data.groupDescription);
+    $(selector.groupNameField).setValue(data.flashCardGroupName);
+    $(selector.groupDescriptionField).setValue(data.flashCardGroupDescription);
     $(selector.createButton).click();
     browser.pause(1000);
     const actualUrl = browser.getUrl();
@@ -98,7 +108,22 @@ describe('Cards - Create card - Functionality', () => {
   });
 
   it('should verify that amount of flashGroups is increased by 1', () => {
-    const newNumberOfFlashGroups = $$(selector.h4).length;
+    const newNumberOfFlashGroups = $$(selector.flashGroupName).length;
     expect(newNumberOfFlashGroups === numberOfFlashGroups + 1).to.be.true;
+  });
+
+  it('should verify that name of Last created Group is correct', () => {
+    const nameOfLastFlashGroup = $$(selector.flashGroupName)[0].getText();
+    expect(nameOfLastFlashGroup).equal(data.flashCardGroupName);
+  });
+
+  it('should verify that description of created Group is correct', () => {
+    const nameOfLastFlashGroup = $$(selector.groupDescription)[0].getText();
+    expect(nameOfLastFlashGroup).equal(data.flashCardGroupDescription);
+  });
+
+  it('should verify that click to `edit` button ', () => {
+    $(selector.editButton).click();
+    browser.pause(6000);
   });
 });
