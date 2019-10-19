@@ -10,7 +10,6 @@ export default function getAllLectures(token, groupId) {
     },
   })
     .then(response => {
-      //console.log('---------------', response.data.lectures);
       return response.data.lectures;
     })
     .catch(err => {
