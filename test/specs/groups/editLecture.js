@@ -14,7 +14,6 @@ const sel = {
   createLectureBtn: '//a[@qa="create-lecture-button"]',
   editSel: '//a[@qa="edit"]',
   lectureSel: '//a[@qa="edit"]/../a/span',
-  //lectureSel:'a[@qa="edit"]/../a/span[text()="Practice lesson"]',
   successLectureUpdatedMsg: '//div[@class="notifications-br"]//h4[text()="Lecture updated"]',
   successLectureMsg: '//div[@class="notifications-br"]//h4[text()="Lecture created"]',
   description: '//p[contains(text(),"Loop")]',
