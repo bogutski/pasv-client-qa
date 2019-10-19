@@ -38,7 +38,6 @@ describe('Cards - Create FlashCardGroup - Functionality', () => {
 
   it('should get all FlasfCardGroups throw API amd verify that is array', async () => {
     allGroups = await flashCardGroupGetAll(token);
-    //expect(allGroups).to.be.an('object');
     expect(allGroups.payload).to.be.an('array');
   });
 
@@ -71,12 +70,9 @@ describe('Cards - Create FlashCardGroup - Functionality', () => {
     numberOfFlashGroups = $$(selector.flashGroupName).length;
     expect(numberOfFlashGroups > 0).to.be.true;
   });
-  //API
 
-  it('should get all FlasfCardGroups throw API amd verify length', async () => {
-    // allGroups = await flashCardGroupGetAll(token);
+  it('should get all FlasfCardGroups throw API and verify that count = numberOfFlashGroups from UI ', async () => {
     const count = allGroups.payload.length;
-    //  expect(count > 0).to.be.true;
     expect(count).equal(numberOfFlashGroups);
   });
 
@@ -129,10 +125,5 @@ describe('Cards - Create FlashCardGroup - Functionality', () => {
   it('should verify that description of created Group is correct', () => {
     const nameOfLastFlashGroup = $$(selector.groupDescription)[0].getText();
     expect(nameOfLastFlashGroup).equal(data.flashCardGroupDescription);
-  });
-
-  it('should verify that click to `edit` button ', () => {
-    $(selector.editButton).click();
-    browser.pause(6000);
   });
 });
