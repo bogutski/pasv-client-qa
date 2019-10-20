@@ -69,4 +69,9 @@ describe('Cards - Edit FlashCardGroup - Functionality', () => {
     const actualFlashGroupName = $$(selector.flashGroupName)[0].getText();
     expect(actualFlashGroupName).equal(flashGroupNameOld + data.addToName);
   });
+
+  it('should verify that on `FlashCards` page the description of group was changed', () => {
+    const actualFlashGroupName = $$(selector.groupDescription)[0].getText();
+    expect(actualFlashGroupName).equal(flashGroupDescriptionOld + data.addToDescription);
+  });
 });
