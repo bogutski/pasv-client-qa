@@ -12,6 +12,7 @@ const h1CreateDayReport = 'Create day report';
 const notificationText = 'Diary deleted';
 const attributeClass = 'class';
 const classHasWarning = 'has-warning';
+const messageNoDiariesHere = 'All diaries was approved.';
 const checkBoxesList = [
   'I need help',
   'I understood everything',
@@ -50,6 +51,7 @@ const selector = {
   deleteButton: '(//button[@qa="delete-button"])[1]',
   h1: '//h1',
   diaryDeletedMessage: '//div[contains(@class,"notification-success")]/h4',
+  allDiariesStatus: '//div[@class="form-group"]/..//p',
 };
 
 describe('Diary - Delete button - Functionality', () => {
@@ -191,7 +193,8 @@ describe('Diary - Delete button - Functionality', () => {
     browser.refresh();
     browser.waitUntil(
       () => {
-        return $$(selector.allDiariesOnThePage).length >= allDiariesInDB.length;
+        return $(`(${selector.allDiariesOnThePage})[1]`).isDisplayed() ||
+          $(selector.allDiariesStatus).getText() === messageNoDiariesHere;
       },
       5000,
     );
