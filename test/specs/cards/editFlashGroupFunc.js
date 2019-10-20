@@ -3,15 +3,14 @@ import { url } from './../constants';
 import loginAction from './../user/_actions/loginAction';
 
 const selector = {
-  menuCards: '//li/a[@qa="cards-link"]', //+
+  menuCards: '//li/a[@qa="cards-link"]',
   h1: '//h1',
-  flashGroupName: '//h4[@qa="name"]', //+
-  groupNameField: '//input[@name="name"]', //+
-  groupDescriptionField: '//input[@name="description"]', //+
-  groupDescription: '//div[@qa="description"]', //+
-  //  createButton: '//button[@class="btn btn-primary"]',
-  saveButton: '//button[@class="btn btn-primary"]', //+
-  editButton: '//a[@class="edit"]', //+
+  flashGroupName: '//h4[@qa="name"]',
+  groupNameField: '//input[@name="name"]',
+  groupDescriptionField: '//input[@name="description"]',
+  groupDescription: '//div[@qa="description"]',
+  saveButton: '//button[@class="btn btn-primary"]',
+  editButton: '//a[@class="edit"]',
 };
 
 const expected = {
@@ -20,8 +19,8 @@ const expected = {
 };
 
 const data = {
-  addToName: '_test', //+
-  addToDescription: '_test_questions', //+
+  addToName: '_test',
+  addToDescription: '_test_questions',
 };
 
 let flashGroupNameOld;
@@ -35,13 +34,13 @@ describe('Cards - Edit FlashCardGroup - Functionality', () => {
   it('should check name of last flash group on `FlashCards` page', () => {
     $(selector.menuCards).click();
     flashGroupNameOld = $$(selector.flashGroupName)[0].getText();
-    expect(flashGroupNameOld.length > 0).to.be.true;
+    expect(flashGroupNameOld !== '').to.be.true;
   });
 
   it('should check description of last flash group on `FlashCards` page', () => {
     $(selector.menuCards).click();
     flashGroupDescriptionOld = $$(selector.groupDescription)[0].getText();
-    expect(flashGroupDescriptionOld.length > 0).to.be.true;
+    expect(flashGroupDescriptionOld !== '').to.be.true;
   });
 
   it('should verify h1 after clicking to `edit` button redirect to `Edit Group` page ', () => {
