@@ -11,6 +11,12 @@ const url = {
   diaryList: `${baseUrl}/diary`,
   diaryCreateForm: `${baseUrl}/diary/create`,
 
+  group: `${baseUrl}/group`,
+  createGroup: `${baseUrl}/group/create`,
+
+  card: `${baseUrl}/flash`,
+  createFlashGroup: `${baseUrl}/flash/group/create`,
+
   server: 'https://server-stage.pasv.us',
 };
 
