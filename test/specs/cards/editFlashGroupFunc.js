@@ -45,7 +45,13 @@ describe('Cards - Edit FlashCardGroup - Functionality', () => {
 
   it('should verify h1 after clicking to `edit` button redirect to `Edit Group` page ', () => {
     $(selector.editButton).click();
-    browser.pause(6000);
+    browser.waitUntil(
+      () => {
+        return $(selector.h1).getText() === expected.h1EditGroup + flashGroupNameOld;
+      },
+      6000,
+      'WRONG Header',
+    );
     const actualH1 = $(selector.h1).getText();
     expect(actualH1).equal(expected.h1EditGroup + flashGroupNameOld);
   });
@@ -54,14 +60,14 @@ describe('Cards - Edit FlashCardGroup - Functionality', () => {
     $(selector.groupNameField).addValue(data.addToName);
     $(selector.groupDescriptionField).addValue(data.addToDescription);
     $(selector.saveButton).click();
-    browser.pause(1000);
-    const actualUrl = browser.getUrl();
-    expect(actualUrl).equal(url.card);
-  });
-
-  it('should verify H1 after editing flashGroup and redirecting to `FlashCards` page ', () => {
-    const actualH1 = $(selector.h1).getText();
-    expect(actualH1).equal(expected.h1Cards);
+    browser.waitUntil(
+      () => {
+        return $(selector.h1).getText() === expected.h1Cards;
+      },
+      6000,
+      'WRONG Header',
+    );
+    expect(browser.getUrl()).to.be.equal(url.card);
   });
 
   it('should verify that on `FlashCards` page the name of group in the list of groups was changed', () => {
