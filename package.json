@@ -45,7 +45,8 @@
     "test:group:lecture:create:delete:group": "wdio wdio.conf.js --spec test/specs/groups/createGroupAndLectureDeleteGroup.js --inspect",
     "test:group:lectureWithAPI:create": "wdio wdio.conf.js --spec test/specs/groups/createLectureFuncWithAPI.js --inspect",
     "test:group:lecture:edit": "wdio wdio.conf.js --spec test/specs/groups/editLecture.js --inspect", 
-    "test:cards:createCard:func": "wdio wdio.conf.js --spec test/specs/cards/createCardFunc.js --inspect"
+    "test:cards:createFlashGroup:func": "wdio wdio.conf.js --spec test/specs/cards/createFlashGroupFunc.js --inspect",
+    "test:cards:editFlashGroup:func": "wdio wdio.conf.js --spec test/specs/cards/editFlashGroupFunc.js --inspect"
   },
   "author": "Viktor Bogutskii",
   "license": "MIT",
