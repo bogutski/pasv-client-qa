@@ -38,6 +38,7 @@
     "test:dairy:func": "wdio wdio.conf.js --spec test/specs/diary/diaryFunc.js --inspect",
     "test:dairyFromUserPage:func": "wdio wdio.conf.js --spec test/specs/diary/dayReportFromUserPage.js --inspect",
     "test:dairy:approve": "wdio wdio.conf.js --spec test/specs/diary/diaryApproveBtn.js --inspect",
+    "test:dairy:deleteButton:func": "wdio wdio.conf.js --spec test/specs/diary/deleteButtonFunc.js --inspect",
     "test:groups:createGroup:func": "wdio wdio.conf.js --spec test/specs/groups/createGroupFunc.js --inspect",
     "test:groups:editGroup:func": "wdio wdio.conf.js --spec test/specs/groups/editGroupFunc.js --inspect",
     "test:groups:createLecture:func": "wdio wdio.conf.js --spec test/specs/groups/createLectureFunc.js --inspect",
