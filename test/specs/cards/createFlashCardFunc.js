@@ -5,16 +5,22 @@ import loginAction from './../user/_actions/loginAction';
 const selector = {
   menuCards: '//li/a[@qa="cards-link"]',
   h1: '//h1',
+  mainViewButton: '//a[@qa="main-view"]',
   createNewCardButton: '//a[contains(text(),"Create new Card")]',
   waitingForApprovalButton: '//a[contains(text(),"Waiting for approval")]',
+  saveButton: '//button[@class="btn btn-primary"]',
+  approveButton: '//button[contains(text(),"Approve")]',
   flashGroupName: '//div/h4[@qa="name"]/a',
   questionField: '//textarea[@name="question"]',
   answerField: '//textarea[@name="answer"]',
-  saveButton: '//button[@class="btn btn-primary"]',
+
   successMessage: '//div[@class="notification notification-success notification-visible"]',
   successMessageNotification: '//h4[@class="notification-title"]',
-  waitingForApprovalQuestion: '//div//strong[@class="d-block mb-2"]', //need improvment
-  waitingForApprovalAnswer: '',
+  cardsNew: '//div/span[contains(text(),"new")]',
+  questionNew: '//div//strong[@class="d-block mb-2"]', //need improvment
+  answerNew: '',
+  //cardsApproved: '//div/span[contains(text(),"approved")]',
+  cardsApproved: '//div/span[@qa="status"]',
   questionApproved: '//div/strong[@qa="question"]',
   answerApproved: '//div/span[@qa="answer"]',
 };
@@ -22,15 +28,16 @@ const selector = {
 const expected = {
   h1FlashCards: 'FlashCards',
   h1CreateFlashCard: 'Create FlashCard',
+  successMessage: 'Flash Card created',
 };
 
 const data = {
   question: 'What does abbreviation QA mean?',
   answer: 'Meaning: quality assurance.',
-  successMessage: 'Flash Card created',
 };
 
-let numberOfCardsWaitingForApproval;
+let initialNumberOfApprovedCards;
+let initialNumberOfNewCards;
 
 describe('Cards - Create FlashCard - Functionality', () => {
   before(() => {
@@ -55,16 +62,14 @@ describe('Cards - Create FlashCard - Functionality', () => {
     expect($(selector.h1).getText()).equal(nameOfGroup);
   });
 
-  it('should verify amount of approved cards in `Main view`', () => {
-    $(selector.waitingForApprovalButton).click();
-    numberOfCardsWaitingForApproval = $$(selector.waitingForApprovalQuestion).length;
-    expect(numberOfCardsWaitingForApproval > 0).to.be.true;
+  it('should find initial number of approved cards in `Main view`', () => {
+    $(selector.mainViewButton).click();
+    initialNumberOfApprovedCards = $$(selector.cardsApproved).length;
   });
 
-  it('should verify amount of waiting for approval cards', () => {
+  it('should find initial number of new (waiting for approval) cards', () => {
     $(selector.waitingForApprovalButton).click();
-    numberOfCardsWaitingForApproval = $$(selector.waitingForApprovalQuestion).length;
-    expect(numberOfCardsWaitingForApproval > 0).to.be.true;
+    initialNumberOfNewCards = $$(selector.cardsNew).length;
   });
 
   it('should verify that click to `Create new Card` button should redirect to `Create FlashCard` page', () => {
@@ -97,12 +102,31 @@ describe('Cards - Create FlashCard - Functionality', () => {
 
   it('should verify that success message has correct text', () => {
     const actualTextOfSuccessMessage = $(selector.successMessageNotification).getText();
-    expect(actualTextOfSuccessMessage).equal(data.successMessage);
+    expect(actualTextOfSuccessMessage).equal(expected.successMessage);
   });
 
-  it('should verify that card will appear in the list `Waiting for approval`', () => {
+  it('should verify that number af new cards increased by 1', () => {
     $(selector.waitingForApprovalButton).click();
-    const question = $$(selector.waitingForApprovalQuestion)[0].getText();
+    browser.pause(1000);
+    const newNumberOfNewCards = $$(selector.cardsNew).length;
+    expect(newNumberOfNewCards).equal(initialNumberOfNewCards + 1);
+  });
+
+  it('should verify that new card has correct text of question', () => {
+    const question = $$(selector.questionNew)[0].getText();
     expect(question).equal(data.question);
+  });
+  /* === after add class!
+  it('should verify that new card has correct answer', () => {
+    const question = $$(selector.answerNew)[0].getText();
+    expect(question).equal(data.answer);
+  });
+  */
+  it('should verify that after approval of new card number of approved cards increase by 1', () => {
+    $$(selector.approveButton)[0].click();
+    $(selector.mainViewButton).click();
+    browser.refresh();
+    const newNumberOfApprovedCards = $$(selector.cardsApproved).length;
+    expect(newNumberOfApprovedCards).equal(initialNumberOfApprovedCards + 1);
   });
 });
