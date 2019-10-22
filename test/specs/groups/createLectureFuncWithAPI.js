@@ -251,7 +251,6 @@ describe('Create lecture functionality (check with API))', () => {
     const lecturesCountAfterAPI = allLectures.length;
     const lecturesCountAfter = await $$(sel.lectureSel);
     const lecturesCountAfterUI = lecturesCountAfter.length;
-    console.log('API vs UI', lecturesCountAfterAPI, lecturesCountAfterUI);
     expect(lecturesCountAfterAPI).to.be.equal(lecturesCountAfterUI);
   });
 });
