@@ -85,7 +85,6 @@ describe('Diary - Functionality', () => {
   });
 
   it('should verify that `Save` button is disabled when there are checkboxes, but there is no day report', () => {
-    //checkboxes
     for (let i = 1; i < countOfCheckBoxes; i++) {
       const selector = $('//input[@id="input-[' + i + ']"]');
       selector.click();
@@ -141,5 +140,11 @@ describe('Diary - Functionality', () => {
 
   it('should verify that after creation new Diary total count increased by 1 ', () => {
     expect(allDiaries.length).eq(initialDiaryCount + 1);
+  });
+
+  it('should check amount of diaries in DB increased by 1 (with API call)', async () => {
+    allDiaries = await diaryGetAll(process.env.TOKEN_ADMIN);
+    const newDiaryCount = allDiaries.length;
+    expect(newDiaryCount).to.equal(initialDiaryCount + 1);
   });
 });

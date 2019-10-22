@@ -19,7 +19,6 @@ const selector = {
   cardsNew: '//div/span[contains(text(),"new")]',
   questionNew: '//div//strong[@class="d-block mb-2"]', //need improvment
   answerNew: '',
-  //cardsApproved: '//div/span[contains(text(),"approved")]',
   cardsApproved: '//div/span[@qa="status"]',
   questionApproved: '//div/strong[@qa="question"]',
   answerApproved: '//div/span[@qa="answer"]',
@@ -38,6 +37,8 @@ const data = {
 
 let initialNumberOfApprovedCards;
 let initialNumberOfNewCards;
+
+//let initialCardsCount;
 
 describe('Cards - Create FlashCard - Functionality', () => {
   before(() => {

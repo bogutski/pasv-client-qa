@@ -39,6 +39,9 @@ describe('Cards - Create FlashCardGroup - Functionality', () => {
   it('should get all FlasfCardGroups throw API amd verify that is array', async () => {
     allGroups = await flashCardGroupGetAll(token);
     expect(allGroups.payload).to.be.an('array');
+    //   console.log('--------------------------------------------------------------------------------');
+    //   console.log(allGroups.payload[0]._id);
+    //   console.log('--------------------------------------------------------------------------------');
   });
 
   it('should verify that `Cards` item is displayed in main menu', () => {
