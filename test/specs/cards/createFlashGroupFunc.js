@@ -30,14 +30,16 @@ const data = {
 const token = process.env.TOKEN_ADMIN;
 let allGroups;
 let numberOfFlashGroups;
+let initialCountOfGroups;
 
 describe('Cards - Create FlashCardGroup - Functionality', () => {
   before(() => {
     loginAction(browser);
   });
 
-  it('should get all FlasfCardGroups throw API amd verify that is array', async () => {
+  it('should get all FlashCardGroups throw API amd verify that is array', async () => {
     allGroups = await flashCardGroupGetAll(token);
+    initialCountOfGroups = allGroups.payload.length;
     expect(allGroups.payload).to.be.an('array');
     //   console.log('--------------------------------------------------------------------------------');
     //   console.log(allGroups.payload[0]._id);
@@ -128,5 +130,11 @@ describe('Cards - Create FlashCardGroup - Functionality', () => {
   it('should verify that description of created Group is correct', () => {
     const nameOfLastFlashGroup = $$(selector.groupDescription)[0].getText();
     expect(nameOfLastFlashGroup).equal(data.flashCardGroupDescription);
+  });
+
+  it('should verify via API that amount of flashGroups increased by 1', async () => {
+    allGroups = await flashCardGroupGetAll(token);
+    const newCountOfFlashGroups = allGroups.payload.length;
+    expect(newCountOfFlashGroups).equal(initialCountOfGroups + 1);
   });
 });
