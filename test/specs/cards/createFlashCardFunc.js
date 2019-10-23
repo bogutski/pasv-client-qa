@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-//import { url } from './../constants';
 import loginAction from './../user/_actions/loginAction';
 
 const selector = {
@@ -35,11 +34,13 @@ const data = {
   answer: 'Meaning: quality assurance.',
 };
 
-let initialNumberOfApprovedCards;
-let initialNumberOfNewCards;
-let newNumberOfNewCards;
+const question = `${data.question} ${Math.random()}`;
+const answer = `${data.answer} ${Math.random()}`;
 
-//let initialCardsCount;
+let initialNumberOfNewCards;
+let initialNumberOfApprovedCards;
+let newNumberOfNewCards;
+let newNumberOfApprovedCards;
 
 describe('Cards - Create FlashCard - Functionality', () => {
   before(() => {
@@ -69,7 +70,7 @@ describe('Cards - Create FlashCard - Functionality', () => {
     initialNumberOfApprovedCards = $$(selector.cardsApproved).length;
   });
 
-  it('should find initial number of new (waiting for approval) cards', () => {
+  it('should count initial number of new (waiting for approval) cards', () => {
     $(selector.waitingForApprovalButton).click();
     initialNumberOfNewCards = $$(selector.cardsNew).length;
   });
@@ -93,8 +94,8 @@ describe('Cards - Create FlashCard - Functionality', () => {
   });
 
   it('should verify that after filling all required fields and clicking on Save button success message is displayed', () => {
-    $(selector.questionField).setValue(data.question);
-    $(selector.answerField).setValue(data.answer);
+    $(selector.questionField).setValue(question);
+    $(selector.answerField).setValue(answer);
     $(selector.saveButton).click();
     expect($(selector.successMessage).isDisplayed()).to.be.true;
   });
@@ -111,27 +112,25 @@ describe('Cards - Create FlashCard - Functionality', () => {
     expect(newNumberOfNewCards).equal(initialNumberOfNewCards + 1);
   });
 
-  it('should verify that new card has correct text of question', () => {
-    const question = $$(selector.questionNew)[0].getText();
-    expect(question).equal(data.question);
-  });
-
-  /* === after add class!
-  it('should verify that new card has correct answer', () => {
-    const question = $$(selector.answerNew)[0].getText();
-    expect(question).equal(data.answer);
-  });
-  */
-
   it('should verify that after approval of new card number of approved cards increase by 1', () => {
     $$(selector.approveButton)[0].click();
     $(selector.mainViewButton).click();
     browser.refresh();
-    const newNumberOfApprovedCards = $$(selector.cardsApproved).length;
+    newNumberOfApprovedCards = $$(selector.cardsApproved).length;
     expect(newNumberOfApprovedCards).equal(initialNumberOfApprovedCards + 1);
   });
 
-  it('should verify that after approval of new card number of new cards decrease by 1 (or the same as at the begining)', () => {
+  it('should verify that just approved card has correct text of question', () => {
+    const questionApproved = $$(selector.questionApproved)[newNumberOfApprovedCards - 1].getText();
+    expect(questionApproved).equal(question);
+  });
+
+  it('should verify that just approved card has correct text of answer', () => {
+    const answerApproved = $$(selector.answerApproved)[newNumberOfApprovedCards - 1].getText();
+    expect(answerApproved).equal(answer);
+  });
+
+  it('should verify that after approval of new card number of new cards decrease by 1 (or the same as at the beginning)', () => {
     $(selector.waitingForApprovalButton).click();
     browser.pause(1000);
     const numberOfNewCards = $$(selector.cardsNew).length;
