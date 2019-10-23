@@ -37,6 +37,7 @@ const data = {
 
 let initialNumberOfApprovedCards;
 let initialNumberOfNewCards;
+let newNumberOfNewCards;
 
 //let initialCardsCount;
 
@@ -63,7 +64,7 @@ describe('Cards - Create FlashCard - Functionality', () => {
     expect($(selector.h1).getText()).equal(nameOfGroup);
   });
 
-  it('should find initial number of approved cards in `Main view`', () => {
+  it('should count initial number of approved cards in `Main view`', () => {
     $(selector.mainViewButton).click();
     initialNumberOfApprovedCards = $$(selector.cardsApproved).length;
   });
@@ -91,13 +92,10 @@ describe('Cards - Create FlashCard - Functionality', () => {
     expect($(selector.saveButton).isDisplayed()).to.be.true;
   });
 
-  it('should filling all required fields of flash card and click on Save button', () => {
+  it('should verify that after filling all required fields and clicking on Save button success message is displayed', () => {
     $(selector.questionField).setValue(data.question);
     $(selector.answerField).setValue(data.answer);
     $(selector.saveButton).click();
-  });
-
-  it('should verify that success message is displayed', () => {
     expect($(selector.successMessage).isDisplayed()).to.be.true;
   });
 
@@ -109,7 +107,7 @@ describe('Cards - Create FlashCard - Functionality', () => {
   it('should verify that number af new cards increased by 1', () => {
     $(selector.waitingForApprovalButton).click();
     browser.pause(1000);
-    const newNumberOfNewCards = $$(selector.cardsNew).length;
+    newNumberOfNewCards = $$(selector.cardsNew).length;
     expect(newNumberOfNewCards).equal(initialNumberOfNewCards + 1);
   });
 
@@ -117,17 +115,26 @@ describe('Cards - Create FlashCard - Functionality', () => {
     const question = $$(selector.questionNew)[0].getText();
     expect(question).equal(data.question);
   });
+
   /* === after add class!
   it('should verify that new card has correct answer', () => {
     const question = $$(selector.answerNew)[0].getText();
     expect(question).equal(data.answer);
   });
   */
+
   it('should verify that after approval of new card number of approved cards increase by 1', () => {
     $$(selector.approveButton)[0].click();
     $(selector.mainViewButton).click();
     browser.refresh();
     const newNumberOfApprovedCards = $$(selector.cardsApproved).length;
     expect(newNumberOfApprovedCards).equal(initialNumberOfApprovedCards + 1);
+  });
+
+  it('should verify that after approval of new card number of new cards decrease by 1 (or the same as at the begining)', () => {
+    $(selector.waitingForApprovalButton).click();
+    browser.pause(1000);
+    const numberOfNewCards = $$(selector.cardsNew).length;
+    expect(numberOfNewCards).equal(initialNumberOfNewCards);
   });
 });
