@@ -160,10 +160,10 @@ describe('Groups - Create group - Functionality', () => {
 
   it('should verify through API that total amount eq UI count', async () => {
     const groupsAfterCreateUI = await $$(selector.groupListItem);
-    const numberOfGroupsAfterCreateUI = groupsAfterCreateUI.length;
+    const newNumberOfGroupsUI = groupsAfterCreateUI.length;
 
     const groupsAfterCreateAPI = await groupsGetAll(token);
-    const numberOfGroupsAfterCreateAPI = groupsAfterCreateAPI.length;
-    expect(numberOfGroupsAfterCreateAPI).equal(numberOfGroupsAfterCreateUI);
+    const newNumberOfGroupsAPI = groupsAfterCreateAPI.length;
+    expect(newNumberOfGroupsAPI).equal(newNumberOfGroupsUI);
   });
 });
