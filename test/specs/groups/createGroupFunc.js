@@ -63,11 +63,9 @@ describe('Groups - Create group - Functionality', () => {
     expect($(selector.createGroupButton).isDisplayed()).to.be.true;
   });
 
-  // API check
-  it('should verify that count of existing groups eq API count', () => {
+  it('should verify that count of groups equals to API count of flashGroups', () => {
     $(selector.groupListItem).waitForDisplayed(5000);
     numberOfGroups = $$(selector.groupListItem).length;
-
     expect(numberOfGroups).equal(allGroups.length);
   });
 
@@ -154,12 +152,12 @@ describe('Groups - Create group - Functionality', () => {
   });
 
   it('should verify that amount of groups increased by 1 after creating group', () => {
-    const numberOfGroupsAfterCreate = $$(selector.groupListItem).length;
-    expect(numberOfGroupsAfterCreate === numberOfGroups + 1).to.be.true;
+    const newNumberOfGroups = $$(selector.groupListItem).length;
+    expect(newNumberOfGroups === numberOfGroups + 1).to.be.true;
   });
 
   it('should verify through API that total amount eq UI count', async () => {
-    const groupsAfterCreateUI = await $$(selector.groupListItem);
+    const groupsAfterCreateUI = $$(selector.groupListItem);
     const newNumberOfGroupsUI = groupsAfterCreateUI.length;
 
     const groupsAfterCreateAPI = await groupsGetAll(token);
