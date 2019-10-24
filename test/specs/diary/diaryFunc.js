@@ -75,13 +75,18 @@ describe('Diary - Functionality', () => {
   });
 
   it('should verify that the field `What is your morale` is displayed', () => {
-    const moraleFieldisdisplayed = $(selector.morale).isDisplayed();
-    expect(moraleFieldisdisplayed).to.be.true;
+    const moraleFieldisDisplayed = $(selector.morale).isDisplayed();
+    expect(moraleFieldisDisplayed).to.be.true;
   });
 
   it('should verify that the field `How many hours did you study today` is displayed', () => {
-    const hoursFieldisdisplayed = $(selector.hours).isDisplayed();
-    expect(hoursFieldisdisplayed).to.be.true;
+    const hoursFieldisDisplayed = $(selector.hours).isDisplayed();
+    expect(hoursFieldisDisplayed).to.be.true;
+  });
+
+  it('should verify that the field `How was yor day` is displayed', () => {
+    const descriptionFieldisDisplayed = $(selector.descriptionField).isDisplayed();
+    expect(descriptionFieldisDisplayed).to.be.true;
   });
 
   it('should verify that `Save` button is disabled', () => {
