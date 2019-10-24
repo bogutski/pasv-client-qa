@@ -10,6 +10,8 @@ const selector = {
   createDayReportButton: '//a[@qa="create-day-report-button"]',
   saveButton: '//button[@type="submit"]',
   checkBox: '//input[@type="checkbox"]',
+  morale: '//select[@name="morale"]',
+  hours: '//input[@name="hours"]',
   descriptionField: '//textarea[@name="description"]',
 };
 
@@ -70,6 +72,16 @@ describe('Diary - Functionality', () => {
   it('should verify that there are checkboxes on `Create day report` page', () => {
     countOfCheckBoxes = $$(selector.checkBox).length;
     expect(countOfCheckBoxes).equal(12);
+  });
+
+  it('should verify that the field `What is your morale` is displayed', () => {
+    const moraleFieldisdisplayed = $(selector.morale).isDisplayed();
+    expect(moraleFieldisdisplayed).to.be.true;
+  });
+
+  it('should verify that the field `How many hours did you study today` is displayed', () => {
+    const hoursFieldisdisplayed = $(selector.hours).isDisplayed();
+    expect(hoursFieldisdisplayed).to.be.true;
   });
 
   it('should verify that `Save` button is disabled', () => {
