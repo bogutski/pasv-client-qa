@@ -25,6 +25,7 @@ const dayReportText = `Today I watched ${Math.trunc(
 let allDiaries;
 let initialDiaryCount;
 let countOfCheckBoxes;
+let morale = Math.trunc(Math.random() * 10);
 
 describe('Diary - Functionality', () => {
   before(() => {
@@ -84,7 +85,7 @@ describe('Diary - Functionality', () => {
     expect(hoursFieldisDisplayed).to.be.true;
   });
 
-  it('should verify that the field `How was yor day` is displayed', () => {
+  it('should verify that the field `How was your day` is displayed', () => {
     const descriptionFieldisDisplayed = $(selector.descriptionField).isDisplayed();
     expect(descriptionFieldisDisplayed).to.be.true;
   });
@@ -102,7 +103,7 @@ describe('Diary - Functionality', () => {
   });
 
   it('should verify that `Save` button is disabled when there are checkboxes, but there is no day report', () => {
-    for (let i = 1; i < countOfCheckBoxes; i++) {
+    for (let i = 0; i < countOfCheckBoxes; i++) {
       const selector = $('//input[@id="input-[' + i + ']"]');
       selector.click();
     }
@@ -122,6 +123,20 @@ describe('Diary - Functionality', () => {
   it('should verify that description area is-invalid when day report length < 30', () => {
     const descriptionArea = $(selector.descriptionField);
     expect(descriptionArea.getAttribute('class')).includes('is-invalid');
+  });
+
+  it('should verify that `Morale` is required field (is-invalid when it is empty)', () => {
+    const moraleField = $(selector.morale);
+    moraleField.selectByVisibleText('');
+    browser.keys('Tab');
+    expect(moraleField.getAttribute('class')).includes('is-invalid ');
+  });
+
+  it('should verify that `Morale` is required field (is-valid when it is not empty)', () => {
+    const moraleField = $(selector.morale);
+    moraleField.selectByVisibleText(morale);
+    browser.keys('Tab');
+    expect(moraleField.getAttribute('class')).includes('is-valid');
   });
 
   it('should verify that `Save` button is enabled when there is a correct report and checkboxes', () => {
