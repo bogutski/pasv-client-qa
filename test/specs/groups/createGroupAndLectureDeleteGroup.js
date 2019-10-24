@@ -86,12 +86,6 @@ describe('Create Group and lecture into it, then delete group', () => {
     allGroups = await groupsGetAll(token);
     groupsCount = allGroups.length;
     groupId = allGroups[0]._id;
-    console.log(
-      'GROUP_ID is',
-      groupId,
-      'allGroups length after a new group was created is',
-      groupsCount,
-    );
     expect(allGroups).to.be.an('array');
   });
 
@@ -136,14 +130,12 @@ describe('Create Group and lecture into it, then delete group', () => {
     const lecturesCountAfterAPI = allLectures.length;
     const lecturesCountAfter = await $$(sel.lectureSel);
     const lecturesCountAfterUI = lecturesCountAfter.length;
-    console.log('API vs UI', lecturesCountAfterAPI, lecturesCountAfterUI);
     expect(lecturesCountAfterAPI).to.be.equal(lecturesCountAfterUI);
   });
 
   it('should delete Group in DB through API', async () => {
     await deleteGroupById(token, groupId);
     allGroups = await groupsGetAll(token);
-    console.log('ALL GROUPS LENGTH is', allGroups.length);
     expect(allGroups.length).to.be.equal(groupsCount - 1);
   });
 

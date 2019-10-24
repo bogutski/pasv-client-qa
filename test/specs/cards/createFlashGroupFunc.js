@@ -41,9 +41,6 @@ describe('Cards - Create FlashCardGroup - Functionality', () => {
     allGroups = await flashCardGroupGetAll(token);
     initialCountOfGroups = allGroups.payload.length;
     expect(allGroups.payload).to.be.an('array');
-    //   console.log('--------------------------------------------------------------------------------');
-    //   console.log(allGroups.payload[0]._id);
-    //   console.log('--------------------------------------------------------------------------------');
   });
 
   it('should verify that `Cards` item is displayed in main menu', () => {
