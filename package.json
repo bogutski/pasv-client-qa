@@ -47,6 +47,7 @@
     "test:group:lecture:edit": "wdio wdio.conf.js --spec test/specs/groups/editLecture.js --inspect", 
     "test:cards:createFlashGroup:func": "wdio wdio.conf.js --spec test/specs/cards/createFlashGroupFunc.js --inspect",
     "test:cards:editFlashGroup:func": "wdio wdio.conf.js --spec test/specs/cards/editFlashGroupFunc.js --inspect",
+    "test:cards:createFlashCard:func": "wdio wdio.conf.js --spec test/specs/cards/createFlashCardFunc.js --inspect",
     "test:quiz:create:func": "wdio wdio.conf.js --spec test/specs/quiz/createQuiz.js --inspect"
   },
   "author": "Viktor Bogutskii",
