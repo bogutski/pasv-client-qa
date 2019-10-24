@@ -7,12 +7,30 @@ import { url } from './../constants';
 const token = process.env.TOKEN_ADMIN;
 const extraNumber = new Date().getTime();
 const dayReportText = extraNumber + ' Watched a video about methods bind(), call(), apply() in Javascript.';
+const numberFrom1To10 = Math.ceil(Math.random() * 10);
 const h1DailyReports = 'Daily reports';
 const h1CreateDayReport = 'Create day report';
 const notificationText = 'Diary deleted';
 const attributeClass = 'class';
+const attributeValue = 'value';
+const classHasSuccess = 'has-success';
 const classHasWarning = 'has-warning';
 const messageNoDiariesHere = 'All diaries was approved.';
+const valueKeys = 'Tab';
+const moraleList = [
+  ' ',
+  '10 – I am pleased with everything!',
+  '9',
+  '8',
+  '7',
+  '6',
+  '5',
+  '4',
+  '3',
+  '2',
+  '1',
+  '0 – I give up',
+];
 const checkBoxesList = [
   'I need help',
   'I understood everything',
@@ -30,8 +48,8 @@ const checkBoxesList = [
 let checkBoxesCount;
 let allCheckBoxes;
 let thisCheckBox;
-let formGroupOfCheckBoxes;
 let hasWarningClass;
+let hasSuccessClass;
 let allDiariesInDB;
 let allDiariesCount;
 let allDiariesCountAfterDeleting;
@@ -44,7 +62,12 @@ const selector = {
   createDayReportButton: '//a[@qa="create-day-report-button"]',
   checkBox: '//input[@type="checkbox"]',
   checkBoxesOnThePage: '//input[@type="checkbox"]/..//label[contains(@for,"input")]/div',
-  formGroup: '//div[contains(@class,"form-group") and .//input[@type="checkbox"]]',
+  formGroupCheckbox: '//div[contains(@class,"form-group") and .//input[@type="checkbox"]]',
+  formGroupMorale: '//div[contains(@class,"form-group") and .//label[@for="morale"]]',
+  formGroupHours: '//div[contains(@class,"form-group") and .//label[@for="hours"]]',
+  formGroupDescription: '//div[contains(@class,"form-group") and .//label[@for="description"]]',
+  moraleLevel: '//select[@name="morale"]',
+  amountOfHours: '//input[@name="hours"]',
   descriptionArea: '//textarea[@name="description"]',
   allDiariesOnThePage: '//div[@qa="description"]',
   saveButton: '//button[@type="submit"]',
@@ -90,7 +113,52 @@ describe('Diary - Delete button - Functionality', () => {
     expect(actualUrl).to.be.equal(url.diaryCreateForm);
   });
 
-  it('should find all the checkboxes on the page', () => {
+  for (let i = 1; i < moraleList.length; i++) {
+    it(`should verify that user should be able select '${moraleList[i]}'`, () => {
+      $(selector.moraleLevel).selectByVisibleText(moraleList[i]);
+      browser.keys(valueKeys);
+      hasSuccessClass = $(selector.formGroupMorale).getAttribute(attributeClass).includes(classHasSuccess);
+      expect(hasSuccessClass).to.be.true;
+    });
+
+    it(`should verify that the "has-warning" class appears if the user selected an empty option after '${moraleList[i]}'`, () => {
+      $(selector.moraleLevel).selectByAttribute(attributeValue, moraleList[0]);
+      browser.keys(valueKeys);
+      hasWarningClass = $(selector.formGroupMorale).getAttribute(attributeClass).includes(classHasWarning);
+      expect(hasWarningClass).to.be.true;
+    });
+  }
+
+  it('should set any level of morale', () => {
+    $(selector.moraleLevel).selectByVisibleText(moraleList[numberFrom1To10]);
+  });
+
+  it('should verify that the "How many hours did you study?" field has the "has-warning" class', () => {
+    hasWarningClass = $(selector.formGroupHours).getAttribute(attributeClass).includes(classHasWarning);
+    expect(hasWarningClass).to.be.true;
+  });
+
+  it('should fill in the "How many hours did you study?" field', () => {
+    $(selector.amountOfHours).setValue(numberFrom1To10);
+    hasSuccessClass = $(selector.formGroupHours).getAttribute(attributeClass).includes(classHasSuccess);
+    expect(hasSuccessClass).to.be.true;
+  });
+
+  it('should verify that the "How was your day?" area has the "has-warning" class', () => {
+    $(selector.descriptionArea).click();
+    browser.keys(valueKeys);
+    hasWarningClass = $(selector.formGroupDescription).getAttribute(attributeClass).includes(classHasWarning);
+    expect(hasWarningClass).to.be.true;
+  });
+
+  it('should fill in the "How was your day?" area', () => {
+    $(selector.descriptionArea).setValue(dayReportText);
+    hasSuccessClass = $(selector.formGroupDescription).getAttribute(attributeClass).includes(classHasSuccess);
+    expect(hasSuccessClass).to.be.true;
+  });
+
+  it('should scroll and find all the checkboxes on the page', () => {
+    $(selector.saveButton).scrollIntoView(true);
     allCheckBoxes = $$(selector.checkBoxesOnThePage);
   });
 
@@ -105,27 +173,22 @@ describe('Diary - Delete button - Functionality', () => {
   });
 
   it('should verify that no checkbox is marked', () => {
-    formGroupOfCheckBoxes = $(selector.formGroup);
-    hasWarningClass = formGroupOfCheckBoxes.getAttribute(attributeClass).includes(classHasWarning);
+    hasWarningClass = $(selector.formGroupCheckbox).getAttribute(attributeClass).includes(classHasWarning);
     expect(hasWarningClass).to.be.true;
-  });
-
-  it('should fill in the description area', () => {
-    $(selector.descriptionArea).setValue(dayReportText);
   });
 
   for (let i = 1; i <= checkBoxesList.length; i++) {
     it(`should verify that '${checkBoxesList[i - 1]}' is marked`, () => {
       thisCheckBox = $(`(${selector.checkBox})[${i}]`);
       thisCheckBox.click();
-      hasWarningClass = formGroupOfCheckBoxes.getAttribute(attributeClass).includes(classHasWarning);
+      hasWarningClass = $(selector.formGroupCheckbox).getAttribute(attributeClass).includes(classHasWarning);
       expect(hasWarningClass).to.be.false;
     });
 
     it(`should verify that '${checkBoxesList[i - 1]}' is unmarked`, () => {
       thisCheckBox = $(`(${selector.checkBox})[${i}]`);
       thisCheckBox.click();
-      hasWarningClass = formGroupOfCheckBoxes.getAttribute(attributeClass).includes(classHasWarning);
+      hasWarningClass = $(selector.formGroupCheckbox).getAttribute(attributeClass).includes(classHasWarning);
       expect(hasWarningClass).to.be.true;
     });
   }
