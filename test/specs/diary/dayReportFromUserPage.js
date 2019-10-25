@@ -116,8 +116,8 @@ describe('Diary - From User Page - Functionality', () => {
   });
 
   it('should verify that number of user`s day reports on user`s page increased by 1', () => {
-    let initialNumber1 = $(selector.numberOfDayReports).getText();
-    expect(+initialNumber1 === +initialNumber + 1).to.be.true;
+    let countNew = $(selector.numberOfDayReports).getText();
+    expect(+countNew === +initialNumber + 1).to.be.true;
   });
 
   it('should verify that day report appeared on user`s page', () => {
