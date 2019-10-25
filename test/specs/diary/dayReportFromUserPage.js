@@ -11,16 +11,27 @@ const selector = {
   createDayReportButton: '//a[@qa="create-day-report-button"]',
   checkBox: '//input[@type="checkbox"]',
   saveButton: '//button[@type="submit"]',
+  morale: '//select[@name="morale"]',
+  hours: '//input[@name="hours"]',
   descriptionField: '//textarea[@name="description"]',
+  userDropDownMenu: '//a[@class="dropdown-toggle nav-link"]',
+  optionDropDownMenu: '//button[contains(text(),"Profile")]',
 };
 
+const expected = {
+  headerH3Text: 'Daily reports',
+  createButtonText: 'Create day report',
+};
+
+const data = {
+  morale: Math.trunc(Math.random() * 10),
+  hours: Math.trunc(Math.random() * 10),
+  dayReportText: `Today I watched ${Math.trunc(
+    Math.random() * 10,
+  )} lectures and solved ${Math.trunc(Math.random() * 10)} tasks on codewars.`,
+};
 let initialNumber;
 let countOfCheckBoxes;
-
-const expectedHeaderH3Text = 'Daily reports';
-const dayReportText = `Today I watched ${Math.trunc(
-  Math.random() * 10,
-)} lectures and solved ${Math.trunc(Math.random() * 10)} tasks on codewars. Also I wrote tests.`;
 
 describe('Diary - From User Page - Functionality', () => {
   before(() => {
@@ -43,7 +54,7 @@ describe('Diary - From User Page - Functionality', () => {
 
   it('should verify that user`s page has header `Daily reports`', () => {
     const headerH3Text = $(selector.headerH3).getText();
-    expect(headerH3Text).to.include(expectedHeaderH3Text);
+    expect(headerH3Text).to.include(expected.headerH3Text);
   });
 
   it('should verify that initial number of user`s day reports > 0', () => {
@@ -52,20 +63,33 @@ describe('Diary - From User Page - Functionality', () => {
     expect(+initialNumber > 0).to.be.true;
   });
 
+  it('should verify that button `Create day report` is displayed ', () => {
+    const buttonIsDisplayed = $(selector.createDayReportButton).isDisplayed();
+    expect(buttonIsDisplayed).to.be.true;
+  });
+
+  it('should verify that button `Create day report` has correct text', () => {
+    const button = $(selector.createDayReportButton);
+    const textOfButton = button.getText();
+    expect(textOfButton).equal(expected.createButtonText);
+  });
+
   it('should verify that click to `Create day report` button redirect to `Create day report` page', () => {
-    $(selector.createDayReportButton).click();
+    const button = $(selector.createDayReportButton);
+    button.click();
     const actualUrl = browser.getUrl();
     expect(actualUrl).to.equal(url.diaryCreateForm);
   });
 
-  it('should verify that `Save` button is enabled when report is correct', () => {
+  it('should verify that `Save` button is enabled when all fields filled correctly', () => {
     countOfCheckBoxes = $$(selector.checkBox).length;
-    for (let i = 1; i < countOfCheckBoxes; i++) {
+    for (let i = 0; i < countOfCheckBoxes; i++) {
       const selector = $('//input[@id="input-[' + i + ']"]');
       selector.click();
     }
-    $(selector.descriptionField).setValue(dayReportText);
-    browser.pause(300);
+    $(selector.descriptionField).setValue(data.dayReportText);
+    $(selector.morale).selectByVisibleText(data.morale);
+    $(selector.hours).setValue(data.hours);
     const isEnabled = $(selector.saveButton).isEnabled();
     expect(isEnabled).to.be.true;
   });
@@ -80,28 +104,24 @@ describe('Diary - From User Page - Functionality', () => {
 
   it('should verify that day report appeared on `Day reports` page', () => {
     const lastDiaryRecord = $$(selector.diaryRecord)[0].getText();
-    expect(lastDiaryRecord).to.equal(dayReportText);
+    expect(lastDiaryRecord).to.equal(data.dayReportText);
   });
 
   it('should verify that click on `user name`- profile  in upper-right corner redirect to user`s page', () => {
-    const selector = '//a[@class="dropdown-toggle nav-link"]';
-    $(selector).click();
-    const option = '//button[contains(text(),"Profile")]';
-    $(option).click();
-    browser.pause(600);
+    $(selector.userDropDownMenu).click();
+    $(selector.optionDropDownMenu).click();
     const actualUrl = browser.getUrl();
     const expectedUrl = `${url.baseUrl}/user/${user.admin.id}`;
     expect(actualUrl).equal(expectedUrl);
   });
 
-  it('should verify that number of user`s day reports on users page increased by 1', () => {
-    browser.pause(1000);
-    let initialNumber1 = $(selector.numberOfDayReports).getText();
-    expect(+initialNumber1 === +initialNumber + 1).to.be.true;
+  it('should verify that number of user`s day reports on user`s page increased by 1', () => {
+    let countNew = $(selector.numberOfDayReports).getText();
+    expect(+countNew === +initialNumber + 1).to.be.true;
   });
 
   it('should verify that day report appeared on user`s page', () => {
     const lastDiaryRecord = $$(selector.diaryRecord)[0].getText();
-    expect(lastDiaryRecord).to.equal(dayReportText);
+    expect(lastDiaryRecord).to.equal(data.dayReportText);
   });
 });
