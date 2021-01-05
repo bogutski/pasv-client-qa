@@ -66,7 +66,7 @@
     "@wdio/selenium-standalone-service": "5.12.1",
     "@wdio/spec-reporter": "5.12.1",
     "@wdio/sync": "5.13.0",
-    "axios": "0.19.0",
+    "axios": "0.21.1",
     "babel-eslint": "^10.0.3",
     "chai": "4.2.0",
     "eslint": "^6.5.1",
